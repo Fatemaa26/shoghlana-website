@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center - HFMS</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+            body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #4262f3, #4B0082);
+            background-size: 200% 200%;
+           }
+            /* font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: white;
+            color: black;
+            text-align: center;
+            overflow-x: hidden;
+            position: relative; */
+        .container {
+            width: 75%;
+            margin: auto;
+            padding: 40px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #4B0082;
+        }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            font-weight: 300;
+            color: #333;
+            max-width: 800px;
+            margin: auto;
+        }
+        #title {
+            font-style: italic;
+        }
+        .faq {
+            margin-top: 30px;
+            text-align: left;
+        }
+        .faq-item {
+            background: #f3f3f3;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+        }
+        .message-form {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: #4B0082;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #370063;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .decor {
+            position: absolute;
+            background: linear-gradient(to right, #4B0082, #0000FF);
+            border-radius: 50%;
+            opacity: 0.2;
+        }
+        .decor.one { top: -40px; left: -40px; width: 150px; height: 150px; }
+        .decor.two { bottom: -40px; right: -40px; width: 150px; height: 150px; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        /* Navigation bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: inherit;
+            position: relative;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+
+nav .logo {
+    font-family:cursive sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: rgb(250, 250, 250);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    }
+
+
+        nav ul {
+            list-style-type: none;
+            margin-right: 70px;
+            margin-top:  20px;
+            padding: 0;
+            display: inline-block;
+            gap: 15px;
+        }
+
+        nav ul li {
+            float: left;
+            margin-left: 40px;
+        }
+
+        nav ul li a {
+            font-family: 'Roboto', sans-serif;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: white;
+            transition: width 0.3s ease;
+            transition-delay: 0.1s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+            left: 0;
+            background: white;
+        }
+
+        nav ul li a:hover {
+            color: #d5a1ff;
+            transform: scale(1.05);
+        }
+    
+        .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 20px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: rgb(101, 199, 216); /* Light purple for headings */
+}
+
+.footer-section p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 5px 0;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer-section ul li a:hover {
+    color: #d5a1ff; /* Light purple on hover */
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 14px;
+}
+
+.footer-bottom a {
+    color: #d5a1ff; /* Light purple for developer link */
+    text-decoration: none;
+}
+
+.footer-bottom a:hover {
+    text-decoration: underline;
+}
+        /* footer ul li a:hover {
+            color: #d5a1ff;
+        } */
+        footer ul li a:hover {
+            color: #d5a1ff;
+        }
+        /* Sticky Navigation Bar */
+nav.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(66, 98, 243, 0.9);
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Fade-In Animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hover Effects */
+nav ul li a:hover {
+    color: #d5a1ff;
+    transform: scale(1.05);
+}    
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">Shoghlana</div>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#jobs" id="1">Jobs</a></li>
+            <li><a href="#contact" id="1">Contact Us</a></li>
+            <li><a href="#signup" id="1">Sign Up/Sign In</a></li>
+        </ul>
+    </nav>
+    <div class="decor one"></div>
+    <div class="decor two"></div>
+    <div class="container">
+        <h1 id="title">Help Center</h1>
+        <p>If you have any questions or issues, check out our FAQs or send us a message!</p>
+        
+        <h2 id="title">Frequently Asked Questions</h2>
+        <div class="faq">
+            <div class="faq-item"><strong>How do I reset my password?</strong><br>You can reset your password by clicking on the 'Forgot Password' link on the login page.</div>
+            <div class="faq-item"><strong>How do I contact support?</strong><br>You can contact support by sending a message below or emailing us at support@hfms.com.</div>
+            <div class="faq-item"><strong>How do I update my profile information?</strong><br>Go to your account settings and update your information.</div>
+        </div>
+        
+        <h2 id="title">Send Us a Message</h2>
+        <div class="message-form">
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="4" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <!-- Headquarters Section -->
+            <div class="footer-section">
+                <h3>Headquarter</h3>
+                <p>📞 +20 109 9999-978</p>
+                <p>📧 info@shoghlana.com</p>
+            </div>
+            <!-- Quick Links Section -->
+            <div class="footer-section">
+                <h3>Quick links</h3>
+                <ul>
+                    <li><a href="AboutUs.html">About Us</a></li>
+                   <li><a id="contact">Contact Us</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="HelpCenter.html">Help center</a></li>
+                </ul>
+            </div>
+            <!-- Policies Section -->
+            <div class="footer-section">
+                <h3>Policies</h3>
+                <ul>
+                    <li><a href="Terms&Privacy.html">Terms of Service</a></li>
+                    <li><a href="Terms&Privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <!-- Copyright Section -->
+        <div class="footer-bottom">
+            <p style="color: rgb(101, 199, 216);">&copy; 2025 Shoghlana. All rights reserved.</p>
+        </div>
+             </footer>
+</body>
+</html>
