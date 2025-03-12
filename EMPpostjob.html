@@ -1,0 +1,385 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shoghlana | Post Job</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #4262f3, #4B0082);
+            background-size: 200% 200%;
+            animation: gradientAnimation 10s ease infinite;
+            text-align: left;
+            transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+        }
+
+        /* Navigation bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: inherit;
+            position: relative;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+
+nav .logo {
+    font-family:cursive sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: rgb(250, 250, 250);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    }
+
+
+        nav ul {
+            list-style-type: none;
+            margin-right: 70px;
+            margin-top:  20px;
+            padding: 0;
+            display: inline-block;
+            gap: 15px;
+        }
+
+        nav ul li {
+            float: left;
+            margin-left: 40px;
+        }
+
+        nav ul li a {
+            font-family: 'Roboto', sans-serif;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: white;
+            transition: width 0.3s ease;
+            transition-delay: 0.1s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+            left: 0;
+            background: white;
+        }
+
+        nav ul li a:hover {
+            color: #d5a1ff;
+            transform: scale(1.05);
+        }
+    
+        /* Body content */
+        .content {
+            padding: 20px;
+            color: white;
+        }
+
+        .content h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .content p {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        /* container styles */
+.c {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* header style */
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 25px;
+    background: url('https://i.imgur.com/MTqH7Rh.png') no-repeat center center;
+    background-size: cover;
+    padding: 40px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+    font-size: 32px;
+}
+
+/* sections StyleSs */
+.section {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 20px;
+    background: #fff;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 550;
+    color: #444;
+    font-size: 16px;
+    background: #e0f7ff;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: rgb(101, 199, 216);
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+/* Buttons styles */
+.d {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 20px;
+    background: rgb(101, 199, 216);
+    color: white;
+    text-decoration-color: none;
+    border-radius: 9px;
+    transition: background 0.5s ease;
+    font-size: 16px;
+    cursor: pointer;
+}
+        /* Footer */
+        footer {
+            background: inherit;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        footer ul li {
+            display: inline;
+        }
+
+        footer ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        footer ul li a:hover {
+            color: #d5a1ff;
+        }
+    </style>
+    <script>
+        let form = document.getElementById("job-form");
+
+        // publish button
+       document.getElementById("publish").addEventListener("click", function(event) {
+    let form = document.getElementById("job-form");
+
+    if (form.checkValidity()) {
+        alert("The job has been published successfully");
+    } else {
+        event.preventDefault(); 
+        form.reportValidity();
+    }
+});
+
+
+        // save draft button
+        document.getElementById("save-draft").addEventListener("click", (e) => {
+            alert("Draft saved successfully");
+        });
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">Shoghlana</div>
+        </div>
+        <ul>
+            <li><a href="employerhome.html">Home</a></li>
+            <li><a href="EMPProfile.html">Profile</a></li>
+            <li><a href="#services" id="1">Services</a></li>
+            <li><a href="EMPpostjob.html">PostJob</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <!-- <li><a href="#signup" id="1">Sign Up/Sign In</a></li> -->
+        </ul>
+    </nav>
+    <div class="c">
+        <h1>Publish an Opportunity</h1>
+
+        <form id="job-form">
+            <!-- Job categories section -->
+            <div class="section">
+                <div class="form-group">
+                    <label for="job-categories">Job Category <span class="required">*</span></label>
+                    <select id="job-categories" required>
+                        <option value="">Select a category</option>
+                        <option value="tech">Technology</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="finance">Finance</option>
+                        <option value="hr">Human Resources</option>
+                        <option value="design">Design</option>
+                        <option value="sales">Sales</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Job Title section -->
+            <div class="section">
+                <div class="form-group">
+                    <label for="job-title">Job Title <span class="required">*</span></label>
+                    <input type="text" id="job-title" placeholder="for example: Senior Frontend Developer , AI internship" required>
+                </div>
+            </div>
+
+            <!-- Salary and deadline section -->
+            <div class="section">
+                <div class="form-group">
+                    <div class="form-group">
+    <label for="salaryRange">Salary Range</label>
+    <input type="text" id="salaryRange" name="salaryRange" placeholder="for example: 50,000 - 70,000">
+    <select id="currency" name="currency" required>
+        <option value="USD">USD ($)</option>
+        <option value="EUR">EUR (€)</option>
+        <option value="GBP">GBP (£)</option>
+        <option value="EGP">EGP (ج.م)</option>
+        <option value="JPY">JPY (¥)</option>
+    </select>
+</div>
+
+                </div>
+                <div class="form-group">
+                    <label for="deadline">Application Deadline <span class="required">*</span></label>
+                    <input type="date" id="deadline" required>
+                </div>
+            </div>
+
+            <!-- Job Description Section -->
+            <div class="section">
+                <div class="form-group">
+                    <label for="job-description">Job Description <span class="required">*</span></label>
+                    <textarea id="job-description" rows="5" placeholder="Describe the role, responsibilities, and requirements , so on" required></textarea>
+                </div>
+            </div>
+
+            <!-- Media uPload section -->
+            <div class="section">
+                <div class="form-group">
+                    <label for="media">Upload Media (Images/Videos) <span class="required">*</span></label>
+                    <input type="file" id="media" accept="image/,video/" required>
+                </div>
+                <div class="form-group">
+                    <label for="pdf">Attach PDF Job Description <span class="required">*</span></label>
+                    <input type="file" id="pdf" accept=".pdf" required>
+                </div>
+            </div>
+
+            <!-- Buttons Section-->
+            <div class="section">
+                <button class="d" id="publish" type="submit">Publish</button>
+                <button class="d" id="save-draft" type="button">Save Draft</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <!-- Headquarters Section -->
+            <div class="footer-section">
+                <h3>Headquarter</h3>
+                <p>📞 +20 109 9999-978</p>
+                <p>📧 info@shoghlana.com</p>
+            </div>
+            <!-- Quick Links Section -->
+            <div class="footer-section">
+                <h3>Quick links</h3>
+                <ul>
+                    <li><a href="AboutUs.html">About Us</a></li>
+                    <li><a id="contact">Contact Us</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="HelpCenter.html">Help center</a></li>
+                </ul>
+            </div>
+            <!-- Policies Section -->
+            <div class="footer-section">
+                <h3>Policies</h3>
+                <ul>
+                    <li><a href="Terms&Privacy.html">Terms of Service</a></li>
+                    <li><a href="Terms&Privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <!-- Copyright Section -->
+        <div class="footer-bottom">
+            <p style="color: rgb(101, 199, 216);">&copy; 2025 Shoghlana. All rights reserved.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

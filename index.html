@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shoghlana</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HFMS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #4262f3, #4B0082);
+            background-size: 200% 200%;
+            animation: gradientAnimation 10s ease infinite;
+            text-align: left;
+            transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+        }
+
+        /* Navigation bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: inherit;
+            position: relative;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+
+nav .logo {
+    font-family:cursive sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: rgb(250, 250, 250);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    }
+
+
+        nav ul {
+            list-style-type: none;
+            margin-right: 70px;
+            margin-top:  20px;
+            padding: 0;
+            display: inline-block;
+            gap: 15px;
+        }
+
+        nav ul li {
+            float: left;
+            margin-left: 40px;
+        }
+
+        nav ul li a {
+            font-family: 'Roboto', sans-serif;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: white;
+            transition: width 0.3s ease;
+            transition-delay: 0.1s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+            left: 0;
+            background: white;
+        }
+
+        nav ul li a:hover {
+            color: #d5a1ff;
+            transform: scale(1.05);
+        }
+    
+        /* Body content */
+        .content {
+            padding: 20px;
+            color: white;
+        }
+
+        .content h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .content p {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .jobs-list-container {
+    max-width: 900px;
+    margin: 20px auto;
+    font-family:" Rubik", sans-serif;
+}
+.jobs-list-container h2 {
+    font-size: 30px;
+    border-left: 4px solid #023047;
+    padding-left: 20px;
+}
+.jobs-list-container .jobs {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px ;
+}
+.jobs-list-container .jobs img{
+    width: 60px ;
+}
+.jobs-list-container .job {
+    box-shadow: 0 4px 24px -8px rgba(2, 48, 71, 0.2);
+    padding: 24px;
+    border-radius: 16px ;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition:all 400ms ease;
+}
+.jobs-list-container .job:hover{
+    transform: scale(1.03);
+}
+.jobs-list-container .open-positions {
+    position:absolute;
+    top: 40px;
+    right: 24px ;
+    color: #e63946;
+}
+.jobs-list-container .job-title{
+    font-size: 20px;
+    padding: 10px 0;
+    margin: 0;
+    color: #5ab6e4;
+}
+.jobs-list-container .details{
+margin-top: 6px;
+font-size: 14px;
+color:white;
+line-height: 1.8;
+flex: 1;
+}
+.jobs-list-container .details-btn{
+text-decoration: none ;
+border: 1px solid #5ab6e4;
+color: #ffffff;
+padding: 8px 16px ;
+border-radius: 8px ;
+text-align: center;
+margin-top: 20px ;
+transform: all 400ms ease;
+}
+.jobs-list-container .details-btn:hover{
+background: #5ab6e4 ;
+color: #fff;
+}
+.jobs-list-container .job-search{
+    width: 100%;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-family: "Rubik" , sans-serif;
+    box-sizing:border-box;
+    border: 1px solid #333 ;
+    border-radius: 8px;
+    margin-bottom:20px;
+
+}
+   
+@media(max-width: 940px) {
+    .jobs-list-container .jobs{
+     grid-template-columns: 1fr 1fr ;
+    }
+}
+@media(max-width: 640px) {
+    .jobs-list-container .jobs{
+     grid-template-columns: 1fr ;
+     max-width: 400px;
+     margin: 0 auto;
+    }
+}
+/* 🔹 تنسيق الأزرار وجعلها جنب بعض */
+.button-group {
+    display: flex;
+    gap: 5px; /* مسافة صغيرة بين الأزرار */
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* 🔹 تنسيق الأزرار بشكل موحد */
+.like-btn, .dislike-btn, .love-btn, .save-btn {
+    padding: 6px 10px; /* تصغير الحجم */
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* 🔹 تغيير الألوان */
+.like-btn { background: #a8d5ba; color: #2e7d32; }  /* أخضر */
+.dislike-btn { background: #f5b7b1; color: #c0392b; }  /* أحمر */
+.love-btn { background: #f8c6d8; color: #ad1457; }  /* وردي */
+.save-btn { background: #bbdefb; color: #1565c0; }  /* أزرق */
+
+/* 🔹 تأثير عند المرور */
+.like-btn:hover { background: #45a049; transform: scale(1.1); }
+.dislike-btn:hover { background: #d32f2f; transform: scale(1.1); }
+.love-btn:hover { background: #e91e63; transform: scale(1.1); }
+.save-btn:hover { background: #1976D2; transform: scale(1.1); }
+        /* Footer */
+        footer {
+            background: inherit;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        footer ul li {
+            display: inline;
+        }
+
+        footer ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        footer ul li a:hover {
+            color: #d5a1ff;
+        }
+    </style>
+    <script>
+  const jobs = [
+  {
+    title: "Software Engineer",
+    image: "images/software-engineer.svg",
+    details:
+      "Responsible for designing, developing and maintaining software systems and applications.",
+    openPositions: "2",
+    link: "file:///C:/Users/Aisha/Downloads/software-engineer.svg",
+  },
+
+  {
+    title: "Data Scientist",
+    image: "images/data-scientist.svg",
+    details:
+      "Responsible for collecting, analyzing and interpreting large data sets to help organizations make better decisions.",
+    openPositions: "3",
+    link: " ",
+  },
+
+  {
+    title: "Project Manager",
+    image: "images/project-manager.svg",
+    details:
+      "Responsible for planning, executing and closing projects on time and within budget.",
+    openPositions: "1",
+    link: "#",
+  },
+
+  {
+    title: "Product Manager",
+    image: "images/product-manager.svg",
+    details:
+      "Responsible for managing the entire product life cycle, from ideation to launch and post-launch maintenance.",
+    openPositions: "1",
+    link: "#",
+  },
+
+  {
+    title: "Sales Representative",
+    image: "images/sales-representative.svg",
+    details:
+      "Responsible for reaching out to potential customers and closing sales deals.",
+    openPositions: "4",
+    link: "#",
+  },
+
+  {
+    title: "Marketing Manager",
+    image: "images/marketing-manager.svg",
+    details:
+      "Responsible for creating and executing marketing strategies to promote a company or product.",
+    openPositions: "1",
+    link: "#",
+  },
+];
+
+const jobsHeading = document.querySelector(".jobs-list-container h2");
+const jobsContainer = document.querySelector(".jobs-list-container .jobs");
+const jobSearch = document.querySelector(".jobs-list-container .job-search");
+
+let searchTerm = "";
+
+if (jobs.length == 1) {
+  jobsHeading.innerHTML = `${jobs.length} Job`;
+} else {
+  jobsHeading.innerHTML = `${jobs.length} Jobs`;
+}
+
+const createJobListingCards = () => {
+  jobsContainer.innerHTML = "";
+
+  jobs.forEach((job) => {
+    if (job.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+      let jobCard = document.createElement("div");
+      jobCard.classList.add("job");
+
+      let image = document.createElement("img");
+      image.src = job.image;
+
+      let title = document.createElement("h3");
+      title.innerHTML = job.title;
+      title.classList.add("job-title");
+
+      let details = document.createElement("div");
+      details.innerHTML = job.details;
+      details.classList.add("details");
+
+      let detailsBtn = document.createElement("a");
+      detailsBtn.href = job.link;
+      detailsBtn.innerHTML = "More Details";
+      detailsBtn.classList.add("details-btn");
+
+      let openPositions = document.createElement("span");
+      openPositions.classList.add("open-positions");
+
+      if (job.openPositions == 1) {
+        openPositions.innerHTML = `${job.openPositions} open position`;
+      } else {
+        openPositions.innerHTML = `${job.openPositions} open positions`;
+      }
+
+      jobCard.appendChild(image);
+      jobCard.appendChild(title);
+      jobCard.appendChild(details);
+      jobCard.appendChild(detailsBtn);
+      jobCard.appendChild(openPositions);
+
+      jobsContainer.appendChild(jobCard);
+    }
+  });
+};
+
+createJobListingCards();
+
+jobSearch.addEventListener("input", (e) => {
+  searchTerm = e.target.value;
+
+  createJobListingCards();
+});
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">Shoghlana</div>
+            <div class="bee"></div>
+        </div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#jobs" id="1">Jobs</a></li>
+            <li><a href="#contact" id="1">Contact Us</a></li>
+            <li><a href="SignUp.html" id="1">Sign Up/Sign In</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <div class="jobs-list-container">
+            <h2>HFMS JOBS</h2>
+        
+          <input class="job-search" type="text" placeholder="Search here..."/>
+            <div class="jobs">
+            <div class="job">
+              <img src="images/software-engineer.svg" alt=""/>
+              <h3 class="job-title">Software-Engineer</h3>
+              <div class="details">Responsible for designing, developing and maintaining software systems and applications. 
+              </div>
+              <a href="#" class="details-btn"> More Details </a>
+              <span class="open-positions">4 open position </span>
+            </div>
+            </div>
+          </div>
+      
+          <script src="main.js"></script>
+         </div>
+         <footer>
+            <div class="footer-content">
+                <!-- Headquarters Section -->
+                <div class="footer-section">
+                    <h3>Headquarter</h3>
+                    <p>📞 +20 109 9999-978</p>
+                    <p>📧 info@shoghlana.com</p>
+                </div>
+                <!-- Quick Links Section -->
+                <div class="footer-section">
+                    <h3>Quick links</h3>
+                    <ul>
+                        <li><a href="AboutUs.html">About Us</a></li>
+                       <li><a id="Contact">Contact Us</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="HelpCenter.html">Help center</a></li>
+                    </ul>
+                </div>
+                <!-- Policies Section -->
+                <div class="footer-section">
+                    <h3>Policies</h3>
+                    <ul>
+                        <li><a href="Terms&Privacy.html">Terms of Service</a></li>
+                        <li><a href="Terms&Privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        
+            <!-- Copyright Section -->
+            <div class="footer-bottom">
+                <p style="color: rgb(101, 199, 216);">&copy; 2025 Shoghlana. All rights reserved.</p>
+            </div>
+                 </footer>
+</body>
+</html>
