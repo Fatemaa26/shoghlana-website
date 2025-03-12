@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shoghlana</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #4262f3, #4B0082);
+            background-size: 200% 200%;
+           }
+           .decor {
+            position: absolute;
+            background: linear-gradient(to right, #b76bec, #7d7dff);
+            border-radius: 50%;
+            opacity: 0.2;
+        }
+        .decor.one { top: -50px; left: -50px; width: 180px; height: 180px; }
+        .decor.two { bottom: -50px; right: -50px; width: 180px; height: 180px; }
+        /* Navigation bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: inherit;
+            position: relative;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+
+nav .logo {
+    font-family:cursive sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: rgb(250, 250, 250);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    }
+        nav ul {
+            list-style-type: none;
+            margin-right: 70px;
+            margin-top:  20px;
+            padding: 0;
+            display: inline-block;
+            gap: 15px;
+        }
+
+        nav ul li {
+            float: left;
+            margin-left: 40px;
+        }
+
+        nav ul li a {
+            font-family: 'Roboto', sans-serif;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: white;
+            transition: width 0.3s ease;
+            transition-delay: 0.1s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+            left: 0;
+            background: white;
+        }
+
+        nav ul li a:hover {
+            color: #d5a1ff;
+            transform: scale(1.05);
+        }
+    
+        /* Body content */
+        .content {
+            padding: 20px;
+            color: white;
+        }
+
+        .content h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .content p {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 20px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: rgb(101, 199, 216); /* Light purple for headings */
+}
+
+.footer-section p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 5px 0;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer-section ul li a:hover {
+    color: #d5a1ff; /* Light purple on hover */
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 14px;
+}
+
+.footer-bottom a {
+    color: #d5a1ff; /* Light purple for developer link */
+    text-decoration: none;
+}
+
+.footer-bottom a:hover {
+    text-decoration: underline;
+}
+        /* footer ul li a:hover {
+            color: #d5a1ff;
+        } */
+        footer ul li a:hover {
+            color: #d5a1ff;
+        }
+        /* Sticky Navigation Bar */
+nav.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(66, 98, 243, 0.9);
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Fade-In Animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hover Effects */
+nav ul li a:hover {
+    color: #d5a1ff;
+    transform: scale(1.05);
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">Shoghlana</div>
+            <div class="bee"></div>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#jobs" id="1">Jobs</a></li>
+            <li><a href="#contact" id="1">Contact Us</a></li>
+            <li><a href="#signup" id="1">Sign Up/Sign In</a></li>
+        </ul>
+    </nav>
+    <div class="decor one"></div>
+    <div class="decor two"></div>
+    <div class="content">
+        <!-- Your body content goes here -->
+        <p>Your one-stop solution for job searching and recruitment.</p>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <!-- Headquarters Section -->
+            <div class="footer-section">
+                <h3>Headquarter</h3>
+                <p>📞 +20 109 9999-978</p>
+                <p>📧 info@shoghlana.com</p>
+            </div>
+            <!-- Quick Links Section -->
+            <div class="footer-section">
+                <h3>Quick links</h3>
+                <ul>
+                    <li><a href="AboutUs.html">About Us</a></li>
+                    <li><a id="Contact">Contact Us</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="HelpCenter.html">Help center</a></li>
+                </ul>
+            </div>
+            <!-- Policies Section -->
+            <div class="footer-section">
+                <h3>Policies</h3>
+                <ul>
+                    <li><a href="Terms&Privacy.html">Terms of Service</a></li>
+                    <li><a href="Terms&Privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <!-- Copyright Section -->
+        <div class="footer-bottom">
+            <p style="color: rgb(101, 199, 216);">&copy; 2025 Shoghlana. All rights reserved.</p>
+        </div>
+             </footer>
+</body>
+</html>
