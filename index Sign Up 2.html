@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoghlana</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(90deg, #77a4f7, #af5ee9);
+    background-size: 120% 200%;
+    margin-top: 60px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .decor {
+            position: absolute;
+            background: linear-gradient(to right, #b76bec, #7d7dff);
+            border-radius: 50%;
+            opacity: 0.2;
+        }
+
+        .decor.one { top: -50px; left: -50px; width: 180px; height: 180px; }
+        .decor.two { bottom: -50px; right: -50px; width: 180px; height: 180px; }
+
+        .logo-square {
+            position: absolute;
+            top: 20px; /* Adjust as needed */
+            left: 20px; /* Adjust as needed */
+            width: 80px; /* Adjust size as needed */
+            height: 80px; /* Adjust size as needed */
+            background-color: white; /* Or any background color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px; /* Optional: for rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: add shadow */
+            z-index: 1001; /* Ensure it's above other elements */
+        }
+
+        .logo-square img {
+            max-width: 60%; /* Adjust image size within the square */
+            max-height: 60%;
+        }
+
+
+        nav {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    z-index: 1002;
+    background-color: rgba(255, 255, 255, 0.9); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .logo {
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: rgb(250, 250, 250);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        nav .logo .o {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+        }
+
+        nav .logo .o img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin-right: 70px;
+            margin-top: 20px;
+            padding: 0;
+            display: inline-block;
+            gap: 15px;
+        }
+
+        nav ul li {
+            float: left;
+            margin-left: 40px;
+        }
+
+        nav ul li a {
+            font-family: 'Roboto', sans-serif;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: white;
+            transition: width 0.3s ease;
+            transition-delay: 0.1s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+            left: 0;
+            background: white;
+        }
+
+        nav ul li a:hover {
+            color: #d5a1ff;
+            transform: scale(1.05);
+        }
+
+        .content {
+            padding: 20px;
+            color: white;
+        }
+
+        .content h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .content p {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav.sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(66, 98, 243, 0.9);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #77a4f7, #af5ee9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader-content {
+            text-align: center;
+        }
+
+        .loader-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            animation: bounce 1.5s infinite ease-in-out;
+        }
+
+        .loading-text {
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            position: relative;
+        }
+
+        .loading-text::after {
+            content: '...';
+            position: absolute;
+            animation: dots 1.5s infinite steps(4);
+            width: 20px;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes dots {
+            0% { content: '.'; }
+            25% { content: '..'; }
+            50% { content: '...'; }
+            75% { content: ''; }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            position: relative;
+            max-width: 700px;
+            width: 100%;
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .container header {
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .container .form {
+            margin-top: 30px;
+        }
+
+        .form .input-box {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .input-box label {
+            color: #333;
+        }
+
+        .form :where(.input-box input, .select-box) {
+            position: relative;
+            height: 50px;
+            width: 100%;
+            outline: none;
+            font-size: 1rem;
+            color: #707070;
+            margin-top: 8px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 0 15px;
+        }
+
+        .input-box input:focus {
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .form .column {
+            display: flex;
+            column-gap: 15px;
+        }
+
+        .form .gender-box {
+            margin-top: 20px;
+        }
+
+        .gender-box h3 {
+            color: #333;
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .form :where(.gender-option, .gender) {
+            display: flex;
+            align-items: center;
+            column-gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .form .gender {
+            column-gap: 5px;
+        }
+
+        .gender input {
+            accent-color: rgb(130, 106, 251);
+        }
+
+        .form :where(.gender input, .gender label) {
+            cursor: pointer;
+        }
+
+        .gender label {
+            color: #707070;
+        }
+
+        .address :where(input, .select-box) {
+            margin-top: 15px;
+        }
+
+        .select-box select {
+            height: 100%;
+            width: 100%;
+            outline: none;
+            border: none;
+            color: #707070;
+            font-size: 1rem;
+        }
+
+        .form button {
+            height: 55px;
+            width: 100%;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 400;
+            margin-top: 30px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: rgb(130, 106, 251);
+        }
+
+        .form button:hover {
+            background: rgb(88, 56, 250);
+        }
+
+        @media screen and (max-width: 500px) {
+            .form .column {
+                flex-wrap: wrap;
+            }
+            .form :where(.gender-option, .gender) {
+                row-gap: 15px;
+            }
+        }
+    </style> 
+</head>
+<body>
+  <div id="preloader">
+    <div class="preloader-content">
+        <img src="job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg" 
+                class="loader-icon" 
+                alt="Loading icon">
+        <div class="loading-text">Preparing your career journey</div>
+    </div>
+</div>
+
+<nav>
+    <div class="logo">
+        SH
+        <span class="o">
+            <img src="job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg" alt="O">
+        </span>
+        GHLANA
+    </div>
+    </nav>
+    <section class="container">
+        <header>Tell Us About Your Education</header>
+        <form action="#" class="form">
+          <div class="input-box">
+            <label> What Is Your Current Educational Level ?</label>
+            <div class="select-box">
+              <select>
+                <option hidden>Your Current Educational Level</option>
+                <option>Bachelor's Degree</option>
+                <option>Master's Degree</option>
+                <option>Doctorate Degree</option>
+                <option>High School</option>
+                <option>Vocational</option>
+                <option>Diploma</option>
+              </select>
+            </div>
+          </div>
+          <div class="input-box">
+            <label>Field(s) Of Study</label>
+            <input type="text" placeholder="e.g., Business, Accounting" required/>
+          </div>
+          <div class="input-box">
+            <label>Universsity / Institution</label>
+            <input type="text" placeholder="e.g., Ain Shams Universsity, National Institution Of....." required/>
+          </div>
+          <div class="input-box">
+            <label>When Did You Get Your Degree ? __Or When Expected To Get It ?</label>
+            <input type="text" placeholder="Enter A Year" required/>
+          </div>
+          <div class="input-box">
+            <label> Your Grade</label>
+            <div class="select-box">
+              <select>
+                <option hidden>Enter Your Grade</option>
+                <option>Very Weak</option>
+                <option>Weak</option>
+                <option>Good</option>
+                <option>Very Good</option>
+                <option>Excellent</option>
+                <option>Very Excellent</option>
+              </select>
+            </div>
+          </div>
+          <div class="column">
+            <button type="button" onclick="document.location='index Sign Up 1.html'">Back</button>
+            <button type="submit" onclick="document.location='index Sign Up 3.html'">Continue</button>
+          </div>
+        </form>
+    </section>
+    <script>
+      window.addEventListener('load', function() {
+      setTimeout(function() {
+      var preloader = document.getElementById('preloader');
+      preloader.style.opacity = '0';
+      setTimeout(function() {
+      preloader.style.display = 'none';
+  }, 500);
+    }, 2000); // Matches animation duration
+  });
+</script>
+</body>

@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details | Shoghlana</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+       /* ===== Modern Job Details Page Design ===== */
+       body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(90deg, #77a4f7, #af5ee9);
+        background-size: 120% 200%;
+         
+        /* background: linear-gradient(to right, #4262f3, #4B0082);
+        background-size: 200% 200%;*/
+       }
+   
+    /* footer {
+        background: #8259e0;
+        color: white;
+        padding: 20px;
+        margin-top: 30px;
+    } */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .decor {
+        position: absolute;
+        background: linear-gradient(to right, #b76bec, #7d7dff);
+        border-radius: 50%;
+        opacity: 0.2;
+    }
+    /* .decor.one { top: -50px; left: -50px; width: 180px; height: 180px; } */
+    .decor.two { bottom: -50px; right: -50px; width: 180px; height: 180px; }
+     /* Navigation bar */
+     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+    /* Navigation bar */
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background: inherit;
+        position: relative;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+
+/* nav .logo {
+font-family:cursive sans-serif;
+font-size: 40px;
+font-weight: 700;
+color: rgb(250, 250, 250);
+text-transform: uppercase;
+letter-spacing: 1px;
+} */
+nav .logo {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 40px; /* Adjust this to change the text size */
+    font-weight: 700;
+    color: rgb(250, 250, 250);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px; /* Adjust spacing between text and image */
+  }
+
+  /* Style for the letter "O" */
+  nav .logo .o {
+    display: inline-block;
+    width: 1em; /* Match the font size */
+    height: 1em; /* Match the font size */
+  }
+
+  /* Image styling */
+  nav .logo .o img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensure the image scales properly */
+  }
+
+    nav ul {
+        list-style-type: none;
+        margin-right: 70px;
+        margin-top:  20px;
+        padding: 0;
+        display: inline-block;
+        gap: 15px;
+    }
+
+    nav ul li {
+        float: left;
+        margin-left: 40px;
+    }
+
+    nav ul li a {
+        font-family: 'Roboto', sans-serif;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 5px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        transition: all 0.3s;
+        position: relative;
+    }
+
+    nav ul li a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        display: block;
+        margin-top: 5px;
+        right: 0;
+        background: white;
+        transition: width 0.3s ease;
+        transition-delay: 0.1s;
+    }
+
+    nav ul li a:hover::after {
+        width: 100%;
+        left: 0;
+        background: white;
+    }
+
+    nav ul li a:hover {
+        color: #d5a1ff;
+        transform: scale(1.05);
+    }
+
+    /* Body content */
+    .content {
+        padding: 20px;
+        color: white;
+    }
+
+    .content h1 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .content p {
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    /* Footer */
+       /* Footer */
+      /* Footer */
+    .footer-content {
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+justify-content: space-between;
+max-width: 1200px;
+margin: 0 auto;
+padding-bottom: 20px;
+border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-section {
+flex: 1;
+min-width: 200px;
+margin-bottom: 20px;
+}
+
+.footer-section h3 {
+font-size: 18px;
+margin-bottom: 15px;
+color: rgb(101, 199, 216); /* Light purple for headings */
+}
+
+.footer-section p {
+font-size: 14px;
+line-height: 1.6;
+margin: 5px 0;
+}
+
+.footer-section ul {
+list-style: none;
+padding: 0;
+}
+
+.footer-section ul li {
+margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+color: white;
+text-decoration: none;
+font-size: 14px;
+}
+
+.footer-section ul li a:hover {
+color: #d5a1ff; /* Light purple on hover */
+}
+
+.footer-bottom {
+text-align: center;
+padding-top: 20px;
+font-size: 14px;
+}
+
+.footer-bottom a {
+color: #d5a1ff; /* Light purple for developer link */
+text-decoration: none;
+}
+
+.footer-bottom a:hover {
+text-decoration: underline;
+}
+    /* footer ul li a:hover {
+        color: #d5a1ff;
+    } */
+    footer ul li a:hover {
+        color: #d5a1ff;
+    }       /* Sticky Navigation Bar */
+nav.sticky {
+position: fixed;
+top: 0;
+width: 100%;
+background: rgba(66, 98, 243, 0.9);
+z-index: 1000;
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Fade-In Animation */
+.fade-in {
+opacity: 0;
+transform: translateY(50px);
+transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* Hover Effects */
+nav ul li a:hover {
+color: #d5a1ff;
+transform: scale(1.05);
+}
+.job {
+background-color:white;
+}
+.mirror-text {
+font-family: 'Raleway', sans-serif;
+font-weight: 900;
+color: #fcfcfc;
+text-align: left;
+position: relative;
+overflow: hidden;
+background: transparent;
+padding: 20px;
+line-height: 1.2;
+width: fit-content;
+font-size: 3em;
+margin-left: 100px;
+margin-top: 150px;
+margin-bottom: 200px;
+}
+
+.word-reveal span {
+display: block;
+opacity: 0;
+transform: translateY(20px);
+animation: reveal-word 0.5s ease-in-out forwards;
+}
+
+.word-reveal span:nth-child(1) { /* The */
+text-align: left;
+}
+
+.word-reveal span:nth-child(3) { /* Reflecting */
+text-align: left;
+margin-left: 20px;
+}
+
+.word-reveal span:nth-child(4) { /* Your True */
+text-align: left;
+margin-left: 60px;
+display: block; /* Ensure it stays a block element */
+}
+
+.word-reveal span:nth-child(5) { /* Professional */
+text-align: left;
+margin-left: 70px;
+}
+
+.word-reveal span:nth-child(7) { /* Awaits */
+text-align: left;
+margin-left: 0px;
+}
+
+@keyframes reveal-word {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+.text-with-image {
+  display: flex;
+  align-items: center; /* Vertically center the image and text */
+  
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column; 
+  margin-right: 100px;/* Stack text lines vertically */
+}
+
+.fade-in-job-image {
+  opacity: 0;
+  animation: jobImageFloat 2s ease-out forwards;
+  animation-delay: 0.8s;
+  transition: transform 0.3s ease;
+  
+}
+
+@keyframes jobImageFloat {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.mirror-text span {
+  display: block; /* Ensure each line is on a new line */
+}
+.text-container span {
+color: #fff;
+transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.text-container span:hover {
+transform: scale(1.1);
+text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+/* .text-container span {
+color: #fff;
+text-shadow:
+  1px 1px 0 #ffffff,
+  2px 2px 0 #bb8ae4,
+  3px 3px 0 #bb8ae4,
+  4px 4px 0 #bb8ae4,
+  5px 5px 0 #b55bff;
+} */
+nav ul li.profile-icon {
+      width: 40px; /* Smaller size */
+      height: 40px; /* Smaller size */
+      cursor: pointer;
+      border-radius: 50%; /* Make it circular */
+      overflow: hidden;
+      margin-top: -5px; /* Optional: Adjust position if needed */
+      transition: transform 0.3s ease, opacity 0.3s ease; /* Add transition for animation */
+      }
+
+      nav ul li.profile-icon img {
+          width: 100%; /* Ensures the image fits within the icon */
+          height: auto; /* Maintain aspect ratio */
+      }
+
+      nav ul li.profile-icon:hover {
+          transform: scale(1.1); /* Scale up on hover */
+          opacity: 0.8; /* Slightly fade */
+      }
+      #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, #77a4f7, #af5ee9);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+    }
+    
+    .preloader-content {
+        text-align: center;
+    }
+    
+    .loader-icon {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 20px;
+        animation: bounce 1.5s infinite ease-in-out;
+    }
+    
+    .loading-text {
+        color: white;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.2rem;
+        margin-top: 15px;
+        position: relative;
+    }
+    
+    .loading-text::after {
+        content: '...';
+        position: absolute;
+        animation: dots 1.5s infinite steps(4);
+        width: 20px;
+    }
+    
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+    
+    @keyframes dots {
+        0% { content: '.'; }
+        25% { content: '..'; }
+        50% { content: '...'; }
+        75% { content: ''; }
+    }
+      html {
+      scroll-behavior: smooth;
+      }
+/* ===== Modern Job Details Page Design ===== */
+.job-details-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Job Header */
+.job-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.job-image {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-right: 30px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0); /* This makes just the background transparent */
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(74, 107, 255, 0.3);
+}
+.job-title {
+    font-size: 2.4rem;
+    margin: 0 0 8px 0;
+    color: #1a1d28;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.open-positions {
+        display: inline-block;
+        background: linear-gradient(135deg, #6e8efb, #7a4aff);
+        color: white;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
+/* Content Layout */
+.job-content {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 40px;
+}
+
+.job-main {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.job-sidebar {
+    position: relative;
+}
+
+/* Job Sections */
+.job-section {
+    margin-bottom: 10px;
+}
+
+.job-section h2 {
+    color: #1a1d28;
+    margin: 0 0 20px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.job-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 4px;
+    background-color: #7a6dee;
+    border-radius: 2px;
+}
+
+.job-description {
+    line-height: 1.8;
+    color: #4a4f62;
+    font-size: 1.05rem;
+}
+
+/* Job Info Cards */
+.job-info-card {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(74, 107, 255, 0.08);
+    border: 1px solid rgba(74, 107, 255, 0.1);
+}
+
+.job-info-card h3 {
+    font-size: 1.2rem;
+    color: #1a1d28;
+    margin: 0 0 20px 0;
+    display: flex;
+    align-items: center;
+}
+
+.job-info-card h3::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    background:#7a6dee;
+    margin-right: 12px;
+    border-radius: 2px;
+}
+
+.job-info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+
+.job-info-item i {
+    color: #726ff8;
+    margin-right: 12px;
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+    margin-top: 3px;
+}
+
+.job-info-label {
+    font-weight: 600;
+    color: #4a4f62;
+    min-width: 100px;
+    font-size: 0.95rem;
+}
+
+.job-info-value {
+    color: #1a1d28;
+    font-weight: 500;
+}
+
+/* Buttons */
+.job-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.apply-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #8d85ff;
+    color: white;
+    padding: 14px 28px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(74, 107, 255, 0.3);
+}
+
+.apply-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(74, 107, 255, 0.4);
+    background-color: #a685ff;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: #a685ff;
+    padding: 14px 28px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid #8268c9;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.back-btn:hover {
+    background-color: #f5f8ff;
+    transform: translateY(-2px);
+}
+
+/* Quick Apply Form */
+.quick-apply-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.quick-apply-form input {
+    padding: 12px 16px;
+    border: 1px solid #e0e4f5;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    background: #f8f9ff;
+}
+
+.quick-apply-form input:focus {
+    outline: none;
+    border-color: #4a6bff;
+    box-shadow: 0 0 0 3px rgba(74, 107, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .job-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .job-sidebar {
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .job-details-container {
+        padding: 30px 20px;
+    }
+    
+    .job-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .job-image {
+        margin: 0 auto 20px auto;
+    }
+    
+    .job-actions {
+        flex-direction: column;
+    }
+    
+    .apply-btn, .back-btn {
+        width: 100%;
+    }
+}
+.apply-btn.loading {
+    pointer-events: none;
+    position: relative;
+    padding-left: 50px;
+}
+
+.apply-btn.loading::after {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: translateY(-50%) rotate(360deg); }
+}
+#job-description {
+    font-size: 1.1rem;  /* Slightly larger than base (1rem) */
+    line-height: 1.8;   /* Better spacing between lines */
+}
+#job-requirements {
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+#job-requirements li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    font-size: 1.1rem;  /* Slightly larger than base font size */
+    line-height: 1.6;   /* Better readability */
+}
+
+#job-requirements li::before {
+    content: "•";
+    color: #8d85ff;
+    font-size: 1.2em;
+    position: absolute;
+    left: 0;
+}
+.share-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.share-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.share-btn:hover {
+    transform: translateY(-3px);
+}
+
+.facebook { background: #3b5998; }
+.twitter { background: #1da1f2; }
+.linkedin { background: #0077b5; }
+.link { background: #6c757d; }
+.cv-upload-box {
+    border: 2px dashed #cac1ec;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    background: #f8f9ff;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.cv-upload-box i {
+    font-size: 24px;
+    color: #8d85ff;
+    margin-bottom: 10px;
+}
+
+.cv-upload-text {
+    font-size: 14px;
+    color: #adb5bd;
+    margin-bottom: 5px;
+}
+
+.cv-upload-hint {
+    font-size: 12px;
+    color: #adb5bd;
+}
+
+.cv-upload-input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.file-preview {
+    display: none;
+    border: 1px solid #e0e4f5;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8f9ff;
+}
+
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.file-info i {
+    color: #8d85ff;
+    font-size: 20px;
+}
+
+#fileName {
+    font-weight: 600;
+    color: #4a4f62;
+}
+
+.change-btn {
+    background: none;
+    border: 1px solid #8d85ff;
+    color: #8d85ff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.3s;
+}
+
+.change-btn:hover {
+    background: rgba(141, 133, 255, 0.1);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: #8d85ff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.submit-btn:hover {
+    background: #7a6dee;
+    transform: translateY(-2px);
+}
+.cv-upload-box {
+    position: relative;
+    /* Your existing upload box styles */
+}
+
+#uploadInitialState, #uploadFileInfo {
+    padding: 20px;
+    text-align: center;
+}
+
+#uploadFileInfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#uploadFileInfo i {
+    color: #8d85ff;
+    font-size: 24px;
+}
+
+#fileName {
+    font-weight: 500;
+    color: #4a4f62;
+}
+
+.change-btn {
+    background: none;
+    border: 1px solid #8d85ff;
+    color: #8d85ff;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.3s;
+}
+
+.change-btn:hover {
+    background: rgba(141, 133, 255, 0.1);
+}
+
+.cv-upload-input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+    </style>
+      <base href="../"> 
+</head>
+<body>
+    <div id="preloader">
+        <div class="preloader-content">
+          <img src="job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg"  
+          class="loader-icon" 
+                 alt="Loading icon">
+            <div class="loading-text">Preparing your career journey</div>
+        </div>
+    </div>
+    <nav>
+        <div class="logo">
+          SH
+          <span class="o">
+            <img src="job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg" alt="O">
+          </span>
+          GHLANA
+        </div>
+        <!-- <div class="logo-container">
+            <div class="logo">Shoghlana</div>
+        </div> -->
+        <ul>
+            <li><a href="jshome.html">Home</a></li>
+            <li><a href="#services" id="1">Services</a></li>
+            <li><a href="jshome.html#jobs" id="1">Jobs</a></li>
+            <li><a href="#Contact" id="1">Contact Us</a></li>
+            <li class="profile-icon" onclick="redirectToProfile()">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFCElEQVR4nO1ZW48UVRBuvOBtNV5QI/gD9BUR/QNqCPpilPiC4AtoIqIxys45s/QLwqsE1BeNBOITmhD8AaxBw4OLl82kT82ArLuyO1U9wyWK4CWkTfX0zNb2dG+f7uldNZkvqWQzfeqcqnPqvo4zxBBDDAw3CG5QHj6pDSoF+IUCqmnAixrwr4guRr99rjyqjNWbTzCP82/DbbQfVgb3aYPnNVCQh5TBXzTgXlVvr1l2wUe98/dpoI8U0J95Be8jQ39ogx+4tZl7l0X4Sr35kgZq9wuDc8rQxxpos/L8tazktongZiYXZleNmdZjqk4va8BPFGCz/0WoVQF/05IJ7p4IbuJb7zsY6ISq+xtfDIIb8+xV9ZrPasDxBNM6yN9LFf6tmZnbFNCXCwXHhvbo6UH3VuBv0IBnYooc5zNLEZ5vI0H4Q2//0LyjlAMcx3FrNKIMHo4rUcpLxM1GAY6VInXiWbg75lcHynDYXMJHt6k14GkNdIVJAU5wjuBveZWoGnphkFDZlmaTxVOtzz2qgaZTYz/QzxVoPZKphKEjIsz6o5OX7xnIdNhhs2zebbTvUobOWcT9n94xrTstXvFsYVMKM6xIUsrQM5kKG1TiwF+1oVcqk/ggE/8d/javyKhddKJesnNNa7W1AmF5IOK8Jc93IpZvS/j+qnjRCcs9vxJyvGclPCckWdtwkrI6DOj3Lk+lMXd//Lt7tvmAeIErNntWw2TX45m2KgDDqlKUB7axeCkUcDvZH+cvs7neyWPLXNvYHBQ3IW1wexkmxNCAnwoz2uVkget5cVObMxm6fB5VpBMrQ1s52jDFndhKkAjaoy1C8aNOFjqNR8Tg+WsdS3AY5RBZRhiVUKa1Tig+6WRBAV3oMnAyc3KAk5QGmkpNZIbO2SQyCfYnWXI7WZDx363VVjo5wQmvY074rQL8jYn/5thfpADc0WjcIvPBkitQNnYUUKCwCS0FKgVMqOfE3AamLgyCFRroNQUIyuD1TOft77yuM28YcoNgRdoxYzD3eE4nng+j3MOmrWPh8wqdHplwe6o8hrbmCqO2iUwD1ktUwCxyoYfE2nczFeChk9C4mVZKSLMp0vrxtEILc0ptZw3R/LrWOrspWzh0WryY04audtcUacDdidnbRXS5mrRGmeZzuYu5UDjAvaIsGE9WAL/vrqka3JlXAQX4pjjjdLICeFIosMd+83p7TTgx65mSv6F/c/8NYWp/c6KyyRu8htdGPEGnZKHX+2XwNwpfvJaroWHwuE/c0Jl4Q84JRgF+E3PIaX69iodPKc9/yJ2aujUk01od/mZwnzI4E3Pgr3mvhUrSyMK6Cvc7ecFJjBOHcLTDSUlGdk35Ccd57Nh3eUCfidunQk19KCD4m2IH7k4cExrcKaOFBSHzuAnRSwG6cm3Vo+cLCd/b0ODBLCVCRWq1lRw1lMEPNdApDsFsuyF1hrmn2Cy5TUzzFRUTXgG9P5Dwoq07vtBu6YjNkMr6jBqNSLOJzjiWZ2C8KDjOx5XguU1SdMoLxdEm3ggZOlbacHfhS+CBuD2zE4dmkSMbdzJsaG4nExx7f2k3nwSeVaY4LIYNuEdbOOVzdGFbDwlmV/FvXJhxbZPGXx3UYW3BYS18DZHsipIydI1v3Z26dLez3OAExROzvuRkRzwE3sMJb9kFTywA6831UYlwlBsP7uy4PY3ogjb0Y/RtFzcp/4l/sw4xhPP/xz/0x9PjW7+hjQAAAABJRU5ErkJggg==" alt="Profile Icon">
+          </li>     
+        </ul>
+    </nav>
+
+    <main class="job-details-container">
+        <!-- Job Header (keeps your existing code) -->
+        <div class="job-header">
+            <img id="job-image" src="" alt="Job Image" class="job-image">
+            <div>
+                <h1 id="job-title"></h1>
+                <p id="open-positions"class="open-positions"></p>
+            </div>
+        </div>
+        
+        <!-- Main Content Area with Sidebar -->
+        <div class="job-content">
+            <!-- Left Column - Main Job Details -->
+            <div class="job-main">
+                <div class="job-section">
+                    <h2>Job Description</h2>
+                    <p id="job-description"></p>
+                </div>
+                
+                <div class="job-section">
+                    <h2>Requirements</h2>
+                    <ul id="job-requirements">
+                        <!-- Will be filled by JavaScript -->
+                    </ul>
+                </div>
+                
+                <div class="job-actions">
+                    <a href="#" id="apply-btn" class="apply-btn">Apply Now</a>
+                    <a href="jsjobs.html" class="back-btn">Back to Jobs</a>
+                </div>
+            </div>
+            
+            <!-- Right Column - Sidebar -->
+           <div class="job-sidebar">
+    <!-- Job Overview Card -->
+    <div class="job-info-card">
+        <h3>Job Overview</h3>
+        <div class="job-info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span class="job-info-label">Location:</span>
+            <span id="job-location" class="job-info-value">Cairo, Egypt</span>
+        </div>
+        <div class="job-info-item">
+            <i class="fas fa-laptop-house"></i>
+            <span class="job-info-label">Work Place:</span>
+            <span id="job-work-place" class="job-info-value">Hybrid</span>
+        </div>
+        <div class="job-info-item">
+            <i class="fas fa-money-bill-wave"></i>
+            <span class="job-info-label">Salary:</span>
+            <span id="job-salary" class="job-info-value">EGP 15,000 - 25,000</span>
+        </div>
+        <div class="job-info-item">
+            <i class="fas fa-briefcase"></i>
+            <span class="job-info-label">Job Type:</span>
+            <span id="job-type" class="job-info-value">Full-time</span>
+        </div>
+        <div class="job-info-item">
+            <i class="fas fa-user-tie"></i>
+            <span class="job-info-label">Career Level:</span>
+            <span id="job-careerlevel" class="job-info-value">Mid-level (3-5 years)</span>
+        </div>
+        <div class="job-info-item">
+            <i class="fas fa-calendar-day"></i>
+            <span class="job-info-label">Posted:</span>
+            <span id="job-posted" class="job-info-value">May 15, 2023</span>
+        </div>
+    </div>
+    
+    <!-- Share This Job Card (separate card) -->
+    <div class="job-info-card">
+        <h3>Share This Job</h3>
+        <div class="share-buttons">
+            <button class="share-btn facebook"><i class="fab fa-facebook-f"></i></button>
+            <button class="share-btn twitter"><i class="fab fa-twitter"></i></button>
+            <button class="share-btn linkedin"><i class="fab fa-linkedin-in"></i></button>
+            <button class="share-btn link" id="copy-link"><i class="fas fa-link"></i></button>
+        </div>
+    </div>
+    
+    <!-- Quick Apply Card -->
+    <div class="job-info-card">
+        <h3>Upload Your CV</h3>
+        <form id="cvUploadForm">
+            <!-- Upload Box - Now shows file info after upload -->
+            <div class="cv-upload-box" id="cvUploadBox">
+                <div id="uploadInitialState">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & drop your CV here or</p>
+                    <button type="button" class="browse-btn">Browse Files</button>
+                </div>
+                <div id="uploadFileInfo" style="display: none;">
+                    <i class="fas fa-file-alt"></i>
+                    <span id="fileName"></span>
+                    <button type="button" id="changeFile" class="change-btn">Change</button>
+                </div>
+                <input type="file" id="cvFileInput" class="cv-upload-input" accept=".pdf,.doc,.docx">
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit CV</button>
+        </form>
+    </div>
+    </div>
+</div>
+    </main>
+    <footer>
+      <div class="footer-content">
+          <!-- Headquarters Section -->
+            <div class="footer-section">
+              <h3>Headquarter</h3>
+             <div style="color: #ffffff;">
+                <p>📞 +20 109 9999-978</p>
+                <p>📧 info@shoghlana.com</p>
+            
+             </div>  
+            </div>
+          <!-- Quick Links Section -->
+          <div class="footer-section">
+              <h3>Quick links</h3>
+              <ul>
+                  <li><a href="AboutUs.html">About Us</a></li>
+                 <li><a id="Contact">Contact Us</a></li>
+                  <li><a href="#blog">Blog</a></li>
+                  <li><a href="HelpCenter.html">Help center</a></li>
+              </ul>
+          </div>
+          <!-- Policies Section -->
+          <div class="footer-section">
+              <h3>Policies</h3>
+              <ul>
+                  <li><a href="Terms&Privacy.html">Terms of Service</a></li>
+                  <li><a href="Terms&Privacy.html">Privacy Policy</a></li>
+              </ul>
+          </div>
+      </div>
+    </footer>
+    <script>
+        // Complete job data sample
+        const jobs = [
+  {             id: 34,
+                title: "Data Analyst",
+                image: "data-analyst.png",
+                description: "Analyze company data and generate useful reports.",
+                requirements: [
+                    "Degree in Statistics or related field.",
+                    "Experience with Excel.",
+                    "Basic SQL knowledge.",
+                    "Understanding of data visualization.",
+                    "Attention to detail."
+                ],
+                location: "Berlin, Germany",
+                salary: "(€4,167 - €6,250 EUR) / Month",
+                careerlevel: "Experienced",
+                workPlace:"Remote",
+                type: "Full-time",
+                posted: "10/4/2025",
+                openPositions: 3
+            }
+];
+    
+        // Get job ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const jobId = parseInt(urlParams.get('id')) || 34;
+        const job = jobs.find(j => j.id === jobId) || jobs[0];
+    
+        // Display job
+        document.getElementById('job-title').textContent = job.title;
+        document.getElementById('job-image').src = job.image;
+        document.getElementById('job-image').alt = job.title;
+        document.getElementById('job-description').textContent = job.description;
+        document.getElementById('job-location').textContent = job.location;
+        document.getElementById('job-salary').textContent = job.salary;
+        document.getElementById('job-type').textContent = job.type;
+        document.getElementById('job-work-place').textContent = job.workPlace;
+        document.getElementById('job-careerlevel').textContent = job.careerlevel;
+        document.getElementById('job-posted').textContent = job.posted;
+        document.getElementById('open-positions').textContent = 
+        `${job.openPositions} open position${job.openPositions !== 1 ? 's' : ''}`;
+    
+        // Populate requirements list
+        const requirementsList = document.getElementById('job-requirements');
+        job.requirements.forEach(req => {
+            const li = document.createElement('li');
+            li.textContent = req;
+            requirementsList.appendChild(li);
+        });
+    
+        // Set up apply button link
+        document.getElementById('apply-btn').href = 'apply.html?id=${job.id}';
+        document.title = `${job.title} | Shoghlana`;
+    
+         // Share functionality
+         document.querySelectorAll('.share-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const jobUrl = window.location.href;
+                if (this.classList.contains('facebook')) {
+                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(jobUrl)}`, '_blank');
+                } else if (this.classList.contains('twitter')) {
+                    window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(jobUrl)}&text=${encodeURIComponent(`Check out this ${job.title} position at Shoghlana`)}`, '_blank');
+                } else if (this.classList.contains('linkedin')) {
+                    window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(jobUrl)}&title=${encodeURIComponent(job.title)}`, '_blank');
+                }
+            });
+        });
+    
+        // Copy link functionality
+        document.getElementById('copy-link').addEventListener('click', function() {
+            navigator.clipboard.writeText(window.location.href);
+            const originalIcon = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-check"></i>';
+            setTimeout(() => {
+                this.innerHTML = originalIcon;
+            }, 2000);
+        });
+    
+        // Quick Apply form submission
+        document.querySelector('.quick-apply-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                alert('Application submitted successfully!');
+                this.reset();
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+    </script>
+    
+    <script src="main.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var preloader = document.getElementById('preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function() {
+                    preloader.style.display = 'none';
+                }, 500);
+            }, 2000); // Matches animation duration
+        });
+           // Enhanced CV Upload Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const uploadArea = document.getElementById('upload-area');
+    const fileInput = document.getElementById('file-input');
+    const browseBtn = document.getElementById('browse-btn');
+    const filePreview = document.getElementById('file-preview');
+    const fileName = document.getElementById('file-name');
+    const fileSize = document.getElementById('file-size');
+    const fileTypeIcon = document.getElementById('file-type-icon');
+    const removeFile = document.getElementById('remove-file');
+    const progressContainer = document.getElementById('progress-container');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    const submitCvBtn = document.getElementById('submit-cv-btn');
+    const uploadSuccess = document.getElementById('upload-success');
+    const editCvBtn = document.getElementById('edit-cv-btn');
+    const applyBtn = document.getElementById('apply-btn');
+    
+    let selectedFile = null;
+    let isCvSubmitted = false;
+
+    // Initialize with submit button enabled
+    applyBtn.disabled = false;
+
+    // File type icons mapping
+    const fileTypeIcons = {
+        'pdf': 'file-pdf',
+        'doc': 'file-word',
+        'docx': 'file-word',
+        'txt': 'file-alt'
+    };
+    
+    // Handle browse button click
+    browseBtn.addEventListener('click', function() {
+        fileInput.click();
+    });
+    
+    // Handle file selection
+    fileInput.addEventListener('change', function(e) {
+        if (e.target.files.length > 0) {
+            handleFileSelection(e.target.files[0]);
+        }
+    });
+    
+    // Handle drag and drop
+    uploadArea.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        uploadArea.classList.add('active');
+    });
+    
+    uploadArea.addEventListener('dragleave', function() {
+        uploadArea.classList.remove('active');
+    });
+    
+    uploadArea.addEventListener('drop', function(e) {
+        e.preventDefault();
+        uploadArea.classList.remove('active');
+        
+        if (e.dataTransfer.files.length > 0) {
+            handleFileSelection(e.dataTransfer.files[0]);
+        }
+    });
+    
+    // Handle file removal
+    removeFile.addEventListener('click', function(e) {
+        e.stopPropagation();
+        resetUploadForm();
+    });
+    
+    // Edit CV button
+    editCvBtn.addEventListener('click', function() {
+        uploadSuccess.style.display = 'none';
+        uploadArea.style.display = 'block';
+        filePreview.style.display = 'none';
+        submitCvBtn.style.display = 'block';
+        isCvSubmitted = false;
+        resetUploadForm();
+    });
+    
+    // Handle file selection
+    function handleFileSelection(file) {
+        // Check file type
+        const validTypes = ['application/pdf', 'application/msword', 
+                          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                          'text/plain'];
+        
+        if (!validTypes.includes(file.type)) {
+            alert('Please upload a valid file (PDF, DOC, DOCX, or TXT)');
+            return;
+        }
+        
+        // Check file size (5MB max)
+        if (file.size > 5 * 1024 * 1024) {
+            alert('File size should not exceed 5MB');
+            return;
+        }
+        
+        selectedFile = file;
+        
+        // Display file preview
+        uploadArea.style.display = 'none';
+        filePreview.style.display = 'block';
+        
+        // Set file info
+        fileName.textContent = file.name;
+        fileSize.textContent = formatFileSize(file.size);
+        
+        // Set file icon
+        const fileExt = file.name.split('.').pop().toLowerCase();
+        fileTypeIcon.className = 'fas fa-' + (fileTypeIcons[fileExt] || 'file-alt');
+        
+        submitCvBtn.disabled = false;
+    }
+    
+    // Format file size
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+    }
+    
+    // Reset upload form
+    function resetUploadForm() {
+        selectedFile = null;
+        fileInput.value = '';
+        filePreview.style.display = 'none';
+        uploadArea.style.display = 'block';
+        submitCvBtn.disabled = true;
+        progressContainer.style.display = 'none';
+        progressBar.style.width = '0%';
+    }
+    
+    // Handle CV submission
+    submitCvBtn.addEventListener('click', function() {
+        if (!selectedFile) {
+            alert('Please upload a file first');
+            return;
+        }
+        
+        // Show loading state
+        submitCvBtn.classList.add('loading');
+        submitCvBtn.disabled = true;
+        progressContainer.style.display = 'block';
+        
+        // Simulate file upload with progress
+        let progress = 0;
+        const interval = setInterval(function() {
+            progress += Math.random() * 10;
+            if (progress > 100) progress = 100;
+            
+            progressBar.style.width = progress + '%';
+            progressText.textContent = Math.round(progress) + '% uploaded';
+            
+            if (progress === 100) {
+                clearInterval(interval);
+                setTimeout(function() {
+                    // Show success state
+                    filePreview.style.display = 'none';
+                    progressContainer.style.display = 'none';
+                    uploadSuccess.style.display = 'block';
+                    submitCvBtn.style.display = 'none';
+                    isCvSubmitted = true;
+                    
+                    // Reset submit button for demo purposes
+                    setTimeout(function() {
+                        submitCvBtn.classList.remove('loading');
+                        submitCvBtn.textContent = 'Submit Application';
+                    }, 1000);
+                }, 500);
+            }
+        }, 200);
+    });
+
+    // Handle application submission
+    applyBtn.addEventListener('click', function(e) {
+        if (!isCvSubmitted) {
+            e.preventDefault();
+            alert('Please submit your CV first');
+            return;
+        }
+        
+        // Show loading state
+        this.classList.add('loading');
+        this.disabled = true;
+        this.innerHTML = 'Applying... <i class="fas fa-spinner fa-spin"></i>';
+        
+        // Simulate application processing
+        setTimeout(() => {
+            // Show success state
+            this.classList.remove('loading');
+            this.innerHTML = 'Applied <i class="fas fa-check"></i>';
+            
+            // Show confirmation message
+            const confirmation = document.createElement('div');
+            confirmation.className = 'application-confirmation';
+            confirmation.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <h4>Application Complete!</h4>
+                <p>Your application has been successfully submitted.</p>
+            `;
+            document.querySelector('.job-sidebar').appendChild(confirmation);
+            
+            // Scroll to confirmation
+            setTimeout(() => {
+                confirmation.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }, 2000);
+    });
+});
+// Preloader functionality
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        var preloader = document.getElementById('preloader');
+        preloader.style.opacity = '0';
+        setTimeout(function() {
+            preloader.style.display = 'none';
+        }, 500);
+    }, 2000);
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const cvUploadBox = document.getElementById('cvUploadBox');
+    const cvFileInput = document.getElementById('cvFileInput');
+    const uploadInitialState = document.getElementById('uploadInitialState');
+    const uploadFileInfo = document.getElementById('uploadFileInfo');
+    const fileName = document.getElementById('fileName');
+    const changeFile = document.getElementById('changeFile');
+    const cvUploadForm = document.getElementById('cvUploadForm');
+    const applyNowBtn = document.getElementById('apply-btn');
+    let isCvSubmitted = false;
+
+    // Handle file selection
+    cvFileInput.addEventListener('change', function(e) {
+        if (this.files && this.files[0]) {
+            const file = this.files[0];
+            
+            // Validate file type
+            const validTypes = ['application/pdf', 'application/msword', 
+                               'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+            if (!validTypes.includes(file.type)) {
+                alert('Please upload a PDF or Word document (DOC/DOCX)');
+                return;
+            }
+            
+            // Validate file size (5MB max)
+            if (file.size > 5 * 1024 * 1024) {
+                alert('File size should not exceed 5MB');
+                return;
+            }
+            
+            // Show file info inside the upload box
+            fileName.textContent = file.name;
+            uploadInitialState.style.display = 'none';
+            uploadFileInfo.style.display = 'flex';
+        }
+    });
+
+    // Handle drag and drop
+    ['dragenter', 'dragover'].forEach(eventName => {
+        cvUploadBox.addEventListener(eventName, highlight, false);
+    });
+    
+    ['dragleave', 'drop'].forEach(eventName => {
+        cvUploadBox.addEventListener(eventName, unhighlight, false);
+    });
+    
+    function highlight(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        cvUploadBox.style.borderColor = '#8d85ff';
+        cvUploadBox.style.backgroundColor = 'rgba(141, 133, 255, 0.1)';
+    }
+    
+    function unhighlight(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        cvUploadBox.style.borderColor = '#e0e4f5';
+        cvUploadBox.style.backgroundColor = '#f8f9ff';
+    }
+    
+    cvUploadBox.addEventListener('drop', handleDrop, false);
+    
+    function handleDrop(e) {
+        e.preventDefault();
+        const files = e.dataTransfer.files;
+        if (files.length) {
+            cvFileInput.files = files;
+            const event = new Event('change');
+            cvFileInput.dispatchEvent(event);
+        }
+    }
+
+    // Change file button
+    changeFile.addEventListener('click', function() {
+        cvFileInput.value = '';
+        uploadFileInfo.style.display = 'none';
+        uploadInitialState.style.display = 'block';
+    });
+
+    // CV Form submission
+    cvUploadForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if (!cvFileInput.files || !cvFileInput.files[0]) {
+            alert('Please upload your CV first');
+            return;
+        }
+        
+        isCvSubmitted = true;
+        alert('CV submitted successfully! You can now click "Apply Now"');
+    });
+
+    // Apply Now button validation
+    applyNowBtn.addEventListener('click', function(e) {
+        if (!isCvSubmitted) {
+            e.preventDefault();
+            alert('Please submit your CV first before applying');
+            document.querySelector('.cv-upload-box').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+        function redirectToProfile() {
+            window.location.href = 'jsprofile.html'; // Change this to your profile page URL
+        }
+    </script>
+</body>
+</html>
