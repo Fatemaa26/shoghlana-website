@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Jobs | Shoghlana</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(90deg, #77a4f7, #af5ee9);
+            background-size: 120% 200%;
+        }
+
+        .content-wrapper {
+            transform: translateX(-95px);
+        }
+
+        nav, footer {
+            transform: none !important;
+        }
+
+        @media (max-width: 940px) {
+            .content-wrapper {
+                transform: none;
+            }
+        }
+
+        .main-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .filters-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            max-width: 300px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+        }
+
+        @media (max-width: 940px) {
+            .filters-container {
+                position: static;
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            .main-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .jobs-list-container .jobs {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        .filters-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .filters-header h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        #selected-filters-count {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .filter-section {
+            margin-bottom: 20px;
+        }
+
+        .filter-section h4 {
+            margin: 0 0 12px 0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 6px 0;
+            user-select: none;
+        }
+
+        .filter-option input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .checkmark {
+            height: 18px;
+            width: 18px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .filter-option:hover .checkmark {
+            border-color: #aaa;
+        }
+
+        .filter-option input:checked ~ .checkmark {
+            background-color: #1976d2;
+            border-color: #1976d2;
+        }
+
+        .checkmark:after {
+            content: "";
+            display: none;
+            width: 4px;
+            height: 8px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            margin-top: -2px;
+        }
+
+        .filter-option input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .option-text {
+            flex-grow: 1;
+            font-size: 14px;
+        }
+
+        .option-count {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .filter-dropdown {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .filter-dropdown:focus {
+            outline: none;
+            border-color: #1976d2;
+        }
+
+        .reset-filters-btn {
+            background: #1976d2;
+            color: white;
+            margin-top: 10px;
+            padding: 8px;
+            width: 100%;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .reset-filters-btn:hover {
+            background: #1565c0;
+        }
+
+        .jobs-list-container {
+            flex: 1;
+            font-family: "Rubik", sans-serif;
+        }
+
+        .jobs-list-container h2 {
+            font-size: 30px;
+            border-left: 4px solid #8e73f1;
+            padding-left: 20px;
+            color: white;
+        }
+
+        .jobs-list-container .jobs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .jobs-list-container .job {
+            box-shadow: 0 4px 24px -8px rgba(2, 48, 71, 0.2);
+            padding: 28px;
+            border-radius: 16px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: all 400ms ease;
+            background-color: white;
+            min-width: 280px;
+        }
+
+        .jobs-list-container .job:hover {
+            transform: scale(1.03);
+        }
+
+        .jobs-list-container .jobs img {
+            width: 70px;
+        }
+
+        @media (max-width: 940px) {
+            .jobs-list-container .jobs {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .jobs-list-container .job {
+                min-width: 100%;
+                padding: 24px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .jobs-list-container .jobs {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+                gap: 16px;
+            }
+
+            .jobs-list-container .job {
+                min-width: 100%;
+                padding: 20px;
+            }
+        }
+
+        .jobs-list-container .open-positions {
+            font-size: 20px;
+            position: absolute;
+            top: 40px;
+            right: 24px;
+            color: rgb(50, 109, 187);
+        }
+
+        .jobs-list-container .job-title {
+            font-size: 20px;
+            padding: 10px 0;
+            margin: 0;
+            color: #023047;
+        }
+
+        .jobs-list-container .details {
+            margin-top: 6px;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.8;
+            flex: 1;
+        }
+
+        .jobs-list-container .details-btn {
+            text-decoration: none;
+            background-color: rgb(168, 241, 255);
+            border: 1px solid rgb(123, 216, 233);
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 20px;
+            transition: all 400ms ease;
+        }
+
+        .jobs-list-container .details-btn:hover {
+            background: rgb(123, 216, 233);
+            color: #fff;
+        }
+
+        .jobs-list-container .job-search {
+            width: 100%;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-family: "Rubik", sans-serif;
+            box-sizing: border-box;
+            border: 1px solid #333;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .no-results {
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .like-btn, .dislike-btn, .love-btn, .save-btn {
+            display: block;
+            width: 100%;
+            margin: 5px 0;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            text-align: center;
+        }
+
+        /* 🔹 تغيير الألوان */
+        .like-btn {
+            background: rgb(187, 199, 251);
+            color: rgb(73, 100, 223);
+        }
+
+        /* أخضر */
+        .dislike-btn {
+            background: rgb(189, 177, 245);
+            color: rgb(94, 68, 206);
+        }
+
+        /* أحمر */
+        .love-btn {
+            background: rgb(183, 152, 235);
+            color: rgb(111, 59, 196)
+        }
+
+        /* وردي */
+        .save-btn {
+            background: rgb(187, 222, 251);
+            color: #1565c0;
+        }
+
+        /* أزرق */
+
+        /* 🔹 تأثير عند المرور */
+        .like-btn:hover {
+            background: rgb(117, 140, 243);
+            transform: scale(1.1);
+        }
+
+        .dislike-btn:hover {
+            background: rgb(139, 116, 240);
+            transform: scale(1.1);
+        }
+
+        .love-btn:hover {
+            background: rgb(158, 116, 231);
+            transform: scale(1.1);
+        }
+
+        .save-btn:hover {
+            background: #69b1fa;
+            transform: scale(1.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: inherit;
+            position: relative;
+        }
+
+        nav .logo {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: rgb(250, 250, 250);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        nav .logo .o img {
+            width: 1em;
+            height: 1em;
+            object-fit: contain;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin-right: 70px;
+            margin-top: 20px;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li {
+            margin-left: 40px;
+        }
+
+        nav ul li a {
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+            left: 0;
+            background: white;
+        }
+
+        nav ul li a:hover {
+            color: #d5a1ff;
+            transform: scale(1.05);
+        }
+
+        nav ul li.profile-icon {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-top: -5px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        nav ul li.profile-icon img {
+            width: 100%;
+            height: auto;
+        }
+
+        nav ul li.profile-icon:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: rgb(101, 199, 216);
+        }
+
+        .footer-section p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 5px 0;
+            color: white;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-section ul li a:hover {
+            color: #d5a1ff;
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #77a4f7, #af5ee9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader-content {
+            text-align: center;
+        }
+
+        .loader-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            animation: bounce 1.5s infinite ease-in-out;
+        }
+
+        .loading-text {
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            position: relative;
+        }
+
+        .loading-text::after {
+            content: '...';
+            position: absolute;
+            animation: dots 1.5s infinite steps(4);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes dots {
+            0% { content: '.'; }
+            25% { content: '..'; }
+            50% { content: '...'; }
+            75% { content: ''; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            SH<span class="o"><img src="images/job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg" alt="O"></span>GHLANA
+        </div>
+        <ul>
+            <li><a href="jshome.html">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="jshome.html#jobs">Jobs</a></li>
+            <li><a href="#Contact">Contact Us</a></li>
+            <li class="profile-icon" onclick="redirectToProfile()">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFCElEQVR4nO1ZW48UVRBuvOBtNV5QI/gD9BUR/QNqCPpilPiC4AtoIqIxys45s/QLwqsE1BeNBOITmhD8AaxBw4OLl82kT82ArLuyO1U9wyWK4CWkTfX0zNb2dG+f7uldNZkvqWQzfeqcqnPqvo4zxBBDDAw3CG5QHj6pDSoF+IUCqmnAixrwr4guRr99rjyqjNWbTzCP82/DbbQfVgb3aYPnNVCQh5TBXzTgXlVvr1l2wUe98/dpoI8U0J95Be8jQ39ogx+4tZl7l0X4Sr35kgZq9wuDc8rQxxpos/L8tazktongZiYXZleNmdZjqk4va8BPFGCz/0WoVQF/05IJ7p4IbuJb7zsY6ISq+xtfDIIb8+xV9ZrPasDxBNM6yN9LFf6tmZnbFNCXCwXHhvbo6UH3VuBv0IBnYooc5zNLEZ5vI0H4Q2//0LyjlAMcx3FrNKIMHo4rUcpLxM1GAY6VInXiWbg75lcHynDYXMJHt6k14GkNdIVJAU5wjuBveZWoGnphkFDZlmaTxVOtzz2qgaZTYz/QzxVoPZKphKEjIsz6o5OX7xnIdNhhs2zebbTvUobOWcT9n94xrTstXvFsYVMKM6xIUsrQM5kKG1TiwF+1oVcqk/ggE/8d/javyKhddKJesnNNa7W1AmF5IOK8Jc93IpZvS/j+qnjRCcs9vxJyvGclPCckWdtwkrI6DOj3Lk+lMXd//Lt7tvmAeIErNntWw2TX45m2KgDDqlKUB7axeCkUcDvZH+cvs7neyWPLXNvYHBQ3IW1wexkmxNCAnwoz2uVkget5cVObMxm6fB5VpBMrQ1s52jDFndhKkAjaoy1C8aNOFjqNR8Tg+WsdS3AY5RBZRhiVUKa1Tig+6WRBAV3oMnAyc3KAk5QGmkpNZIbO2SQyCfYnWXI7WZDx363VVjo5wQmvY074rQL8jYn/5thfpADc0WjcIvPBkitQNnYUUKCwCS0FKgVMqOfE3AamLgyCFRroNQUIyuD1TOft77yuM28YcoNgRdoxYzD3eE4nng+j3MOmrWPh8wqdHplwe6o8hrbmCqO2iUwD1ktUwCxyoYfE2nczFeChk9C4mVZKSLMp0vrxtEILc0ptZw3R/LrWOrspWzh0WryY04audtcUacDdidnbRXS5mrRGmeZzuYu5UDjAvaIsGE9WAL/vrqka3JlXAQX4pjjjdLICeFIosMd+83p7TTgx65mSv6F/c/8NYWp/c6KyyRu8htdGPEGnZKHX+2XwNwpfvJaroWHwuE/c0Jl4Q84JRgF+E3PIaX69iodPKc9/yJ2aujUk01od/mZwnzI4E3Pgr3mvhUrSyMK6Cvc7ecFJjBOHcLTDSUlGdk35Ccd57Nh3eUCfidunQk19KCD4m2IH7k4cExrcKaOFBSHzuAnRSwG6cm3Vo+cLCd/b0ODBLCVCRWq1lRw1lMEPNdApDsFsuyF1hrmn2Cy5TUzzFRUTXgG9P5Dwoq07vtBu6YjNkMr6jBqNSLOJzjiWZ2C8KDjOx5XguU1SdMoLxdEm3ggZOlbacHfhS+CBuD2zE4dmkSMbdzJsaG4nExx7f2k3nwSeVaY4LIYNuEdbOOVzdGFbDwlmV/FvXJhxbZPGXx3UYW3BYS18DZHsipIydI1v3Z26dLez3OAExROzvuRkRzwE3sMJb9kFTywA6831UYlwlBsP7uy4PY3ogjb0Y/RtFzcp/4l/sw4xhPP/xz/0x9PjW7+hjQAAAABJRU5ErkJggg==" alt="Profile Icon">
+            </li>
+        </ul>
+    </nav>
+
+    <div id="preloader">
+        <div class="preloader-content">
+            <img src="images/job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg" class="loader-icon" alt="Loading icon">
+            <div class="loading-text">Preparing your career journey</div>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="main-container">
+            <div class="filters-container">
+                <div class="filters-header">
+                    <h3>Filters</h3>
+                    <span id="selected-filters-count">0 filters selected</span>
+                </div>
+                
+                <div class="filter-section">
+                    <h4>Workplace</h4>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" name="workplace" value="On-Site">
+                            <span class="checkmark"></span>
+                            <span class="option-text">On-site</span>
+                            <span class="option-count">(5)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="workplace" value="Remote">
+                            <span class="checkmark"></span>
+                            <span class="option-text">Remote</span>
+                            <span class="option-count">(8)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="workplace" value="Hybrid">
+                            <span class="checkmark"></span>
+                            <span class="option-text">Hybrid</span>
+                            <span class="option-count">(4)</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h4>Country</h4>
+                    <select class="filter-dropdown" id="country">
+                        <option value="">Select country</option>
+                        <option value="Egypt">Egypt</option>
+                        <option value="Germany">Germany</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="United States">United States</option>
+                    </select>
+                </div>
+                
+                <div class="filter-section">
+                    <h4>City</h4>
+                    <select class="filter-dropdown" id="city" disabled>
+                        <option value="">Select country first</option>
+                    </select>
+                </div>
+                
+                <div class="filter-section">
+                    <h4>Career Level</h4>
+                    <select class="filter-dropdown" id="career-level">
+                        <option value="">Select career level</option>
+                        <option value="Entry Level">Entry Level</option>
+                        <option value="Experienced">Experienced</option>
+                        <option value="Manager">Manager</option>
+                    </select>
+                </div>
+
+                <div class="filter-section">
+                    <h4>Job Type</h4>
+                    <select class="filter-dropdown" id="job-type">
+                        <option value="">Select type</option>
+                        <option value="Part-Time">Part-Time</option>
+                        <option value="Full-Time">Full-Time</option>
+                    </select>
+                </div>
+
+                <button class="reset-filters-btn" onclick="resetFilters()">Reset Filters</button>
+            </div>
+
+            <div class="jobs-list-container">
+                <h2>SHOGHLANA JOBS</h2>
+                <div class="job-search-container">
+                    <input type="text" class="job-search" placeholder="Search jobs...">
+                </div>
+                <div class="jobs"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Headquarter</h3>
+                <div>
+                    <p>📞 +20 109 9999-978</p>
+                    <p>📧 info@shoghlana.com</p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick links</h3>
+                <ul>
+                    <li><a href="AboutUs.html">About Us</a></li>
+                    <li><a href="#Contact">Contact Us</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="HelpCenter.html">Help center</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Policies</h3>
+                <ul>
+                    <li><a href="Terms&Privacy.html">Terms of Service</a></li>
+                    <li><a href="Terms&Privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var preloader = document.getElementById('preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function() {
+                    preloader.style.display = 'none';
+                }, 500);
+            }, 2000);
+        });
+
+        function redirectToProfile() {
+            window.location.href = 'jsprofile.html';
+        }
+
+        // Job data
+        const jobs = [
+            {
+                id: 1,
+                title: "Software Engineer",
+                image: "images/software-engineer (1).svg",
+                description: "A Software Engineer is responsible for designing, developing, testing and maintaining software applications. They work closely with clients, product managers, and other team members to understand requirements and deliver efficient and reliable software solutions.",
+                requirements: [
+                    "Experience +5 years in Software Engineering",
+                    "Proficiency in one or more programming languages (e.g., JavaScript, Python, C++).",
+                    "Understanding of software development life cycle (SDLC).",
+                    "Comfortable working with databases and APIs.",
+                    "Strong problem-solving and analytical skills.",
+                    "Good communication and teamwork skills."
+                ],
+                location: "maadi, Cairo, Egypt",
+                salary: "50,000 EGP / Month",
+                careerlevel: "Experienced",
+                workPlace: "Hybrid",
+                type: "Full-Time",
+                posted: "15/2/2025",
+                openPositions: "2",
+                link: "Project Jobs/SE.html"
+            },
+            {
+                id: 2,
+                title: "Data Scientist",
+                image: "images/data-scientist.svg",
+                description: "Join our AI-driven team to develop predictive models, analyze complex data, and uncover insights that shape the future of our products and services.",
+                requirements: [
+                    "Experience +0 years in Data Science.",
+                    "Strong background in statistics, mathematics, and machine learning.",
+                    "Proficiency in Python, R, or similar programming languages.",
+                    "Experience with SQL and data visualization tools (e.g., Tableau, Power BI).",
+                    "Ability to translate business problems into data-driven solutions.",
+                    "Familiarity with cloud platforms (AWS, GCP, or Azure) is a plus.",
+                    "Excellent communication and collaboration skills."
+                ],
+                location: " Maadi, cairo, Egypt",
+                salary: "25,000 EGP / month",
+                careerlevel: "Entry Level",
+                workPlace: "On-Site",
+                type: "Full-Time",
+                posted: "10/7/2025",
+                openPositions: "3",
+                link: "Project Jobs/DataSc.html"
+            },
+            {
+                id: 3,
+                title: "Project Manager",
+                image: "images/project-manager.svg",
+                description: "Plan and manage company projects and teams.",
+                requirements: [
+                    "Experience +8 years in project management.",
+                    "Leadership skills.",
+                    "Excellent organization.",
+                    "Familiar with project tools (e.g., Trello, Asana).",
+                    "Strong communication."
+                ],
+                location: "London, UK",
+                salary: "(£5,500 - £8,500 GBP) / Month",
+                careerlevel: "Manager",
+                workPlace: "Remote",
+                type: "Full-Time",
+                posted: "1/4/2025",
+                openPositions: "1",
+                link: "Project Jobs/PrjMan.html"
+            },
+            {
+                id: 4,
+                title: "Product Manager",
+                image: "images/product-manager.svg",
+                description: "Join our product team to lead the development and execution of innovative solutions that meet user needs and drive business success.",
+                requirements: [
+                    "Experience +4 years in Product Manager",
+                    "Proven experience in product management or a related role.",
+                    "Strong understanding of the product lifecycle and agile methodologies.",
+                    "Ability to gather and prioritize product and customer requirements.",
+                    "Experience working with cross-functional teams including engineering, design, and marketing.",
+                    "Excellent analytical, problem-solving, and communication skills."
+                ],
+                location: "The 5th Settlement, Cairo, Egypt",
+                salary: "35,000 EGP / month",
+                careerlevel: "Experienced",
+                workPlace: "Remote",
+                type: "Full-Time",
+                posted: "13/3/2025",
+                openPositions: "2",
+                link: "Project Jobs/PrdMan.html"
+            },
+            {
+                id: 5,
+                title: "Sales Representative",
+                image: "images/sales-representative.svg",
+                description: "Promote and sell company products to new customers.",
+                requirements: [
+                    "Experience +1 years in Sales Representative",
+                    "Strong communication skills.",
+                    "Previous sales experience.",
+                    "Confident and goal-oriented.",
+                    "Familiar with CRM tools.",
+                    "Team player."
+                ],
+                location: "New York, US",
+                salary: "($3,500 - $5,500 USD) / Month",
+                careerlevel: "Entry Level",
+                workPlace: "Remote",
+                type: "Part-Time",
+                posted: "16/4/2025",
+                openPositions: "4",
+                link: "Project Jobs/SalesRep.html"
+            },
+            {
+                id: 6,
+                title: "Marketing Manager",
+                image: "images/marketing-manager.svg",
+                description: "Join our dynamic marketing team to lead campaigns, drive brand strategy, and maximize outreach for impactful business growth.",
+                requirements: [
+                    "Experince +7 years in Marketing.",
+                    "Proven experience in developing and executing marketing strategies.",
+                    "Strong understanding of digital marketing and analytics tools.",
+                    "Experience with SEO, content marketing, and social media platforms.",
+                    "Ability to manage teams and coordinate cross-functional projects.",
+                    "Excellent communication and leadership skills."
+                ],
+                location: "New Cairo, Cairo, Egypt",
+                salary: "55,000 EGP / month",
+                careerlevel: "Manager",
+                workPlace: "Remote",
+                type: "Full-Time",
+                posted: "5/4/2025",
+                openPositions: "2",
+                link: "Project Jobs/MrktMan.html"
+            },
+            {
+                id: 7,
+                title: "Frontend Developer",
+                image: "images/front-end (3).png",
+                description: "We are seeking a Senior Front-End Developer to join our team and play a key role in building intuitive, high-performance, and visually appealing web applications. The ideal candidate will have strong expertise in front-end technologies and a deep understanding of modern web development principles, without relying on specific frameworks.",
+                requirements: [
+                    "5+ years of experience in front-end web development.",
+                    "Strong proficiency in HTML, CSS, and JavaScript (ES6+).",
+                    "Deep understanding of web performance optimization techniques.",
+                    "Experience with CSS preprocessors (SASS or LESS) and responsive design principles.",
+                    "Knowledge of vanilla JavaScript techniques without relying on frameworks.",
+                    "Experience with browser developer tools for debugging and testing.",
+                    "Strong problem-solving skills and attention to detail.",
+                    "Familiarity with version control systems (such as Git).",
+                    "Understanding of accessibility standards (WCAG) and SEO best practices.",
+                    "Ability to work independently and collaborate with cross-functional teams."
+                ],
+                location: "Maadi, Cairo, Egypt",
+                workPlace: "On-Site",
+                salary: "(45,000 - 55,000 EGP) / Month",
+                careerlevel: "Experienced",
+                type: "Full-Time",
+                posted: "5/6/2025",
+                openPositions: "4",
+                link: "jobs/FrntndDev.html"
+            },
+            {
+                id: 8,
+                title: "Backend Developer",
+                image: "images/back-end (2).png",
+                description: "We are seeking a skilled backend developer to architect and scale the core infrastructure of a complex enterprise management platform. The role involves building robust APIs, designing and optimizing database performance, and integrating third-party services to support real-time data processing, role-based access, and modular workflows and Leading backend architecture and mentoring juniors (for Senior position).",
+                requirements: [
+                    "Experience: 3+ years of experience developing backend applications using Javascript.",
+                    "Core Languages: Proficiency in Node.js With Framework (Express.js / Nest.js).",
+                    "Cloud Expertise: Strong experience working with Google Cloud Platform (GCP) services such as Cloud Functions, Pub/Sub, and Firestore.",
+                    "Database Management: Comfortable working with both SQL (e.g., PostgreSQL, MySQL) and NoSQL (e.g., MongoDB, Firestore) databases.",
+                    "Scalability & Optimization: Understanding of API design, performance tuning, and best practices for scalable backend systems.",
+                    "Problem Solving: Ability to troubleshoot and debug backend services efficiently.",
+                    "Collaboration: Experience working in agile teams and integrating with front-end applications.",
+                    "Communication: Strong written and verbal communication skills in English."
+                ],
+                location: "Nasr City, Cairo, Egypt",
+                workPlace: "On-Site",
+                salary: "(35,000 - 45,000 EGP) / Month",
+                careerlevel: "Experienced",
+                type: "Full-Time",
+                posted: "4/6/2025",
+                openPositions: "2",
+                link: "jobs/BckndDev.html"
+            },
+            {
+                id: 9,
+                title: "UX Designer",
+                image: "images/ux-design (1).png",
+                description: "We are looking for a creative UX Designer to design software and platforms that meet people’s needs. You will combine interfaces and workflows to enhance user experience, ensuring our products are intuitive and user-friendly.",
+                requirements: [
+                    "Experience +3 years in UX Designer.",
+                    "Bachelor's degree in Design, Computer Science, or related field.",
+                    "Proven experience as a UX Designer or similar role.",
+                    "Proficiency in design tools like Figma, Adobe XD, or Sketch.",
+                    "Understanding of user-centered design principles."
+                ],
+                location: "Abu Qir, Alexandria, Egypt",
+                salary: "(25,000 - 30,000 EGP) / Month",
+                careerlevel: "Experienced",
+                workPlace: "Hybrid",
+                type: "Full-Time",
+                posted: "1/4/2025",
+                openPositions: "1",
+                link: "Project Jobs/UXDes.html"
+            },
+            {
+                id: 10,
+                title: "DevOps Engineer",
+                image: "images/dev-eng.png",
+                description: "As a DevOps Engineer, you will be responsible for automating and optimizing our development and deployment processes. You will work closely with software developers, system operators, and other IT staff to manage code releases and ensure efficient system performance.",
+                requirements: [
+                    "Experience +1 years in DevOps Engineering.",
+                    "Strong knowledge of Linux/Unix systems.",
+                    "Experience with CI/CD tools (e.g., Jenkins, GitLab CI).",
+                    "Proficient in cloud platforms (e.g., AWS, Azure, GCP).",
+                    "Familiarity with containerization tools (Docker, Kubernetes).",
+                    "Scripting skills (Bash, Python, etc.)"
+                ],
+                location: "AlDoki, Giza, Egypt",
+                salary: "(18,000 - 22,000 EGP) / Month",
+                careerlevel: "Entry Level",
+                workPlace: "Remote",
+                type: "Part-Time",
+                posted: "5/4/2025",
+                openPositions: "2",
+                link: "Project Jobs/DevEng.html"
+            },
+            {
+                id: 11,
+                title: "Data Analyst",
+                image: "images/data-analyst.png",
+                description: "Analyze company data and generate useful reports.",
+                requirements: [
+                    "Degree in Statistics or related field.",
+                    "Experience with Excel.",
+                    "Basic SQL knowledge.",
+                    "Understanding of data visualization.",
+                    "Attention to detail."
+                ],
+                location: "Berlin, Germany",
+                salary: "(€4,167 - €6,250 EUR) / Month",
+                careerlevel: "Experienced",
+                workPlace: "Remote",
+                type: "Full-Time",
+                posted: "10/4/2025",
+                openPositions: "3",
+                link: "Project Jobs/DAnalyst.html"
+            },
+            {
+                id: 12,
+                title: "HR Manager",
+                image: "images/human-resources.png",
+                description: "A HR Manager is responsible for overseeing all aspects of human resources practices and processes. They will support business needs and ensure the proper implementation of company strategy and objectives. Promoting corporate values and enable business success through human resources management, including job design, recruitment, performance managment, training & development, and employee relations.",
+                requirements: [
+                    "Experience +7 years in Human-Resources.",
+                    "Proven working experience as HR Manager or other HR Executive role.",
+                    "Excellent active listening, negotitation, and presentation skills.",
+                    "Ability to architect strategy along with leadership skills.",
+                    "Qualified to build and effectively manage interpersonal relationships at all levels of the company.",
+                    "Bachelor's degree in HR, Business, or any related field (HR certificates like SHRM or CIPD are a plus)."
+                ],
+                location: "Nasr City, Cairo, Egypt",
+                salary: "45,000 EGP / Month",
+                careerlevel: "Manager",
+                workPlace: "On-Site",
+                type: "Full-Time",
+                posted: "25/3/2025",
+                openPositions: "1",
+                link: "Project Jobs/HRMan.html"
+            },
+            {
+                id: 13,
+                title: "Content Writer",
+                image: "images/contentwriter.png",
+                description: "Join our creative team to craft compelling content that engages audiences, enhances brand presence, and drives organic growth.",
+                requirements: [
+                    "Experience +7 years in Content Writing.",
+                    "Excellent writing, editing, and proofreading skills.",
+                    "Ability to adapt writing style for different audiences and platforms.",
+                    "Strong research skills and attention to detail.",
+                    "Familiarity with SEO best practices and content optimization.",
+                    "Experience with content management systems (CMS) like WordPress."
+                ],
+                location: "Al Doqi, Giza, Egypt",
+                salary: "55,000 EGP / month",
+                careerlevel: "Manager",
+                workPlace: "Hybrid",
+                type: "Full-Time",
+                posted: "22/1/2025",
+                openPositions: "2",
+                link: "Project Jobs/CWriter.html"
+            },
+            {
+                id: 14,
+                title: "Customer Support Specialist",
+                image: "images/support.png",
+                description: "Assist customers and resolve their issues quickly.",
+                requirements: [
+                    "Experience +5 years in Customer Support.",
+                    "Strong communication skills.",
+                    "Patience and friendly attitude.",
+                    "Fast typing skills.",
+                    "Minimum one year experience.",
+                    "Basic computer skills."
+                ],
+                location: "Miami, Florida, US",
+                salary: "$18 USD / Hour",
+                careerlevel: "Experienced",
+                workPlace: "Remote",
+                type: "Part-Time",
+                posted: "5/4/2025",
+                openPositions: "4",
+                link: "Project Jobs/CstmrSS.html"
+            },
+            {
+                id: 15,
+                title: "Financial Analyst",
+                image: "images/financial-analysis.png",
+                description: "As a Financial Analyst, you will be responsible for analyzing financial data and trends to help the organization make strategic business decisions. You will work closely with other departments to forecast budgets, monitor expenses, and assess financial performance.",
+                requirements: [
+                    "Experience +0 years in Financial Analysis.",
+                    "Bachelor's degree in Finance, Economics, or a related field.",
+                    "Strong analytical and problem-solving skills.",
+                    "Proficiency in Excel and financial modeling tools.",
+                    "Knowledge of financial reporting and forecasting.",
+                    "Excellent communication and presentation skills."
+                ],
+                location: "Abbas El-Akkad, Cairo, Egypt",
+                salary: "(15,000 - 20,000 EGP) / Month",
+                careerlevel: "Entry Level",
+                workPlace: "Remote",
+                type: "Part-Time",
+                posted: "25/3/2025",
+                openPositions: "2",
+                link: "Project Jobs/FAnalyst.html"
+            },
+            {
+                id: 16,
+                title: "Graphic Designer",
+                image: "images/graphic-designer.png",
+                details: "Create visual concepts to communicate ideas. Develop designs for digital and print media.",
+                requirements: [
+                    "Portfolio demonstrating design skills",
+                    "2+ years design experience",
+                    "Adobe Creative Suite proficiency",
+                    "Creativity and innovation",
+                    "Typography knowledge",
+                    "Branding experience"
+                ],
+                location: "Cairo, Egypt",
+                salary: "EGP 10,000 - 16,000",
+                careerlevel: "Experienced",
+                workPlace: "On-Site",
+                type: "Full-Time",
+                posted: "2023-05-26",
+                openPositions: "1",
+                link: "jobs/GraphDes.html"
+            },
+            {
+                id: 17,
+                title: "Mobile App Developer",
+                image: "images/mobiledev.png",
+                description: "We are seeking an experienced and innovative Senior Mobile Developer to lead the development of cutting-edge mobile applications. The ideal candidate will have strong expertise in building high-performance mobile apps for iOS and Android platforms using native and cross-platform technologies. You will collaborate with designers, backend developers, and product teams to deliver seamless, user-friendly experiences that align with business objectives.",
+                requirements: [
+                    "Experience 0 - 3 years in mobile application development.",
+                    "Strong proficiency in native mobile development using Swift (iOS) and/or Kotlin/Java (Android).",
+                    "Experience with cross-platform frameworks such as Flutter or React Native.",
+                    "Deep understanding of mobile UI/UX principles and best practices.",
+                    "Solid experience integrating third-party APIs and services.",
+                    "Strong knowledge of mobile architecture patterns (MVC, MVVM, Clean Architecture).",
+                    "Familiarity with mobile security practices and data protection regulations.",
+                    "Experience with version control systems (e.g., Git)."
+                ],
+                location: "New Cairo, Cairo, Egypt",
+                workPlace: "Hybrid",
+                salary: "(15,000 - 25,000 EGP) / Month",
+                careerlevel: "Entry Level",
+                type: "Full-Time",
+                posted: "12/4/2025",
+                openPositions: "3",
+                link: "jobs/MobDev.html"
+            },
+            {
+                id: 18,
+                title: "Cybersecurity Specialist",
+                image: "images/cyber-security.png",
+                description: "A Cybersecurity Specialist is responsible for protecting our systems and data from any threats. They will be monitoring security, finding weak points, and making sure everything is safe from hackers or cyber attacks. They will help keep the company's information secure and private.",
+                requirements: [
+                    "Experience +5 years in Cybersecurity",
+                    "Previous experience in cybersecurity or similar IT role.",
+                    "Good understanding of network security, data protection, and common threats.",
+                    "Familiar with security tools and software (firewalls, antivirus, etc.).",
+                    "Problem-solving mindset and attention to details.",
+                    "A degree in Computer Science, Cybersecurity, or a related field (certifications like CEH, CompTIA Security+, or CISSP are a plus)."
+                ],
+                location: "London, UK",
+                salary: "(£5,000 - £8,000 GBP) / Month",
+                careerlevel: "Experienced",
+                workPlace: "Remote",
+                type: "Full-Time",
+                posted: "13/4/2025",
+                openPositions: "1",
+                link: "Project Jobs/Cyber.html"
+            },
+            {
+                id: 19,
+                title: "Business Analyst",
+                image: "images/business-analyst.png",
+                description: "As a Business Analyst, you will work closely with stakeholders to identify business needs and recommend solutions that deliver value. You will analyze data, create reports, and help in improving business processes and systems.",
+                requirements: [
+                    "Experience +1 years in Business Analysis.",
+                    "Bachelor’s degree in Business, IT, or a related field.",
+                    "Strong analytical and problem-solving skills.",
+                    "Excellent communication and documentation abilities.",
+                    "Experience with data analysis tools like Excel, Power BI, or Tableau.",
+                    "Knowledge of SQL and business process modeling is a plus."
+                ],
+                location: "El-Abaseya, Cairo, Egypt",
+                salary: "(20,000 - 25,000 EGP) / Month",
+                careerlevel: "Entry Level",
+                workPlace: "Remote",
+                type: "Full-Time",
+                posted: "16/4/2025",
+                openPositions: "3",
+                link: "Project Jobs/BAnalyst.html"
+            },
+            {
+                id: 20,
+                title: "Technical Writer",
+                image: "images/Technical writer.png",
+                description: "A Technical Writer is responsible for creating clear and easy-to-understand documents that explain technical information. They will work closely with engineers, developers, and product teams to turn complex ideas into simple content that anyone can understand. This includes user guides, manuals, FAQs, and online help content.",
+                requirements: [
+                    "Experience +0 years in Technical Writing.",
+                    "Good writing skills and the ability to explain complex ideas clearly.",
+                    "Basic understanding of technical subjects (software, hardware, or systems).",
+                    "Attention to details and good organization skills.",
+                    "Experience with writing tools (like Microsoft Word, Google Docs, or documentation software).",
+                    "Bachelor's degree in English, Communications, Computer Science, or a related field."
+                ],
+                location: "Pyramids Gardens, Giza, Egypt",
+                salary: "20,000 EGP / Month",
+                careerlevel: "Entry Level",
+                workPlace: "Hybrid",
+                type: "Part-Time",
+                posted: "14/4/2025",
+                openPositions: "1",
+                link: "Project Jobs/TechW.html"
+            }
+        ];
+
+        // City data by country
+        const citiesByCountry = {
+            "Egypt": [
+                { value: "Alexandria", text: "Alexandria" },
+                { value: "Cairo", text: "Cairo" },
+                { value: "Giza", text: "Giza" }
+            ],
+            "United States": [
+                { value: "Boston", text: "Boston" },
+                { value: "Florida", text: "Florida" },
+                { value: "New York", text: "New York" }
+            ],
+            "United Kingdom": [
+                { value: "London", text: "London" }
+            ],
+            "Germany": [
+                { value: "Berlin", text: "Berlin" }
+            ]
+        };
+
+        const jobsContainer = document.querySelector(".jobs-list-container .jobs");
+        const jobSearch = document.querySelector(".jobs-list-container .job-search");
+        const countrySelect = document.getElementById('country');
+        const citySelect = document.getElementById('city');
+        const careerLevelSelect = document.getElementById('career-level');
+        const jobTypeSelect = document.getElementById('job-type');
+        const checkboxes = document.querySelectorAll('input[type="checkbox"][name="workplace"]');
+        const selects = document.querySelectorAll('select.filter-dropdown');
+        const countElement = document.getElementById('selected-filters-count');
+
+        let searchTerm = "";
+        let filters = {
+            workplace: [],
+            country: "",
+            city: "",
+            careerLevel: "",
+            jobType: ""
+        };
+
+        // Save job to local storage
+        const saveJob = (jobTitle) => {
+            let savedJobs = JSON.parse(localStorage.getItem("savedJobs")) || [];
+            if (!savedJobs.includes(jobTitle)) {
+                savedJobs.push(jobTitle);
+                localStorage.setItem("savedJobs", JSON.stringify(savedJobs));
+                alert(`تم حفظ الوظيفة: ${jobTitle}`);
+            } else {
+                alert("هذه الوظيفة محفوظة بالفعل!");
+            }
+        };
+
+        // Update reactions
+        const updateReactions = (jobTitle, type) => {
+            let reactions = JSON.parse(localStorage.getItem("reactions")) || {};
+            if (!reactions[jobTitle]) {
+                reactions[jobTitle] = { like: 0, dislike: 0, love: 0 };
+            }
+            reactions[jobTitle][type]++;
+            localStorage.setItem("reactions", JSON.stringify(reactions));
+            return reactions[jobTitle][type];
+        };
+
+        // Get reaction count
+        const getReactionCount = (jobTitle, type) => {
+            let reactions = JSON.parse(localStorage.getItem("reactions")) || {};
+            return reactions[jobTitle] ? reactions[jobTitle][type] || 0 : 0;
+        };
+
+        // Update selected filters count
+        function updateSelectedCount() {
+            let count = 0;
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) count++;
+            });
+            selects.forEach(select => {
+                if (select.value) count++;
+            });
+            countElement.textContent = `${count} filter${count !== 1 ? 's' : ''} selected`;
+        }
+
+        // Reset all filters
+        function resetFilters() {
+            filters = {
+                workplace: [],
+                country: "",
+                city: "",
+                careerLevel: "",
+                jobType: ""
+            };
+            checkboxes.forEach(checkbox => checkbox.checked = false);
+            selects.forEach(select => select.value = "");
+            citySelect.disabled = true;
+            citySelect.innerHTML = '<option value="">Select country first</option>';
+            updateSelectedCount();
+            createJobListingCards();
+        }
+
+        // Update cities based on country
+        countrySelect.addEventListener('change', function() {
+            const country = this.value;
+            filters.country = country;
+            citySelect.innerHTML = '<option value="">Select city</option>';
+            if (country && citiesByCountry[country]) {
+                citySelect.disabled = false;
+                citiesByCountry[country].forEach(city => {
+                    const option = document.createElement('option');
+                    option.value = city.value;
+                    option.textContent = city.text;
+                    citySelect.appendChild(option);
+                });
+            } else {
+                citySelect.disabled = true;
+                citySelect.innerHTML = '<option value="">Select country first</option>';
+            }
+            filters.city = "";
+            updateSelectedCount();
+            createJobListingCards();
+        });
+
+        // Debounce function to limit how often the filter updates
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Update filters
+        const updateFilters = () => {
+            filters.workplace = Array.from(checkboxes)
+                .filter(cb => cb.checked)
+                .map(cb => cb.value.toLowerCase());
+            updateSelectedCount();
+            createJobListingCards();
+        };
+
+        const debouncedUpdateFilters = debounce(updateFilters, 300);
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', debouncedUpdateFilters);
+        });
+
+        citySelect.addEventListener('change', function() {
+            filters.city = this.value;
+            updateSelectedCount();
+            createJobListingCards();
+        });
+
+        careerLevelSelect.addEventListener('change', function() {
+            filters.careerLevel = this.value;
+            updateSelectedCount();
+            createJobListingCards();
+        });
+
+        jobTypeSelect.addEventListener('change', function() {
+            filters.jobType = this.value;
+            updateSelectedCount();
+            createJobListingCards();
+        });
+
+        // Create job listing cards
+        const createJobListingCards = () => {
+            jobsContainer.innerHTML = "";
+            let hasMatches = false;
+
+            jobs.forEach((job) => {
+                const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase());
+                const matchesWorkplace = filters.workplace.length === 0 || filters.workplace.some(wp => wp === job.workPlace.toLowerCase());
+                const matchesCountry = !filters.country || job.location.toLowerCase().includes(filters.country.toLowerCase());
+                const matchesCity = !filters.city || job.location.toLowerCase().includes(filters.city.toLowerCase());
+                const matchesCareerLevel = !filters.careerLevel || job.careerlevel === filters.careerLevel;
+                const matchesJobType = !filters.jobType || job.type === filters.jobType;
+
+                if (matchesSearch && matchesWorkplace && matchesCountry && matchesCity && matchesCareerLevel && matchesJobType) {
+                    hasMatches = true;
+                    let jobCard = document.createElement("div");
+                    jobCard.classList.add("job");
+
+                    let image = document.createElement("img");
+                    image.src = job.image;
+
+                    let title = document.createElement("h3");
+                    title.innerHTML = job.title;
+                    title.classList.add("job-title");
+
+                    let details = document.createElement("div");
+                    details.innerHTML = job.description || job.details;
+                    details.classList.add("details");
+
+                    let detailsBtn = document.createElement("a");
+                    detailsBtn.href = job.link;
+                    detailsBtn.innerHTML = "More Details";
+                    detailsBtn.classList.add("details-btn");
+
+                    let openPositions = document.createElement("span");
+                    openPositions.classList.add("open-positions");
+                    openPositions.innerHTML = job.openPositions == 1 ? `${job.openPositions} open position` : `${job.openPositions} open positions`;
+
+                    let saveBtn = document.createElement("button");
+                    saveBtn.innerHTML = "Save 💾";
+                    saveBtn.classList.add("save-btn");
+                    saveBtn.onclick = () => saveJob(job.title);
+
+                    let likeBtn = document.createElement("button");
+                    likeBtn.innerHTML = `👍 Like (${getReactionCount(job.title, "like")})`;
+                    likeBtn.classList.add("like-btn");
+                    likeBtn.onclick = () => {
+                        let count = updateReactions(job.title, "like");
+                        likeBtn.innerHTML = `👍 Like (${count})`;
+                    };
+
+                    let dislikeBtn = document.createElement("button");
+                    dislikeBtn.innerHTML = `👎 Dislike (${getReactionCount(job.title, "dislike")})`;
+                    dislikeBtn.classList.add("dislike-btn");
+                    dislikeBtn.onclick = () => {
+                        let count = updateReactions(job.title, "dislike");
+                        dislikeBtn.innerHTML = `👎 Dislike (${count})`;
+                    };
+
+                    let loveBtn = document.createElement("button");
+                    loveBtn.innerHTML = `❤ Love (${getReactionCount(job.title, "love")})`;
+                    loveBtn.classList.add("love-btn");
+                    loveBtn.onclick = () => {
+                        let count = updateReactions(job.title, "love");
+                        loveBtn.innerHTML = `❤ Love (${count})`;
+                    };
+
+                    jobCard.appendChild(image);
+                    jobCard.appendChild(title);
+                    jobCard.appendChild(details);
+                    jobCard.appendChild(openPositions);
+                    jobCard.appendChild(detailsBtn);
+                    jobCard.appendChild(likeBtn);
+                    jobCard.appendChild(dislikeBtn);
+                    jobCard.appendChild(loveBtn);
+                    jobCard.appendChild(saveBtn);
+
+                    jobsContainer.appendChild(jobCard);
+                }
+            });
+
+            if (!hasMatches) {
+                jobsContainer.innerHTML = '<div class="no-results">No jobs match your current filters. Try adjusting your search or filters.</div>';
+            }
+        };
+
+        // Search input with debounce
+        const debouncedSearch = debounce((value) => {
+            searchTerm = value;
+            createJobListingCards();
+        }, 300);
+
+        jobSearch.addEventListener("input", (e) => {
+            debouncedSearch(e.target.value);
+        });
+
+        // Initialize
+        updateSelectedCount();
+        createJobListingCards();
+    </script>
+</body>
+</html>

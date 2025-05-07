@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Shoghlana </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="jshome.css" />
+    <style>
+      body {
+          font-family: 'Inter', sans-serif;
+          margin: 0;
+          padding: 0;
+          background: linear-gradient(90deg, #77a4f7, #af5ee9);
+          background-size: 120% 200%;
+      }
+      @keyframes fadeInUp {
+          from {
+              opacity: 0;
+              transform: translateY(50px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+      .decor {
+          position: absolute;
+          background: linear-gradient(to right, #b76bec, #7d7dff);
+          border-radius: 50%;
+          opacity: 0.2;
+      }
+      .decor.two { bottom: -50px; right: -50px; width: 180px; height: 180px; }
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+      nav {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px 20px;
+          background: inherit;
+          position: relative;
+      }
+      @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+      nav .logo {
+          font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          font-size: 40px;
+          font-weight: 700;
+          color: rgb(250, 250, 250);
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+      }
+      nav .logo .o {
+          display: inline-block;
+          width: 1em;
+          height: 1em;
+      }
+      nav .logo .o img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+      }
+      nav ul {
+          list-style-type: none;
+          margin-right: 70px;
+          margin-top: 20px;
+          padding: 0;
+          display: inline-block;
+          gap: 15px;
+      }
+      nav ul li {
+          float: left;
+          margin-left: 40px;
+      }
+      nav ul li a {
+          font-family: 'Roboto', sans-serif;
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 5px;
+          text-decoration: none;
+          font-size: 16px;
+          font-weight: 500;
+          transition: all 0.3s;
+          position: relative;
+      }
+      nav ul li a::after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 2px;
+          display: block;
+          margin-top: 5px;
+          right: 0;
+          background: white;
+          transition: width 0.3s ease;
+          transition-delay: 0.1s;
+      }
+      nav ul li a:hover::after {
+          width: 100%;
+          left: 0;
+          background: white;
+      }
+      nav ul li a:hover {
+          color: #d5a1ff;
+          transform: scale(1.05);
+      }
+      .footer-content {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+          justify-content: space-between;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding-bottom: 20px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .footer-section {
+          flex: 1;
+          min-width: 200px;
+          margin-bottom: 20px;
+      }
+      .footer-section h3 {
+          font-size: 18px;
+          margin-bottom: 15px;
+          color: rgb(101, 199, 216);
+      }
+      .footer-section p {
+          font-size: 14px;
+          line-height: 1.6;
+          margin: 5px 0;
+      }
+      .footer-section ul {
+          list-style: none;
+          padding: 0;
+      }
+      .footer-section ul li {
+          margin-bottom: 10px;
+      }
+      .footer-section ul li a {
+          color: white;
+          text-decoration: none;
+          font-size: 14px;
+      }
+      .footer-section ul li a:hover {
+          color: #d5a1ff;
+      }
+      .footer-bottom {
+          text-align: center;
+          padding-top: 20px;
+          font-size: 14px;
+      }
+      .footer-bottom a {
+          color: #d5a1ff;
+          text-decoration: none;
+      }
+      .footer-bottom a:hover {
+          text-decoration: underline;
+      }
+      nav.sticky {
+          position: fixed;
+          top: 0;
+          width: 100%;
+          background: rgba(66, 98, 243, 0.9);
+          z-index: 1000;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .fade-in {
+          opacity: 0;
+          transform: translateY(50px);
+          transition: opacity 1s ease-out, transform 1s ease-out;
+      }
+      .fade-in.visible {
+          opacity: 1;
+          transform: translateY(0);
+      }
+      nav ul li a:hover {
+          color: #d5a1ff;
+          transform: scale(1.05);
+      }
+      nav ul li.profile-icon {
+          width: 40px;
+          height: 40px;
+          cursor: pointer;
+          border-radius: 50%;
+          overflow: hidden;
+          margin-top: -5px;
+          transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+      nav ul li.profile-icon img {
+          width: 100%;
+          height: auto;
+      }
+      nav ul li.profile-icon:hover {
+          transform: scale(1.1);
+          opacity: 0.8;
+      }
+      #preloader {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, #77a4f7, #af5ee9);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          z-index: 9999;
+          transition: opacity 0.5s ease;
+      }
+      .preloader-content {
+          text-align: center;
+      }
+      .loader-icon {
+          width: 80px;
+          height: 80px;
+          margin-bottom: 20px;
+          animation: bounce 1.5s infinite ease-in-out;
+      }
+      .loading-text {
+          color: white;
+          font-family: 'Roboto', sans-serif;
+          font-size: 1.2rem;
+          margin-top: 15px;
+          position: relative;
+      }
+      .loading-text::after {
+          content: '...';
+          position: absolute;
+          animation: dots 1.5s infinite steps(4);
+          width: 20px;
+      }
+      @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-20px); }
+      }
+      @keyframes dots {
+          0% { content: '.'; }
+          25% { content: '..'; }
+          50% { content: '...'; }
+          75% { content: ''; }
+      }
+      html {
+          scroll-behavior: smooth;
+      }
+      h1{
+        color: white;
+        font-size: 40px;
+        text-align: center;
+        margin: 20px auto;
+        text-shadow: 5px 5px 20px rgba(197, 205, 240, 0.9);
+      }
+      p{
+        color: aliceblue;
+        text-align: center;
+        margin: 20px auto;
+
+      }
+      h2{
+        text-align: center;
+      }
+      .jobs-list-container {
+    max-width: 900px;
+    margin: 20px auto;
+    font-family:" Rubik", sans-serif;
+}
+.jobs-list-container h2 {
+    font-size: 30px;
+    border-left: 4px solid #8e73f1;
+    padding-left: 20px;
+}
+.jobs-list-container .jobs {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px ;
+}
+.jobs-list-container .jobs img{
+    width: 60px ;
+}
+.jobs-list-container .job {
+    box-shadow: 0 4px 24px -8px rgba(2, 48, 71, 0.2);
+    padding: 24px;
+    border-radius: 16px ;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition:all 400ms ease;
+}
+.jobs-list-container .job:hover{
+    transform: scale(1.03);
+}
+.jobs-list-container .open-positions {
+    font-size: 20px;
+    position:absolute;
+    top: 40px;
+    right: 24px ;
+    color:  rgb(50, 109, 187);
+}
+.jobs-list-container .job-title{
+    font-size: 20px;
+    padding: 10px 0;
+    margin: 0;
+    color: #023047 ;
+}
+.jobs-list-container .details{
+margin-top: 6px;
+font-size: 14px;
+color: #333;
+line-height: 1.8;
+flex: 1;
+}
+.jobs-list-container .details-btn{
+text-decoration: none ;
+background-color:  rgb(168, 241, 255);
+border: 1px solid  rgb(123, 216, 233);
+color: #000;
+padding: 8px 16px ;
+border-radius: 8px ;
+text-align: center;
+margin-top: 20px ;
+transform: all 400ms ease;
+}
+.jobs-list-container .details-btn:hover{
+background: rgb(123, 216, 233) ;
+color: #fff;
+}
+.jobs-list-container .job-search{
+    width: 100%;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-family: "Rubik" , sans-serif;
+    box-sizing:border-box;
+    border: 1px solid #333 ;
+    border-radius: 8px;
+    margin-bottom:20px;
+
+}
+   
+
+
+@media(max-width: 940px) {
+    .jobs-list-container .jobs{
+     grid-template-columns: 1fr 1fr ;
+    }
+}
+@media(max-width: 640px) {
+    .jobs-list-container .jobs{
+     grid-template-columns: 1fr ;
+     max-width: 400px;
+     margin: 0 auto;
+    }
+}
+
+
+/* 🔹 تنسيق الأزرار وجعلها جنب بعض */
+.button-group {
+    display: flex;
+    gap: 5px; /* مسافة صغيرة بين الأزرار */
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* 🔹 تنسيق الأزرار بشكل موحد */
+.like-btn, .dislike-btn, .love-btn, .save-btn {
+    padding: 6px 10px; /* تصغير الحجم */
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* 🔹 تغيير الألوان */
+.like-btn { background: rgb(187, 199, 251); color:rgb(73, 100, 223); }  /* أخضر */
+.dislike-btn { background: rgb(189, 177, 245); color:rgb(94, 68, 206); }  /* أحمر */
+.love-btn { background: rgb(183, 152, 235); color:  rgb(111, 59, 196)}  /* وردي */
+.save-btn { background: rgb(187, 222, 251); color: #1565c0; }  /* أزرق */
+
+/* 🔹 تأثير عند المرور */
+.like-btn:hover { background: #45a049; transform: scale(1.1); }
+.dislike-btn:hover { background: #d32f2f; transform: scale(1.1); }
+.love-btn:hover { background: #e91e63; transform: scale(1.1); }
+.save-btn:hover { background: #1976D2; transform: scale(1.1); }
+ 
+/* Add this to your style section */
+.browse-all-container {
+    text-align: center;
+    margin: 40px 0;
+  }
+  
+  #browse-all-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border: 1px outset plum;
+    background-color:#8b6ef1;
+    color: white;
+    text-decoration: none;
+    border-radius: 9px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    /* box-shadow: 0 4px 15px rgba(0,0,0,0.1); */
+  }
+  
+  #browse-all-btn:hover {
+    box-shadow: 0 6px 5px rgba(0,0,0,0.15);
+    background-color:#a08af1;
+  }
+  .notification-icon {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.notification-icon img {
+  width: 100%;
+  height: auto;
+}
+
+.notification-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+    </style>
+  </head>
+  <body>
+    <div id="preloader">
+        <div class="preloader-content">
+          <img src="job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg"  
+          class="loader-icon" 
+                 alt="Loading icon">
+            <div class="loading-text">Preparing your career journey</div>
+        </div>
+    </div>
+    <nav>
+      <div class="logo">
+        SH
+        <span class="o">
+          <img src="job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg" alt="O">
+        </span>
+        GHLANA
+      </div>
+      <ul>
+          <li class="notification-icon" style="display: none;">
+            <img src="icons8-notification-32.png" alt="Notifications">
+            <span class="notification-count"></span>
+          </li>
+          <li><a href="jshome.html">Home</a></li>
+          <li><a href="#services" id="1">Services</a></li>
+          <li><a href="#jobs" id="1">Jobs</a></li>
+          <li><a href="#Contact" id="1">Contact Us</a></li>
+          <li class="profile-icon" onclick="redirectToProfile()">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFCElEQVR4nO1ZW48UVRBuvOBtNV5QI/gD9BUR/QNqCPpilPiC4AtoIqIxys45s/QLwqsE1BeNBOITmhD8AaxBw4OLl82kT82ArLuyO1U9wyWK4CWkTfX0zNb2dG+f7uldNZkvqWQzfeqcqnPqvo4zxBBDDAw3CG5QHj6pDSoF+IUCqmnAixrwr4guRr99rjyqjNWbTzCP82/DbbQfVgb3aYPnNVCQh5TBXzTgXlVvr1l2wUe98/dpoI8U0J95Be8jQ39ogx+4tZl7l0X4Sr35kgZq9wuDc8rQxxpos/L8tazktongZiYXZleNmdZjqk4va8BPFGCz/0WoVQF/05IJ7p4IbuJb7zsY6ISq+xtfDIIb8+xV9ZrPasDxBNM6yN9LFf6tmZnbFNCXCwXHhvbo6UH3VuBv0IBnYooc5zNLEZ5vI0H4Q2//0LyjlAMcx3FrNKIMHo4rUcpLxM1GAY6VInXiWbg75lcHynDYXMJHt6k14GkNdIVJAU5wjuBveZWoGnphkFDZlmaTxVOtzz2qgaZTYz/QzxVoPZKphKEjIsz6o5OX7xnIdNhhs2zebbTvUobOWcT9n94xrTstXvFsYVMKM6xIUsrQM5kKG1TiwF+1oVcqk/ggE/8d/javyKhddKJesnNNa7W1AmF5IOK8Jc93IpZvS/j+qnjRCcs9vxJyvGclPCckWdtwkrI6DOj3Lk+lMXd//Lt7tvmAeIErNntWw2TX45m2KgDDqlKUB7axeCkUcDvZH+cvs7neyWPLXNvYHBQ3IW1wexkmxNCAnwoz2uVkget5cVObMxm6fB5VpBMrQ1s52jDFndhKkAjaoy1C8aNOFjqNR8Tg+WsdS3AY5RBZRhiVUKa1Tig+6WRBAV3oMnAyc3KAk5QGmkpNZIbO2SQyCfYnWXI7WZDx363VVjo5wQmvY074rQL8jYn/5thfpADc0WjcIvPBkitQNnYUUKCwCS0FKgVMqOfE3AamLgyCFRroNQUIyuD1TOft77yuM28YcoNgRdoxYzD3eE4nng+j3MOmrWPh8wqdHplwe6o8hrbmCqO2iUwD1ktUwCxyoYfE2nczFeChk9C4mVZKSLMp0vrxtEILc0ptZw3R/LrWOrspWzh0WryY04audtcUacDdidnbRXS5mrRGmeZzuYu5UDjAvaIsGE9WAL/vrqka3JlXAQX4pjjjdLICeFIosMd+83p7TTgx65mSv6F/c/8NYWp/c6KyyRu8htdGPEGnZKHX+2XwNwpfvJaroWHwuE/c0Jl4Q84JRgF+E3PIaX69iodPKc9/yJ2aujUk01od/mZwnzI4E3Pgr3mvhUrSyMK6Cvc7ecFJjBOHcLTDSUlGdk35Ccd57Nh3eUCfidunQk19KCD4m2IH7k4cExrcKaOFBSHzuAnRSwG6cm3Vo+cLCd/b0ODBLCVCRWq1lRw1lMEPNdApDsFsuyF1hrmn2Cy5TUzzFRUTXgG9P5Dwoq07vtBu6YjNkMr6jBqNSLOJzjiWZ2C8KDjOx5XguU1SdMoLxdEm3ggZOlbacHfhS+CBuD2zE4dmkSMbdzJsaG4nExx7f2k3nwSeVaY4LIYNuEdbOOVzdGFbDwlmV/FvXJhxbZPGXx3UYW3BYS18DZHsipIydI1v3Z26dLez3OAExROzvuRkRzwE3sMJb9kFTywA6831UYlwlBsP7uy4PY3ogjb0Y/RtFzcp/4l/sw4xhPP/xz/0x9PjW7+hjQAAAABJRU5ErkJggg==" alt="Profile Icon">
+          </li>     
+      </ul>
+    </nav>
+    <div class="decor two"></div>
+    <h1>Welcome To Your Job Board!</h1>
+    <p>Discover the opportunity you deserve</p>
+    <div>
+      <div class="jobs-list-container" style="margin-top: 80px;">
+        <h2 style="color: white;">Shoghlana Jobs</h2> <!-- This will be filled by JavaScript -->
+        <div class="job-search-container">
+            <input type="text" class="job-search" placeholder="Search jobs...">
+            <div class="browse-all-container">
+            <button id="browse-all-btn" onclick="window.location.href='jsjobs.html'">Browse more -></button>
+          </div>
+        </div>
+        <div class="jobs">
+
+        </div> 
+        <script>
+  
+  const notifications = [
+    { id: 1, message: "New application submitted" },
+    { id: 2, message: "Interview scheduled" }
+  ];
+
+  const notificationIcon = document.querySelector('.notification-icon');
+  const notificationCount = document.querySelector('.notification-count');
+
+  if (notifications.length > 0) {
+    notificationIcon.style.display = 'block';
+    notificationCount.textContent = notifications.length;
+  } else {
+    notificationIcon.style.display = 'none';
+  }
+</script>
+        </script><!-- Jobs will be inserted here -->
+    </div>
+    </div>
+    <footer>
+      <div class="footer-content">
+          <div class="footer-section">
+              <h3>Headquarter</h3>
+              <div style="color: #ffffff;">
+                  <p>📞 +20 109 9999-978</p>
+                  <p>📧 info@shoghlana.com</p>
+              </div>  
+          </div>
+          <div class="footer-section">
+              <h3>Quick links</h3>
+              <ul>
+                  <li><a href="AboutUs.html">About Us</a></li>
+                  <li><a id="Contact">Contact Us</a></li>
+                  <li><a href="#blog">Blog</a></li>
+                  <li><a href="HelpCenter.html">Help center</a></li>
+              </ul>
+          </div>
+          <div class="footer-section">
+              <h3>Policies</h3>
+              <ul>
+                  <li><a href="Terms&Privacy.html">Terms of Service</a></li>
+                  <li><a href="Terms&Privacy.html">Privacy Policy</a></li>
+              </ul>
+          </div>
+      </div>
+      <div class="footer-bottom">
+          <p style="color: rgb(101, 199, 216);">© 2025 Shoghlana. All rights reserved.</p>
+      </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+              var preloader = document.getElementById('preloader');
+              preloader.style.opacity = '0';
+              setTimeout(function() {
+                  preloader.style.display = 'none';
+              }, 500);
+          }, 2000);
+        });
+        function redirectToProfile() {
+            window.location.href = 'jsprofile.html';
+        }
+    </script>
+  </body>
+</html>

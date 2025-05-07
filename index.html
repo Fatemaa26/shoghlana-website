@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoghlana - Find Your Dream Job</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        
+        body {
+          font-family: 'Inter', sans-serif;
+          color: white;
+          margin: 0;
+          padding: 0;
+          background: linear-gradient(90deg, #77a4f7, #af5ee9);
+          background-size: 120% 200%;
+           
+          /* background: linear-gradient(to right, #4262f3, #4B0082);
+          background-size: 200% 200%;*/
+         }
+
+          /* Navigation */
+          nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: inherit;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background-color: rgba(119, 164, 247, 0.7);
+        }
+        
+        nav .logo {
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 40px; /* Adjust this to change the text size */
+            font-weight: 700;
+            color: rgb(250, 250, 250);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 4px; /* Adjust spacing between text and image */
+        }
+
+        /* Style for the letter "O" */
+        nav .logo .o {
+            display: inline-block;
+            width: 1em; /* Match the font size */
+            height: 1em; /* Match the font size */
+        }
+
+        /* Image styling */
+        nav .logo .o img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ensure the image scales properly */
+        }
+        
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 30px;
+        }
+        
+        nav ul li {
+            position: relative;
+        }
+        
+        nav ul li a {
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 8px 0;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: white;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        nav ul li a:hover {
+            color: #d5a1ff;
+        }
+        
+        /* 🔹 تغيير الألوان */
+        .like-btn {
+            background: rgb(187, 199, 251);
+            color: rgb(73, 100, 223);
+        }
+
+        /* أخضر */
+        .dislike-btn {
+            background: rgb(189, 177, 245);
+            color: rgb(94, 68, 206);
+        }
+
+        /* أحمر */
+        .love-btn {
+            background: rgb(183, 152, 235);
+            color: rgb(111, 59, 196)
+        }
+
+        /* وردي */
+        .save-btn {
+            background: rgb(187, 222, 251);
+            color: #1565c0;
+        }
+
+        /* أزرق */
+
+        /* 🔹 تأثير عند المرور */
+        .like-btn:hover {
+            background: rgb(117, 140, 243);
+            transform: scale(1.1);
+        }
+
+        .dislike-btn:hover {
+            background: rgb(139, 116, 240);
+            transform: scale(1.1);
+        }
+
+        .love-btn:hover {
+            background: rgb(158, 116, 231);
+            transform: scale(1.1);
+        }
+
+        .save-btn:hover {
+            background: #69b1fa;
+            transform: scale(1.1);
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 5%;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .welcome-message {
+            margin-bottom: 80px;
+        }
+
+        .welcome-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .welcome-subtitle {
+            font-size: 2.0rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            line-height: 1.4;
+            opacity: 0.9;
+            max-width: 800px;
+            font-style: oblique;
+        }
+
+        .welcome-content p {
+            font-size: 2.0rem;
+            line-height: 1.6;
+            max-width: 800px;
+            font-style: oblique;
+        }
+
+          /* Features Section */
+          .features-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 80px 0;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        
+        .feature-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .feature-card.highlight {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Job Wheel Section */
+        .jobs-wheel-section {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 5%;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .job-wheel-container {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        padding: 30px 0;
+    }
+    
+    .job-wheel-track {
+        display: flex;
+        gap: 30px;
+        width: max-content;
+        will-change: transform; /* Optimize for animation */
+    }
+    
+    /* Animation for the track */
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-350px * 6 - 30px * 5)); /* Adjust based on card width and gap */
+        }
+    }
+    
+    .job-wheel-track {
+        animation: scroll 30s linear infinite;
+    }
+    
+    .job-wheel-track:hover {
+        animation-play-state: paused;
+    }
+    
+    /* Job Card Styles */
+    .job-card {
+        flex: 0 0 350px; /* Fixed width */
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 20px;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .job-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin: 100px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: white;
+            color: #af5ee9;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button.secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button.secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Jobs Section */
+        .jobs-section {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title {
+           
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 60px 5% 30px;
+            margin-top: 100px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: rgb(245, 245, 245);
+        }
+
+        .footer-column p,
+        .footer-column a {
+            color: white;
+            opacity: 0.8;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .footer-column a:hover {
+            opacity: 1;
+            color: #d5a1ff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                margin-top: 20px;
+                gap: 15px;
+            }
+
+            .welcome-section {
+                text-align: left;
+            }
+
+            .welcome-title {
+                font-size: 2.5rem;
+            }
+
+            .welcome-subtitle {
+                font-size: 1.4rem;
+            }
+
+            .features-section {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        @keyframes wheelScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Use percentage for better responsiveness */
+    }
+}
+
+.job-wheel-track {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    animation: wheelScroll 30s linear infinite;
+    padding: 10px 0; /* Add some padding */
+}
+
+.job-wheel-container {
+    overflow: hidden; /* Ensure container hides overflow */
+    position: relative;
+    width: 100%;
+}
+    </style>
+</head>
+
+<body>
+    <div id="preloader">
+        <div class="preloader-content">
+            <img src="job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg" class="loader-icon"
+                alt="Loading icon">
+            <div class="loading-text">Preparing your career journey</div>
+        </div>
+    </div>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">
+            SH
+            <span class="o">
+                <img src="job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg" alt="O">
+            </span>
+            GHLANA
+        </a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#jobs">Jobs</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="index log in.html">login/Sign up</a></li>
+        </ul>
+    </nav>
+
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+        <div class="welcome-message">
+            <h1 class="welcome-title">Welcome to Shoghlana!</h1>
+            <p class="welcome-subtitle">Your go-to platform for finding the right job or the perfect hire!</p>
+
+            <div class="welcome-content">
+                <p>Whether you're a job seeker, a fresh graduate, or an employer looking for top talent - we're here to
+                    make the journey easier for you!</p>
+            </div>
+        </div>
+
+        <div class="features-section">
+            <div class="feature-card">
+                <h3>For Job Seekers</h3>
+                <p>Sign up, upload your CV, and start browsing hundreds of opportunities that match your skills and
+                    ambitions.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>For Employers</h3>
+                <p>Create your company profile, post job openings, and connect with top talent in the market.</p>
+            </div>
+
+            <div class="feature-card highlight">
+                <h3>Everything You Need</h3>
+                <p>All in one place. Simple, fast, and secure.</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Start your journey with us today!</h2>
+            <div class="cta-buttons">
+                <a href="index Sign up interface.html" class="cta-button">Sign Up Now</a>
+                <a href="index Sign up interface.html" class="cta-button secondary">Browse Jobs</a>
+            </div>
+        </div>
+      
+        <div class="jobs-list-container">
+            <div id="jobs" class="jobs-wheel-section">
+                <div class="section-header">
+                    <h2 class="section-title">Shoghlana Jobs</h2>
+                    <p class="section-subtitle">Browse through our latest job postings and find your perfect match</p>
+                </div>
+                
+                 <div class="job-wheel-container">
+            <div class="job-wheel-track">
+                        <!-- Job cards will be inserted here by JavaScript -->
+                    </div> <!-- This closing tag was missing -->
+                <div class="jobs">
+                    <!-- Jobs will be inserted here by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+   
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Headquarter</h3>
+                <p>📞 +20 109 9999-978</p>
+                <p>📧 info@shoghlana.com</p>
+                <p>📍 Cairo, Egypt</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <a href="AboutUs.html">About Us</a>
+                <a href="#contact">Contact Us</a>
+                <a href="blog.html">Blog</a>
+                <a href="HelpCenter.html">Help Center</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Policies</h3>
+                <a href="Terms&Privacy.html">Terms of Service</a>
+                <a href="Terms&Privacy.html">Privacy Policy</a>
+                <a href="cookies.html">Cookie Policy</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <a href="https://facebook.com">Facebook</a>
+                <a href="https://x.com">X</a>
+                <a href="https://linkedin.com">LinkedIn</a>
+                <a href="https://instagram.com">Instagram</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Shoghlana. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+    <script>
+        // Simple animation for elements when they come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.welcome-section, .feature-card, .job-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if(elementPosition < screenPosition) {
+                    element.style.animation = 'fadeIn 0.8s ease-out forwards';
+                }
+            });
+        };
+        
+        // Run on load and scroll
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+        
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                var preloader = document.getElementById('preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function () {
+                    preloader.style.display = 'none';
+                }, 500);
+            }, 2000); // Matches animation duration
+            
+            // Infinite scroll effect for job wheel
+            const jobWheel = document.querySelector('.job-wheel-track');
+            const jobCards = document.querySelectorAll('.job-card');
+            
+            // For a more seamless infinite scroll, we would need to clone elements
+            // and dynamically manage them, but this simple approach works for demonstration
+        });
+document.addEventListener('DOMContentLoaded', function() {
+    const track = document.querySelector('.job-wheel-track');
+    const cards = document.querySelectorAll('.job-card');
+    
+    // Clone cards for seamless looping
+    cards.forEach(card => {
+        const clone = card.cloneNode(true);
+        track.appendChild(clone);
+    });
+});
+    </script>
+</body>
+
+</html>

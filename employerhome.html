@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Home | Shoghlana</title>
+    <!-- coded by me - April 2025 -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(90deg, #77a4f7, #af5ee9);
+            background-size: 120% 200%;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        nav .logo .o {
+            width: 1em;
+            height: 1em;
+        }
+
+        nav .logo .o img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-right: 4rem;
+            margin-top: 1rem
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            font-family: 'Roboto', sans-serif;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            right: 0;
+            background: #ffffff;
+            transition: width 0.4s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        nav ul li a:hover {
+            color: #d5a1ff;
+            transform: scale(1.05);
+        }
+
+        nav ul li.profile-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            cursor: pointer;
+            border-radius: 50%;
+            overflow: hidden;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        nav ul li.profile-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        nav ul li.profile-icon:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .dashboard {
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex: 1;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .welcome-section h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .welcome-section p {
+            font-size: 1.125rem;
+            max-width: 800px;
+            margin: 0 auto 1.875rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.75rem 1.875rem;
+            background: linear-gradient(90deg, #77a4f7, #af5ee9);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 0.625rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            background: #d5a1ff;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-card {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.9375rem;
+            color: #b0e0e6;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-card .number {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.625rem;
+        }
+
+        .stat-card p {
+            font-size: 0.875rem;
+        }
+
+        .activity-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 2.5rem;
+        }
+
+        .activity-section h2 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.75rem;
+            margin-bottom: 1.25rem;
+            color: #e1bee7;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .activity-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .activity-item {
+            padding: 0.9375rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(45deg, #77a4f7, #af5ee9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.9375rem;
+            flex-shrink: 0;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .activity-content {
+            flex-grow: 1;
+        }
+
+        .activity-content p {
+            font-size: 1rem;
+        }
+
+        .activity-time {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+        }
+
+        .dashboard h2 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.75rem;
+            margin-bottom: 1.25rem;
+            color: #e1bee7;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .action-card {
+            width: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 1.25rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .action-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .action-card div {
+            font-size: 2.25rem;
+            margin-bottom: 0.9375rem;
+            color: #b0e0e6;
+        }
+
+        .action-card h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.625rem;
+        }
+
+        .action-card p {
+            font-size: 0.875rem;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem 1rem;
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-section h3 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.125rem;
+            color: #b0e0e6;
+            margin-bottom: 1rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-section p,
+        .footer-section ul li a {
+            font-size: 0.875rem;
+            color: #ffffff;
+            line-height: 1.5;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            text-decoration: none;
+            transition: color 0.3s ease
+        }
+
+        .footer-section ul li a:hover {
+            color: #d5a1ff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            font-size: 0.875rem;
+            color: #b0e0e6;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #77a4f7, #af5ee9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader-content {
+            text-align: center;
+        }
+
+        .loader-icon {
+            width: 5rem;
+            height: 5rem;
+            margin-bottom: 1.5rem;
+            animation: bounce 1.5s infinite ease-in-out;
+        }
+
+        .loading-text {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.25rem;
+            color: #ffffff;
+            position: relative;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .loading-text::after {
+            content: '...';
+            position: absolute;
+            animation: dots 1.5s infinite steps(4);
+            width: 1.5rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes dots {
+            0% { content: '.'; }
+            25% { content: '..'; }
+            50% { content: '...'; }
+            75% { content: ''; }
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div class="preloader-content">
+            <img src="job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg" 
+                 class="loader-icon" 
+                 alt="Loading icon">
+            <div class="loading-text">Preparing your career journey</div>
+        </div>
+    </div>
+    
+    <nav>
+        <div class="logo">
+            SH
+            <span class="o">
+              <img src="job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg" alt="O">
+            </span>
+            GHLANA
+        </div>
+        <ul>
+            <li><a href="employerhome.html" class="active">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="EMPpostjob.html">Post Job</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li class="profile-icon" onclick="redirectToProfile()">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFCElEQVR4nO1ZW48UVRBuvOBtNV5QI/gD9BUR/QNqCPpilPiC4AtoIqIxys45s/QLwqsE1BeNBOITmhD8AaxBw4OLl82kT82ArLuyO1U9wyWK4CWkTfX0zNb2dG+f7uldNZkvqWQzfeqcqnPqvo4zxBBDDAw3CG5QHj6pDSoF+IUCqmnAixrwr4guRr99rjyqjNWbTzCP82/DbbQfVgb3aYPnNVCQh5TBXzTgXlVvr1l2wUe98/dpoI8U0J95Be8jQ39ogx+4tZl7l0X4Sr35kgZq9wuDc8rQxxpos/L8tazktongZiYXZleNmdZjqk4va8BPFGCz/0WoVQF/05IJ7p4IbuJb7zsY6ISq+xtfDIIb8+xV9ZrPasDxBNM6yN9LFf6tmZnbFNCXCwXHhvbo6UH3VuBv0IBnYooc5zNLEZ5vI0H4Q2//0LyjlAMcx3FrNKIMHo4rUcpLxM1GAY6VInXiWbg75lcHynDYXMJHt6k14GkNdIVJAU5wjuBveZWoGnphkFDZlmaTxVOtzz2qgaZTYz/QzxVoPZKphKEjIsz6o5OX7xnIdNhhs2zebbTvUobOWcT9n94xrTstXvFsYVMKM6xIUsrQM5kKG1TiwF+1oVcqk/ggE/8d/javyKhddKJesnNNa7W1AmF5IOK8Jc93IpZvS/j+qnjRCcs9vxJyvGclPCckWdtwkrI6DOj3Lk+lMXd//Lt7tvmAeIErNntWw2TX45m2KgDDqlKUB7axeCkUcDvZH+cvs7neyWPLXNvYHBQ3IW1wexkmxNCAnwoz2uVkget5cVObMxm6fB5VpBMrQ1s52jDFndhKkAjaoy1C8aNOFjqNR8Tg+WsdS3AY5RBZRhiVUKa1Tig+6WRBAV3oMnAyc3KAk5QGmkpNZIbO2SQyCfYnWXI7WZDx363VVjo5wQmvY074rQL8jYn/5thfpADc0WjcIvPBkitQNnYUUKCwCS0FKgVMqOfE3AamLgyCFRroNQUIyuD1TOft77yuM28YcoNgRdoxYzD3eE4nng+j3OMmrWPh8wqdHplwe6o8hrbmCqO2iUwD1ktUwCxyoYfE2nczFeChk9C4mVZKSLMp0vrxtEILc0ptZw3R/LrWOrspWzh0WryY04audtcUacDdidnbRXS5mrRGmeZzuYu5UDjAvaIsGE9WAL/vrqka3JlXAQX4pjjjdLICeFIosMd+83p7TTgx65mSv6F/c/8NYWp/c6KyyRu8htdGPEGnZKHX+2XwNwpfvJaroWHwuE/c0Jl4Q84JRgF+E3PIaX69iodPKc9/yJ2aujUk01od/mZwnzI4E3Pgr3mvhUrSyMK6Cvc7ecFJjBOHcLTDSUlGdk35Ccd57Nh3eUCfidunQk19KCD4m2IH7k4cExrcKaOFBSHzuAnRSwG6cm3Vo+cLCd/b0ODBLCVCRWq1lRw1lMEPNdApDsFsuyF1hrmn2Cy5TUzzFRUTXgG9P5Dwoq07vtBu6YjNkMr6jBqNSLOJzjiWZ2C8KDjOx5XguU1SdMoLxdEm3ggZOlbacHfhS+CBuD2zE4dmkSMbdzJsaG4nExx7f2k3nwSeVaY4LIYNuEdbOOVzdGFbDwlmV/FvXJhxbZPGXx3UYW3BYS18DZHsipI6dI1v3Z26dLez3OAExROzvuRkRzwE3sMJb9kFTywA6831UYlwlBsP7uy4PY3ogjb0Y/RtFzcp/4l/sw4xhPP/xz/0x9PjW7+hjQAAAABJRU5ErkJggg==" alt="Profile Icon">
+            </li>     
+        </ul>
+    </nav>
+
+    <div class="dashboard">
+        <section class="welcome-section">
+            <h1>Welcome to Your Employer Dashboard</h1>
+            <p>Manage your job postings, view applications, and find the perfect candidates for your company.</p>
+            <div>
+                <a href="EMPpostjob.html" class="cta-button">Post a New Job</a>
+                <a href="ViewApplications.html" class="cta-button" onclick="logActivity('You viewed your applications')">View Applications</a>
+            </div>
+        </section>
+
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>Active Jobs</h3>
+                <div class="number" id="active-jobs">12</div>
+                <p>Currently posted positions</p>
+            </div>
+            <div class="stat-card">
+                <h3>New Applications</h3>
+                <div class="number" id="new-applications">24</div>
+                <p>Waiting for your review</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Candidates</h3>
+                <div class="number" id="total-candidates">156</div>
+                <p>Applied to your jobs</p>
+            </div>
+            <div class="stat-card">
+                <h3>Shortlisted</h3>
+                <div class="number" id="shortlisted">18</div>
+                <p>Potential candidates</p>
+            </div>
+        </div>
+
+        <section class="activity-section">
+            <h2>Recent Activity</h2>
+            <ul class="activity-list" id="activity-list"></ul>
+        </section>
+
+        <h2>Quick Actions</h2>
+        <div class="quick-actions">
+            <div class="action-card" onclick="logActivity('You posted a new job'); window.location.href='EMPpostjob.html'">
+                <div>📝</div>
+                <h3>Post a Job</h3>
+                <p>Create a new job listing</p>
+            </div>
+            <div class="action-card" onclick="logActivity('You viewed your applications'); window.location.href='applications.html'">
+                <div>📋</div>
+                <h3>Manage Applications</h3>
+                <p>Review candidate profiles</p>
+            </div>
+            <div class="action-card" onclick="logActivity('You accessed your messages'); window.location.href='messages.html'">
+                <div>✉️</div>
+                <h3>Messages</h3>
+                <p>Communicate with candidates</p>
+            </div>
+            <div class="action-card" onclick="logActivity('You viewed your job analytics'); window.location.href='analytics.html'">
+                <div>📊</div>
+                <h3>View Analytics</h3>
+                <p>Track your job performance</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Headquarter</h3>
+                <p>📞 +20 109 9999-978</p>
+                <p>📧 info@shoghlana.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="AboutUs3.html">About Us</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="HelpCenter3.html">Help Center</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Policies</h3>
+                <ul>
+                    <li><a href="Terms&Privacy3.html">Terms of Service</a></li>
+                    <li><a href="Terms&Privacy3.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Shoghlana. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // preloader stuff
+        window.addEventListener('load', function() {
+            var p = document.getElementById('preloader');
+            setTimeout(function() {
+                p.style.opacity = '0';
+                setTimeout(function() {
+                    p.style.display = 'none';
+                }, 500);
+            }, 2000);
+        });
+
+        // go to profile
+        function redirectToProfile() {
+            window.location.href = 'EMPProfile.html';
+        }
+
+        // log activity to localStorage
+        function logActivity(message) {
+            var activities = JSON.parse(localStorage.getItem('recentActivities')) || [];
+            var now = new Date().getTime();
+            activities.unshift({ message: message, time: now }); // add to start
+            if (activities.length > 4) {
+                activities = activities.slice(0, 4); // keep only 4
+            }
+            localStorage.setItem('recentActivities', JSON.stringify(activities));
+            console.log('Logged activity:', message, 'at', now); // debug
+            // Update stats after logging activity
+            updateStats();
+        }
+
+        // calculate relative time
+        function getRelativeTime(timestamp) {
+            var now = new Date().getTime();
+            var diff = now - timestamp;
+            var seconds = Math.floor(diff / 1000);
+            var minutes = Math.floor(seconds / 60);
+            var hours = Math.floor(minutes / 60);
+            var days = Math.floor(hours / 24);
+
+            if (days > 0) return days + ' day' + (days > 1 ? 's' : '') + ' ago';
+            if (hours > 0) return hours + ' hour' + (hours > 1 ? 's' : '') + ' ago';
+            if (minutes > 0) return minutes + ' minute' + (minutes > 1 ? 's' : '') + ' ago';
+            return 'just now';
+        }
+
+        // initialize and update stats
+        function updateStats() {
+            var activities = JSON.parse(localStorage.getItem('recentActivities')) || [];
+            var stats = JSON.parse(localStorage.getItem('dashboardStats')) || {
+                activeJobs: 12,
+                newApplications: 24,
+                totalCandidates: 156,
+                shortlisted: 18
+            };
+
+            // Track candidates who were shortlisted to handle rejections
+            var shortlistedCandidates = new Set();
+
+            // Reset stats to default and recalculate based on activities
+            stats = {
+                activeJobs: 12,
+                newApplications: 24,
+                totalCandidates: 156,
+                shortlisted: 18
+            };
+
+            activities.forEach(function(activity) {
+                var msg = activity.message;
+
+                // Active Jobs
+                if (msg.includes('You posted a new job')) {
+                    stats.activeJobs += 1;
+                }
+
+                // New Applications and Total Candidates
+                if (msg.includes('applied for') && msg.includes('position')) {
+                    stats.totalCandidates += 1;
+                    stats.newApplications += 1;
+                } else if (msg.includes('You started reviewing') && msg.includes('application for')) {
+                    stats.newApplications = Math.max(0, stats.newApplications - 1);
+                } else if (msg.includes('withdrew their application for')) {
+                    stats.totalCandidates = Math.max(0, stats.totalCandidates - 1);
+                    stats.newApplications = Math.max(0, stats.newApplications - 1);
+                }
+
+                // Shortlisted
+                if (msg.includes('You shortlisted') && msg.includes('for')) {
+                    // Extract candidate name from message
+                    var candidateName = msg.match(/You shortlisted (.*?) for/)[1];
+                    shortlistedCandidates.add(candidateName);
+                    stats.shortlisted += 1;
+                } else if (msg.includes('You rejected') && msg.includes('application for')) {
+                    // Check if the rejected candidate was shortlisted
+                    var candidateName = msg.match(/You rejected (.*?)'s application for/)[1];
+                    if (shortlistedCandidates.has(candidateName)) {
+                        stats.shortlisted = Math.max(0, stats.shortlisted - 1);
+                        shortlistedCandidates.delete(candidateName);
+                    }
+                }
+            });
+
+            // Save updated stats to localStorage
+            localStorage.setItem('dashboardStats', JSON.stringify(stats));
+            console.log('Updated stats:', stats); // debug
+
+            // Update UI
+            document.getElementById('active-jobs').textContent = stats.activeJobs;
+            document.getElementById('new-applications').textContent = stats.newApplications;
+            document.getElementById('total-candidates').textContent = stats.totalCandidates;
+            document.getElementById('shortlisted').textContent = stats.shortlisted;
+        }
+
+        // render activities
+        function renderActivities() {
+            var list = document.getElementById('activity-list');
+            list.innerHTML = '';
+            var activities = JSON.parse(localStorage.getItem('recentActivities')) || [];
+            console.log('Rendering activities:', activities); // debug
+
+            // default activities if none exist
+            if (activities.length === 0) {
+                activities = [
+                    { message: 'Ahmed Mohamed applied for Senior Developer position', time: new Date().getTime() - 2 * 60 * 60 * 1000 },
+                    { message: 'You posted a new job: Marketing Specialist', time: new Date().getTime() - 24 * 60 * 60 * 1000 },
+                    { message: 'You shortlisted 3 candidates for UX Designer role', time: new Date().getTime() - 2 * 24 * 60 * 60 * 1000 },
+                    { message: 'You sent interview invitations to 5 candidates', time: new Date().getTime() - 3 * 24 * 60 * 60 * 1000 }
+                ];
+                localStorage.setItem('recentActivities', JSON.stringify(activities));
+            }
+
+            activities.forEach(function(activity) {
+                var li = document.createElement('li');
+                li.className = 'activity-item';
+                var icon = '📝';
+                if (activity.message.includes('applied')) icon = '👤';
+                else if (activity.message.includes('shortlisted')) icon = '⭐';
+                else if (activity.message.includes('invitations') || activity.message.includes('messages')) icon = '✉️';
+                else if (activity.message.includes('analytics')) icon = '📊';
+                else if (activity.message.includes('applications')) icon = '📋';
+                li.innerHTML = `
+                    <div class="activity-icon">${icon}</div>
+                    <div class="activity-content">
+                        <p>${activity.message}</p>
+                        <span class="activity-time">${getRelativeTime(activity.time)}</span>
+                    </div>
+                `;
+                list.appendChild(li);
+            });
+
+            // Update stats after rendering activities
+            updateStats();
+        }
+
+        // animate stats cards on scroll
+        const statCards = document.querySelectorAll('.stat-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        statCards.forEach(card => {
+            card.style.opacity = '0';
+            observer.observe(card);
+        });
+
+        // load activities and stats on page load
+        window.onload = function() {
+            renderActivities();
+        };
+
+        // todo - maybe add a clear activities button?
+        var temp = 'not used'; // lol
+    </script>
+</body>
+</html>

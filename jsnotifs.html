@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Notifications</title>
+  <style>
+    body {
+        font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  /* background: linear-gradient(to right, #4262f3, #4B0082);
+  background-size: 200% 200%;*/
+  background: linear-gradient(90deg, #77a4f7, #af5ee9);
+  background-size: 120% 200%;
+ 
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 30px;
+      color: white;
+      text-shadow: 5px 5px 20px rgba(197, 205, 240, 0.9)
+    }
+
+    .notification-card {
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      border-left: 5px solid #af5ee9;
+      border-radius: 8px;
+      padding: 15px 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .notification-text {
+      font-size: 16px;
+      color: #444;
+    }
+
+    .notification-time {
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Notifications</h1>
+
+    <div class="notification-card">
+      <div class="notification-text">An employer accepted your application for the "Front-End Developer" position.</div>
+      <div class="notification-time">5 mins ago</div>
+    </div>
+
+    <div class="notification-card">
+      <div class="notification-text">You have a new message from XYZ Company.</div>
+      <div class="notification-time">20 mins ago</div>
+    </div>
+
+    <div class="notification-card">
+      <div class="notification-text">New job posted: "Back-End Designer" – matches your profile!</div>
+      <div class="notification-time">1 hour ago</div>
+    </div>
+
+    <div class="notification-card">
+      <div class="notification-text">Interview scheduled with ABC Tech for "React Developer" role.</div>
+      <div class="notification-time">Yesterday</div>
+    </div>
+  </div>
+</body>
+</html>

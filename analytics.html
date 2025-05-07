@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics | Shoghlana</title>
+    <!-- coded by me - April 2025 -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(90deg, #77a4f7, #af5ee9); /* same gradient yay */
+            background-size: 120% 200%;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* better visibility */
+        }
+
+        nav .logo .o {
+            width: 1em;
+            height: 1em;
+        }
+
+        nav .logo .o img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-right: 4rem;
+            margin-top: 1rem
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            font-family: 'Roboto', sans-serif;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            right: 0;
+            background: #ffffff;
+            transition: width 0.4s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        nav ul li a:hover {
+            color: #d5a1ff;
+            transform: scale(1.05);
+        }
+
+        nav ul li.profile-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            cursor: pointer;
+            border-radius: 50%;
+            overflow: hidden;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        nav ul li.profile-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        nav ul li.profile-icon:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .dashboard {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            flex: 1;
+        }
+
+        .analytics-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px; /* softer corners */
+            padding: 3rem; /* larger padding for wider look */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), inset 0 2px 10px rgba(255, 255, 255, 0.1);
+            margin-bottom: 2rem;
+            border: 6px solid; /* much wider border */
+            border-image: linear-gradient(90deg, #77a4f7, #af5ee9) 1; /* gradient border */
+        }
+
+        .analytics-section h2 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #e1bee7; /* light purple-pink, more appropriate */
+            margin-bottom: 1.5rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* exactly 3 cols for 2 rows */
+            gap: 1.5rem;
+            padding: 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            min-width: 0; /* prevent overflow */
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-icon {
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(45deg, #77a4f7, #af5ee9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-content {
+            flex: 1;
+            min-width: 0; /* ensure text wraps */
+        }
+
+        .stat-content p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #ffd700; /* gold for labels */
+            margin-bottom: 0.5rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .stat-content .value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-content .description {
+            font-size: 0.875rem;
+            color: #b0e0e6; /* powder blue for descriptions */
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 1rem;
+            color: #b0e0e6;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            font-size: 1rem;
+            grid-column: 1 / -1; /* span all columns */
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem 1rem;
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-section h3 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.125rem;
+            color: rgb(101, 199, 216);
+            margin-bottom: 1rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-section p,
+        .footer-section ul li a {
+            font-size: 0.875rem;
+            color: #ffffff;
+            line-height: 1.5;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            text-decoration: none;
+            transition: color 0.3s ease
+        }
+
+        .footer-section ul li a:hover {
+            color: #d5a1ff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            font-size: 0.875rem;
+            color: rgb(101, 199, 216);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #77a4f7, #af5ee9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader-content {
+            text-align: center;
+        }
+
+        .loader-icon {
+            width: 5rem;
+            height: 5rem;
+            margin-bottom: 1.5rem;
+            animation: bounce 1.5s infinite ease-in-out;
+        }
+
+        .loading-text {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.25rem;
+            color: #ffffff;
+            position: relative;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .loading-text::after {
+            content: '...';
+            position: absolute;
+            animation: dots 1.5s infinite steps(4);
+            width: 1.5rem;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes dots {
+            0% { content: '.'; }
+            25% { content: '..'; }
+            50% { content: '...'; }
+            75% { content: ''; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 cols on medium screens */
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+                margin-right: 0;
+            }
+
+            nav ul li {
+                margin-left: 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr; /* stack on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div class="preloader-content">
+            <img src="job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg" 
+                 class="loader-icon" 
+                 alt="Loading icon">
+            <div class="loading-text">Loading your analytics</div>
+        </div>
+    </div>
+    
+    <nav>
+        <div class="logo">
+            SH
+            <span class="o">
+                <img src="job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg" alt="O">
+            </span>
+            GHLANA
+        </div>
+        <ul>
+            <li><a href="employerhome.html">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="EMPpostjob.html">Post Job</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li class="profile-icon" onclick="redirectToProfile()">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFCElEQVR4nO1ZW48UVRBuvOBtNV5QI/gD9BUR/QNqCPpilPiC4AtoIqIxys45s/QLwqsE1BeNBOITmhD8AaxBw4OLl82kT82ArLuyO1U9wyWK4CWkTfX0zNb2dG+f7uldNZkvqWQzfeqcqnPqvo4zxBBDDAw3CG5QHj6pDSoF+IUCqmnAixrwr4guRr99rjyqjNWbTzCP82/DbbQfVgb3aYPnNVCQh5TBXzTgXlVvr1l2wUe98/dpoI8U0J95Be8jQ39ogx+4tZl7l0X4Sr35kgZq9wuDc8rQxxpos/L8tazktongZiYXZleNmdZjqk4va8BPFGCz/0WoVQF/05IJ7p4IbuJb7zsY6ISq+xtfDIIb8+xV9ZrPasDxBNM6yN9LFf6tmZnbFNCXCwXHhvbo6UH3VuBv0IBnYooc5zNLEZ5vI0H4Q2//0LyjlAMcx3FrNKIMHo4rUcpLxM1GAY6VInXiWbg75lcHynDYXMJHt6k14GkNdIVJAU5wjuBveZWoGnphkFDZlmaTxVOtzz2qgaZTYz/QzxVoPZKphKEjIsz6o5OX7xnIdNhhs2zebbTvUobOWcT9n94xrTstXvFsYVMKM6xIUsrQM5kKG1TiwF+1oVcqk/ggE/8d/javyKhddKJesnNNa7W1AmF5IOK8Jc93IpZvS/j+qnjRCcs9vxJyvGclPCckWdtwkrI6DOj3Lk+lMXd//Lt7tvmAeIErNntWw2TX45m2KgDDqlKUB7axeCkUcDvZH+cvs7neyWPLXNvYHBQ3IW1wexkmxNCAnwoz2uVkget5cVObMxm6fB5VpBMrQ1s52jDFndhKkAjaoy1C8aNOFjqNR8Tg+WsdS3AY5RBZRhiVUKa1Tig+6WRBAV3oMnAyc3KAk5QGmkpNZIbO2SQyCfYnWXI7WZDx363VVjo5wQmvY074rQL8jYn/5thfpADc0WjcIvPBkitQNnYUUKCwCS0FKgVMqOfE3AamLgyCFRroNQUIyuD1TOft77yuM28YcoNgRdoxYzD3eE4nng+j3OMmrWPh8wqdHplwe6o8hrbmCqO2iUwD1ktUwCxyoYfE2nczFeChk9C4mVZKSLMp0vrxtEILc0ptZw3R/LrWOrspWzh0WryY04audtcUacDdidnbRXS5mrRGmeZzuYu5UDjAvaIsGE9WAL/vrqka3JlXAQX4pjjjdLICeFIosMd+83p7TTgx65mSv6F/c/8NYWp/c6KyyRu8htdGPEGnZKHX+2XwNwpfvJaroWHwuE/c0Jl4Q84JRgF+E3PIaX69iodPKc9/yJ2aujUk01od/mZwnzI4E3Pgr3mvhUrSyMK6Cvc7ecFJjBOHcLTDSUlGdk35Ccd57Nh3eUCfidunQk19KCD4m2IH7k4cExrcKaOFBSHzuAnRSwG6cm3Vo+cLCd/b0ODBLCVCRWq1lRw1lMEPNdApDsFsuyF1hrmn2Cy5TUzzFRUTXgG9P5Dwoq07vtBu6YjNkMr6jBqNSLOJzjiWZ2C8KDjOx5XguU1SdMoLxdEm3ggZOlbacHfhS+CBuD2zE4dmkSMbdzJsaG4nExx7f2k3nwSeVaY4LIYNuEdbOOVzdGFbDwlmV/FvXJhxbZPGXx3UYW3BYS18DZHsipI6dI1v3Z26dLez3OAExROzvuRkRzwE3sMJb9kFTywA6831UYlwlBsP7uy4PY3ogjb0Y/RtFzcp/4l/sw4xhPP/xz/0x9PjW7+hjQAAAABJRU5ErkJggg==" alt="Profile Icon">
+            </li>
+        </ul>
+    </nav>
+
+    <div class="dashboard">
+        <section class="analytics-section">
+            <h2>Analytics Overview</h2>
+            <div class="stats-grid" id="stats"></div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Headquarter</h3>
+                <p>📞 +20 109 9999-978</p>
+                <p>📧 info@shoghlana.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="AboutUs3.html">About Us</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="HelpCenter3.html">Help Center</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Policies</h3>
+                <ul>
+                    <li><a href="Terms&Privacy3.html">Terms of Service</a></li>
+                    <li><a href="Terms&Privacy3.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Shoghlana. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // preloadr stuff
+        window.addEventListener('load', function() {
+            var p = document.getElementById('preloader');
+            setTimeout(function() {
+                p.style.opacity = '0';
+                setTimeout(function() {
+                    p.style.display = 'none';
+                }, 500);
+            }, 2000);
+        });
+
+        // go to profile
+        function redirectToProfile() {
+            window.location.href = 'EMPProfile.html';
+        }
+
+        // default applicatons - same as manage apps
+        var def = [
+            {
+                id: 1,
+                applicant: 'Ahmed Mohamed',
+                job: 'Senior Developer',
+                date: '2025-04-24',
+                status: 'Pending'
+            },
+            {
+                id: 2,
+                applicant: 'Sarah Ahmed',
+                job: 'Marketing Specialist',
+                date: '2025-04-23',
+                status: 'Reviewed'
+            }
+        ];
+
+        // load applicatons
+        var rawData = localStorage.getItem('applications');
+        console.log('Raw localStorage data:', rawData); // debug
+        var apps = rawData ? JSON.parse(rawData) : def;
+        console.log('Loaded applications:', apps);
+
+        // calculat stats
+        function calculateStats() {
+            var stats = {
+                totalJobs: 5, // hardcoding for now
+                totalApps: apps.length,
+                pending: 0,
+                reviewed: 0,
+                accepted: 0,
+                rejected: 0
+            };
+
+            for (var i = 0; i < apps.length; i++) {
+                if (apps[i].status == 'Pending') stats.pending++;
+                if (apps[i].status == 'Reviewed') stats.reviewed++;
+                if (apps[i].status == 'Accepted') stats.accepted++;
+                if (apps[i].status == 'Rejected') stats.rejected++;
+            }
+
+            console.log('Calculated stats:', stats); // debug
+            return stats;
+        }
+
+        // render the stats
+        function renderStats() {
+            var stats = calculateStats();
+            var statsGrid = document.getElementById('stats');
+            console.log('Stats grid:', statsGrid); // debug
+
+            if (!statsGrid) {
+                console.error('Stats grid not found!');
+                return;
+            }
+
+            if (stats.totalApps == 0) {
+                statsGrid.innerHTML = '<div class="no-data fade-in">No applications yet. Check back later!</div>';
+                return;
+            }
+
+            statsGrid.innerHTML = '<div class="stat-card fade-in">' +
+                                    '<div class="stat-icon">📊</div>' +
+                                    '<div class="stat-content">' +
+                                        '<p>Total Job Postings</p>' +
+                                        '<div class="value">' + stats.totalJobs + '</div>' +
+                                        '<div class="description">As of today</div>' +
+                                    '</div>' +
+                                  '</div>' +
+                                  '<div class="stat-card fade-in">' +
+                                    '<div class="stat-icon">📋</div>' +
+                                    '<div class="stat-content">' +
+                                        '<p>Total Applications</p>' +
+                                        '<div class="value">' + stats.totalApps + '</div>' +
+                                        '<div class="description">Across all jobs</div>' +
+                                    '</div>' +
+                                  '</div>' +
+                                  '<div class="stat-card fade-in">' +
+                                    '<div class="stat-icon">⏳</div>' +
+                                    '<div class="stat-content">' +
+                                        '<p>Pending Applications</p>' +
+                                        '<div class="value">' + stats.pending + '</div>' +
+                                        '<div class="description">Awaiting review</div>' +
+                                    '</div>' +
+                                  '</div>' +
+                                  '<div class="stat-card fade-in">' +
+                                    '<div class="stat-icon">✅</div>' +
+                                    '<div class="stat-content">' +
+                                        '<p>Reviewed Applications</p>' +
+                                        '<div class="value">' + stats.reviewed + '</div>' +
+                                        '<div class="description">Processed applications</div>' +
+                                    '</div>' +
+                                  '</div>' +
+                                  '<div class="stat-card fade-in">' +
+                                    '<div class="stat-icon">🎉</div>' +
+                                    '<div class="stat-content">' +
+                                        '<p>Accepted Applications</p>' +
+                                        '<div class="value">' + stats.accepted + '</div>' +
+                                        '<div class="description">Hired candidates</div>' +
+                                    '</div>' +
+                                  '</div>' +
+                                  '<div class="stat-card fade-in">' +
+                                    '<div class="stat-icon">❌</div>' +
+                                    '<div class="stat-content">' +
+                                        '<p>Rejected Applications</p>' +
+                                        '<div class="value">' + stats.rejected + '</div>' +
+                                        '<div class="description">Not selected</div>' +
+                                    '</div>' +
+                                  '</div>';
+        }
+
+        // initial load
+        renderStats();
+
+        // todo - maybe add some graphs?
+        var tempVar = 'hello'; // not using this lol
+    </script>
+</body>
+</html>

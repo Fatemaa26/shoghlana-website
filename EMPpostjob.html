@@ -1,0 +1,527 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Post Job | Shoghlana </title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            /* background: linear-gradient(to right, #4262f3, #4B0082); */
+            background: linear-gradient(90deg, #77a4f7, #af5ee9);
+            background-size: 120% 200%;
+           text-align: left;
+        }
+
+        /* Navigation bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: inherit;
+            position: relative;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+
+        nav .logo {
+      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: 40px; /* Adjust this to change the text size */
+      font-weight: 700;
+      color: rgb(250, 250, 250);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px; /* Adjust spacing between text and image */
+    }
+
+    /* Style for the letter "O" */
+    nav .logo .o {
+      display: inline-block;
+      width: 1em; /* Match the font size */
+      height: 1em; /* Match the font size */
+    }
+
+    /* Image styling */
+    nav .logo .o img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* Ensure the image scales properly */
+    }
+
+
+        nav ul {
+            list-style-type: none;
+            margin-right: 70px;
+            margin-top:  20px;
+            padding: 0;
+            display: inline-block;
+            gap: 15px;
+        }
+
+        nav ul li {
+            float: left;
+            margin-left: 40px;
+        }
+
+        nav ul li a {
+            font-family: 'Roboto', sans-serif;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: white;
+            transition: width 0.3s ease;
+            transition-delay: 0.1s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+            left: 0;
+            background: white;
+        }
+
+        nav ul li a:hover {
+            color: #d5a1ff;
+            transform: scale(1.05);
+        }
+    
+        /* Body content */
+        .content {
+            padding: 20px;
+            color: white;
+        }
+
+        .content h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .content p {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        /* container styles */
+.c {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    background: rgba(218, 211, 247, 0.5); /* 70% opacity */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px); /* Safari support */
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3); /* subtle white border */
+}
+
+/* header style */
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 25px;
+    background: url('https://i.imgur.com/MTqH7Rh.png') no-repeat center center;
+    background-size: cover;
+    padding: 40px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+    font-size: 32px;
+}
+
+/* sections StyleSs */
+.section {
+    border: 1px solid #fafdff;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 20px;
+   background: #ffffff;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 550;
+    color: #080606;
+    font-size: 16px;
+    background: #e0f7ff;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: rgb(101, 199, 216);
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+/* Buttons styles */
+.d {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 20px;
+    background:linear-gradient(90deg,rgb(203, 181, 243),rgb(198, 211, 255)) ;
+    background-size: 300% 200%;
+    /* background: rgb(217, 183, 255); */
+    color: white;
+    text-decoration-color: none;
+    border-color: #eacdff;
+    border-radius: 9px;
+    transition: background 0.3s ease;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.d:hover {
+            background:  #d6b6ee;
+}  
+        /* Footer */
+        footer {
+            background: inherit;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        footer ul li {
+            display: inline;
+        }
+
+        footer ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        footer ul li a:hover {
+            color: #d5a1ff;
+        }
+        nav ul li.profile-icon {
+    width: 40px; /* Smaller size */
+    height: 40px; /* Smaller size */
+    cursor: pointer;
+    border-radius: 50%; /* Make it circular */
+    overflow: hidden;
+    margin-top: -5px; /* Optional: Adjust position if needed */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Add transition for animation */
+}
+
+nav ul li.profile-icon img {
+    width: 100%; /* Ensures the image fits within the icon */
+    height: auto; /* Maintain aspect ratio */
+}
+
+nav ul li.profile-icon:hover {
+    transform: scale(1.1); /* Scale up on hover */
+    opacity: 0.8; /* Slightly fade */
+}
+ .form-group label {
+  /* background-color: #baabff;        */
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 550;
+    color: #fff; /* Change text color to white for better contrast */
+    font-size: 16px;
+    background-color:rgb(203, 181, 243);
+    /* background: linear-gradient(90deg,  rgb(208, 166, 255), #b3e2fa);
+    background-size: 200% 200%; Gradient background */
+    /* border-color:  rgb(176, 117, 243); */
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+#preloader {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, #77a4f7, #af5ee9);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          z-index: 9999;
+          transition: opacity 0.5s ease;
+      }
+      
+      .preloader-content {
+          text-align: center;
+      }
+      
+      .loader-icon {
+          width: 80px;
+          height: 80px;
+          margin-bottom: 20px;
+          animation: bounce 1.5s infinite ease-in-out;
+      }
+      
+      .loading-text {
+          color: white;
+          font-family: 'Roboto', sans-serif;
+          font-size: 1.2rem;
+          margin-top: 15px;
+          position: relative;
+      }
+      
+      .loading-text::after {
+          content: '...';
+          position: absolute;
+          animation: dots 1.5s infinite steps(4);
+          width: 20px;
+      }
+      
+      @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-20px); }
+      }
+      
+      @keyframes dots {
+          0% { content: '.'; }
+          25% { content: '..'; }
+          50% { content: '...'; }
+          75% { content: ''; }
+      }
+html {
+  scroll-behavior: smooth;
+}
+    </style>
+    <script>
+            window.addEventListener('load', function() {
+            setTimeout(function() {
+            var preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function() {
+            preloader.style.display = 'none';
+            }, 500);
+            }, 2000); // Matches animation duration
+                });
+        function redirectToProfile() {
+            window.location.href = 'EMPProfile.html'; // Change this to your profile page URL
+        }
+   
+        let form = document.getElementById("job-form");
+
+        // publish button
+       document.getElementById("publish").addEventListener("click", function(event) {
+    let form = document.getElementById("job-form");
+
+    if (form.checkValidity()) {
+        alert("The job has been published successfully");
+    } else {
+        event.preventDefault(); 
+        form.reportValidity();
+    }
+});
+
+
+        // save draft button
+        document.getElementById("save-draft").addEventListener("click", (e) => {
+            alert("Draft saved successfully");
+        });
+        
+    </script>
+</head>
+<body>
+    <div id="preloader">
+        <div class="preloader-content">
+            <img src="job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg" 
+                 class="loader-icon" 
+                 alt="Loading icon">
+            <div class="loading-text">Preparing your career journey</div>
+        </div>
+    </div>
+    <nav>
+        <div class="logo">
+            SH
+            <span class="o">
+              <img src="job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg" alt="O">
+            </span>
+            GHLANA
+          </div>
+        <ul>
+            <li><a href="employerhome.html">Home</a></li>
+            <li><a href="#services" id="1">Services</a></li>
+            <li><a href="EMPpostjob.html">Post Job</a></li>
+            <li><a href="#contact" id="1">Contact Us</a></li>
+            <li class="profile-icon" onclick="redirectToProfile()">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFCElEQVR4nO1ZW48UVRBuvOBtNV5QI/gD9BUR/QNqCPpilPiC4AtoIqIxys45s/QLwqsE1BeNBOITmhD8AaxBw4OLl82kT82ArLuyO1U9wyWK4CWkTfX0zNb2dG+f7uldNZkvqWQzfeqcqnPqvo4zxBBDDAw3CG5QHj6pDSoF+IUCqmnAixrwr4guRr99rjyqjNWbTzCP82/DbbQfVgb3aYPnNVCQh5TBXzTgXlVvr1l2wUe98/dpoI8U0J95Be8jQ39ogx+4tZl7l0X4Sr35kgZq9wuDc8rQxxpos/L8tazktongZiYXZleNmdZjqk4va8BPFGCz/0WoVQF/05IJ7p4IbuJb7zsY6ISq+xtfDIIb8+xV9ZrPasDxBNM6yN9LFf6tmZnbFNCXCwXHhvbo6UH3VuBv0IBnYooc5zNLEZ5vI0H4Q2//0LyjlAMcx3FrNKIMHo4rUcpLxM1GAY6VInXiWbg75lcHynDYXMJHt6k14GkNdIVJAU5wjuBveZWoGnphkFDZlmaTxVOtzz2qgaZTYz/QzxVoPZKphKEjIsz6o5OX7xnIdNhhs2zebbTvUobOWcT9n94xrTstXvFsYVMKM6xIUsrQM5kKG1TiwF+1oVcqk/ggE/8d/javyKhddKJesnNNa7W1AmF5IOK8Jc93IpZvS/j+qnjRCcs9vxJyvGclPCckWdtwkrI6DOj3Lk+lMXd//Lt7tvmAeIErNntWw2TX45m2KgDDqlKUB7axeCkUcDvZH+cvs7neyWPLXNvYHBQ3IW1wexkmxNCAnwoz2uVkget5cVObMxm6fB5VpBMrQ1s52jDFndhKkAjaoy1C8aNOFjqNR8Tg+WsdS3AY5RBZRhiVUKa1Tig+6WRBAV3oMnAyc3KAk5QGmkpNZIbO2SQyCfYnWXI7WZDx363VVjo5wQmvY074rQL8jYn/5thfpADc0WjcIvPBkitQNnYUUKCwCS0FKgVMqOfE3AamLgyCFRroNQUIyuD1TOft77yuM28YcoNgRdoxYzD3eE4nng+j3MOmrWPh8wqdHplwe6o8hrbmCqO2iUwD1ktUwCxyoYfE2nczFeChk9C4mVZKSLMp0vrxtEILc0ptZw3R/LrWOrspWzh0WryY04audtcUacDdidnbRXS5mrRGmeZzuYu5UDjAvaIsGE9WAL/vrqka3JlXAQX4pjjjdLICeFIosMd+83p7TTgx65mSv6F/c/8NYWp/c6KyyRu8htdGPEGnZKHX+2XwNwpfvJaroWHwuE/c0Jl4Q84JRgF+E3PIaX69iodPKc9/yJ2aujUk01od/mZwnzI4E3Pgr3mvhUrSyMK6Cvc7ecFJjBOHcLTDSUlGdk35Ccd57Nh3eUCfidunQk19KCD4m2IH7k4cExrcKaOFBSHzuAnRSwG6cm3Vo+cLCd/b0ODBLCVCRWq1lRw1lMEPNdApDsFsuyF1hrmn2Cy5TUzzFRUTXgG9P5Dwoq07vtBu6YjNkMr6jBqNSLOJzjiWZ2C8KDjOx5XguU1SdMoLxdEm3ggZOlbacHfhS+CBuD2zE4dmkSMbdzJsaG4nExx7f2k3nwSeVaY4LIYNuEdbOOVzdGFbDwlmV/FvXJhxbZPGXx3UYW3BYS18DZHsipIydI1v3Z26dLez3OAExROzvuRkRzwE3sMJb9kFTywA6831UYlwlBsP7uy4PY3ogjb0Y/RtFzcp/4l/sw4xhPP/xz/0x9PjW7+hjQAAAABJRU5ErkJggg==" alt="Profile Icon">
+            </li>   
+        </ul>
+    </nav>
+    <div class="c" style="background: rgba(218, 211, 247, 0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);">
+        <h1>Publish an Opportunity</h1>
+
+        <form id="job-form">
+            <!-- Job categories section -->
+            <div class="section">
+                <div class="form-group">
+                    <label for="job-categories">Job Category <span class="required">*</span></label>
+                    <select id="job-categories" required>
+                        <option value="">Select a category</option>
+                        <option value="tech">Technology</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="finance">Finance</option>
+                        <option value="hr">Human Resources</option>
+                        <option value="design">Design</option>
+                        <option value="sales">Sales</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Job Title section -->
+            <div class="section">
+                <div class="form-group">
+                    <label for="job-title">Job Title <span class="required">*</span></label>
+                    <input type="text" id="job-title" placeholder="for example: Senior Frontend Developer , AI internship" required>
+                </div>
+            </div>
+
+            <!-- Salary and deadline section -->
+            <div class="section">
+                <div class="form-group">
+                    <div class="form-group">
+    <label for="salaryRange">Salary Range</label>
+    <input type="text" id="salaryRange" name="salaryRange" placeholder="for example: 50,000 - 70,000">
+    <select id="currency" name="currency" required>
+        <option value="USD">USD ($)</option>
+        <option value="EUR">EUR (€)</option>
+        <option value="GBP">GBP (£)</option>
+        <option value="EGP">EGP (ج.م)</option>
+        <option value="JPY">JPY (¥)</option>
+    </select>
+</div>
+
+                </div>
+                <div class="form-group">
+                    <label for="deadline">Application Deadline <span class="required">*</span></label>
+                    <input type="date" id="deadline" required>
+                </div>
+            </div>
+
+            <!-- Job Description Section -->
+            <div class="section">
+                <div class="form-group">
+                    <label for="job-description">Job Description <span class="required">*</span></label>
+                    <textarea id="job-description" rows="5" placeholder="Describe the role, responsibilities, and requirements , so on" required></textarea>
+                </div>
+            </div>
+
+            <!-- Media uPload section -->
+            <div class="section">
+                <div class="form-group">
+                    <label for="media">Upload Media (Images/Videos) <span class="required">*</span></label>
+                    <input type="file" id="media" accept="image/,video/" required>
+                </div>
+                <div class="form-group">
+                    <label for="pdf">Attach PDF Job Description <span class="required">*</span></label>
+                    <input type="file" id="pdf" accept=".pdf" required>
+                </div>
+            </div>
+
+            <!-- Buttons Section-->
+            <div class="section">
+                <button class="d" id="publish" type="submit">Publish</button>
+                <button class="d" id="save-draft" type="button">Save Draft</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <!-- Headquarters Section -->
+            <div class="footer-section">
+                <h3>Headquarter</h3>
+                <p>📞 +20 109 9999-978</p>
+                <p>📧 info@shoghlana.com</p>
+            </div>
+            <!-- Quick Links Section -->
+            <div class="footer-section">
+                <h3>Quick links</h3>
+                <ul>
+                    <li><a href="AboutUs3.html">About Us</a></li>
+                    <li><a id="contact">Contact Us</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="HelpCenter3.html">Help center</a></li>
+                </ul>
+            </div>
+            <!-- Policies Section -->
+            <div class="footer-section">
+                <h3>Policies</h3>
+                <ul>
+                    <li><a href="Terms&Privacy3.html">Terms of Service</a></li>
+                    <li><a href="Terms&Privacy3.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <!-- Copyright Section -->
+        <div class="footer-bottom">
+            <p style="color: rgb(101, 199, 216);">&copy; 2025 Shoghlana. All rights reserved.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

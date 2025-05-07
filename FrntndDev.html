@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details | Shoghlana</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+       /* ===== Modern Job Details Page Design ===== */
+       body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(90deg, #77a4f7, #af5ee9);
+        background-size: 120% 200%;
+       }
+   
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .decor {
+        position: absolute;
+        background: linear-gradient(to right, #b76bec, #7d7dff);
+        border-radius: 50%;
+        opacity: 0.2;
+    }
+    .decor.two { bottom: -50px; right: -50px; width: 180px; height: 180px; }
+     
+    /* Navigation bar */
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background: inherit;
+        position: relative;
+    }
+
+    nav .logo {
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 40px;
+        font-weight: 700;
+        color: rgb(250, 250, 250);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    nav .logo .o {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+    }
+
+    nav .logo .o img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    nav ul {
+        list-style-type: none;
+        margin-right: 70px;
+        margin-top:  20px;
+        padding: 0;
+        display: inline-block;
+        gap: 15px;
+    }
+
+    nav ul li {
+        float: left;
+        margin-left: 40px;
+    }
+
+    nav ul li a {
+        font-family: 'Roboto', sans-serif;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 5px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        transition: all 0.3s;
+        position: relative;
+    }
+
+    nav ul li a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        display: block;
+        margin-top: 5px;
+        right: 0;
+        background: white;
+        transition: width 0.3s ease;
+        transition-delay: 0.1s;
+    }
+
+    nav ul li a:hover::after {
+        width: 100%;
+        left: 0;
+        background: white;
+    }
+
+    nav ul li a:hover {
+        color: #d5a1ff;
+        transform: scale(1.05);
+    }
+
+    /* Body content */
+    .content {
+        padding: 20px;
+        color: white;
+    }
+
+    .content h1 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .content p {
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    /* Footer */
+    .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-section {
+        flex: 1;
+        min-width: 200px;
+        margin-bottom: 20px;
+    }
+
+    .footer-section h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+        color: rgb(101, 199, 216);
+    }
+
+    .footer-section p {
+        font-size: 14px;
+        line-height: 1.6;
+        margin: 5px 0;
+    }
+
+    .footer-section ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-section ul li {
+        margin-bottom: 10px;
+    }
+
+    .footer-section ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .footer-section ul li a:hover {
+        color: #d5a1ff;
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        font-size: 14px;
+    }
+
+    .footer-bottom a {
+        color: #d5a1ff;
+        text-decoration: none;
+    }
+
+    .footer-bottom a:hover {
+        text-decoration: underline;
+    }
+    
+    /* Sticky Navigation Bar */
+    nav.sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(66, 98, 243, 0.9);
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Fade-In Animation */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Job Details Container */
+    .job-details-container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 16px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        animation: fadeInUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    /* Job Header */
+    .job-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 40px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .job-image {
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+        margin-right: 30px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0);
+        padding: 15px;
+        box-shadow: 0 4px 12px rgba(74, 107, 255, 0.3);
+    }
+
+    .job-title {
+        font-size: 2.4rem;
+        margin: 0 0 8px 0;
+        color: #1a1d28;
+        font-weight: 700;
+        line-height: 1.3;
+    }
+
+    .open-positions {
+        display: inline-block;
+        background: linear-gradient(135deg, #6e8efb, #7a4aff);
+        color: white;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
+    /* Content Layout */
+    .job-content {
+        display: grid;
+        grid-template-columns: 1fr 350px;
+        gap: 40px;
+    }
+
+    .job-main {
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+    }
+
+    .job-sidebar {
+        position: relative;
+    }
+
+    /* Job Sections */
+    .job-section {
+        margin-bottom: 10px;
+    }
+
+    .job-section h2 {
+        color: #1a1d28;
+        margin: 0 0 20px 0;
+        font-size: 1.5rem;
+        font-weight: 700;
+        position: relative;
+        padding-bottom: 12px;
+    }
+
+    .job-section h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 4px;
+        background-color: #7a6dee;
+        border-radius: 2px;
+    }
+    #job-description {
+    font-size: 1.1rem;  /* Slightly larger than base (1rem) */
+    line-height: 1.8;   /* Better spacing between lines */
+}
+    /* Job Info Cards */
+    .job-info-card {
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 12px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 5px 20px rgba(74, 107, 255, 0.08);
+        border: 1px solid rgba(74, 107, 255, 0.1);
+    }
+
+    .job-info-card h3 {
+        font-size: 1.2rem;
+        color: #1a1d28;
+        margin: 0 0 20px 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .job-info-card h3::before {
+        content: '';
+        display: inline-block;
+        width: 4px;
+        height: 18px;
+        background:#7a6dee;
+        margin-right: 12px;
+        border-radius: 2px;
+    }
+
+    .job-info-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 18px;
+    }
+
+    .job-info-item i {
+        color: #726ff8;
+        margin-right: 12px;
+        font-size: 1.1rem;
+        width: 20px;
+        text-align: center;
+        margin-top: 3px;
+    }
+
+    .job-info-label {
+        font-weight: 600;
+        color: #4a4f62;
+        min-width: 100px;
+        font-size: 0.95rem;
+    }
+
+    .job-info-value {
+        color: #1a1d28;
+        font-weight: 500;
+    }
+
+    /* Buttons */
+    .job-actions {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .apply-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #8d85ff;
+        color: white;
+        padding: 14px 28px;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        box-shadow: 0 4px 15px rgba(74, 107, 255, 0.3);
+    }
+
+    .apply-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(74, 107, 255, 0.4);
+        background-color: #a685ff;
+    }
+
+    .back-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        color: #a685ff;
+        padding: 14px 28px;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid #8268c9;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+
+    .back-btn:hover {
+        background-color: #f5f8ff;
+        transform: translateY(-2px);
+    }
+
+    /* Quick Apply Form */
+    .quick-apply-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .quick-apply-form input {
+        padding: 12px 16px;
+        border: 1px solid #e0e4f5;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: all 0.3s;
+        background: #f8f9ff;
+    }
+
+    .quick-apply-form input:focus {
+        outline: none;
+        border-color: #4a6bff;
+        box-shadow: 0 0 0 3px rgba(74, 107, 255, 0.2);
+    }
+
+    /* Job Requirements */
+    #job-requirements {
+        list-style-type: none;
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    #job-requirements li {
+        position: relative;
+        padding-left: 25px;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    #job-requirements li::before {
+        content: "•";
+        color: #8d85ff;
+        font-size: 1.2em;
+        position: absolute;
+        left: 0;
+    }
+
+    /* Share Buttons */
+    .share-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .share-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    .share-btn:hover {
+        transform: translateY(-3px);
+    }
+
+    .facebook { background: #3b5998; }
+    .twitter { background: #1da1f2; }
+    .linkedin { background: #0077b5; }
+    .link { background: #6c757d; }
+
+    /* CV Upload */
+    .cv-upload-box {
+        border: 2px dashed #cac1ec;
+        border-radius: 8px;
+        padding: 30px;
+        text-align: center;
+        background: #f8f9ff;
+        cursor: pointer;
+        transition: all 0.3s;
+        position: relative;
+        margin-bottom: 15px;
+        width: 190px;
+        margin-left: 21px;
+    }
+
+    .cv-upload-box i {
+        font-size: 30px;
+        color: #8d85ff;
+        margin-bottom: 10px;
+    }
+
+    .cv-upload-text {
+        font-size: 14px;
+        color: #adb5bd;
+        margin-bottom: 5px;
+    }
+
+    .cv-upload-hint {
+        font-size: 12px;
+        color: #adb5bd;
+    }
+
+    .cv-upload-input {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .file-preview {
+        display: none;
+        border: 1px solid #e0e4f5;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        align-items: center;
+        justify-content: space-between;
+        background: #f8f9ff;
+    }
+
+    .browse-btn {
+        width: 100%;
+        padding: 12px;
+        background: #8d85ff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        width: 130px;
+        height: 45px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 12px;
+        background: #8d85ff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-left: 160px;
+        width: 110px;
+        height: 45px;
+    }
+
+    .submit-btn:hover {
+        background-color: #a685ff;
+        transform: translateY(-2px);
+    }
+
+    .submit-btn:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+    }
+
+    /* Loading Animation */
+    .apply-btn.loading {
+        pointer-events: none;
+        position: relative;
+        padding-left: 50px;
+    }
+
+    .apply-btn.loading::after {
+        content: '';
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(255,255,255,0.3);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+        to { transform: translateY(-50%) rotate(360deg); }
+    }
+
+    /* Preloader */
+    #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, #77a4f7, #af5ee9);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+    }
+    
+    .preloader-content {
+        text-align: center;
+    }
+    
+    .loader-icon {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 20px;
+        animation: bounce 1.5s infinite ease-in-out;
+    }
+    
+    .loading-text {
+        color: white;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.2rem;
+        margin-top: 15px;
+        position: relative;
+    }
+    
+    .loading-text::after {
+        content: '...';
+        position: absolute;
+        animation: dots 1.5s infinite steps(4);
+        width: 20px;
+    }
+    
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+    
+    @keyframes dots {
+        0% { content: '.'; }
+        25% { content: '..'; }
+        50% { content: '...'; }
+        75% { content: ''; }
+    }
+
+    /* Profile Icon */
+    nav ul li.profile-icon {
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-top: -5px;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    nav ul li.profile-icon img {
+        width: 100%;
+        height: auto;
+    }
+
+    nav ul li.profile-icon:hover {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+        .job-content {
+            grid-template-columns: 1fr;
+        }
+        
+        .job-sidebar {
+            margin-top: 40px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .job-details-container {
+            padding: 30px 20px;
+        }
+        
+        .job-header {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .job-image {
+            margin: 0 auto 20px auto;
+        }
+        
+        .job-actions {
+            flex-direction: column;
+        }
+        
+        .apply-btn, .back-btn {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .job-details-container {
+            padding: 20px 15px;
+            margin: 20px auto;
+        }
+        
+        .job-title {
+            font-size: 1.8rem;
+        }
+        
+        .job-header {
+            padding-bottom: 20px;
+        }
+        
+        .job-content {
+            gap: 20px;
+        }
+        
+        .submit-btn {
+            margin-left: 0;
+            width: 100%;
+        }
+        
+        .cv-upload-box {
+            width: 100%;
+            margin-left: 0;
+        }
+        
+        nav ul {
+            margin-right: 20px;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+    }
+
+    /* Application Confirmation */
+    .application-confirmation {
+        background: rgba(141, 133, 255, 0.1);
+        border: 1px solid #8d85ff;
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 20px;
+        text-align: center;
+        animation: fadeInUp 0.5s ease-out;
+    }
+
+    .application-confirmation i {
+        color: #8d85ff;
+        font-size: 40px;
+        margin-bottom: 15px;
+    }
+
+    .application-confirmation h4 {
+        color: #1a1d28;
+        margin: 10px 0;
+    }
+
+    .application-confirmation p {
+        color: #4a4f62;
+        margin: 0;
+    }
+    .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-icon {
+    color: #8d85ff;
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.modal-title {
+    color: #1a1d28;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.modal-message {
+    color: #4a4f62;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.modal-button {
+    background: #8d85ff;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-button:hover {
+    background: #a685ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(141, 133, 255, 0.3);
+}
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div class="preloader-content">
+          <img src="job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg"  
+          class="loader-icon" 
+                 alt="Loading icon">
+            <div class="loading-text">Preparing your career journey</div>
+        </div>
+    </div>
+    <nav>
+        <div class="logo">
+          SH
+          <span class="o">
+            <img src="job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg" alt="O">
+          </span>
+          GHLANA
+        </div>
+        <!-- <div class="logo-container">
+            <div class="logo">Shoghlana</div>
+        </div> -->
+        <ul>
+            <li><a href="jshome.html">Home</a></li>
+            <li><a href="#services" id="1">Services</a></li>
+            <li><a href="jshome.html#jobs" id="1">Jobs</a></li>
+            <li><a href="#Contact" id="1">Contact Us</a></li>
+            <li class="profile-icon" onclick="redirectToProfile()">
+            <img src="  data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFCElEQVR4nO1ZW48UVRBuvOBtNV5QI/gD9BUR/QNqCPpilPiC4AtoIqIxys45s/QLwqsE1BeNBOITmhD8AaxBw4OLl82kT82ArLuyO1U9wyWK4CWkTfX0zNb2dG+f7uldNZkvqWQzfeqcqnPqvo4zxBBDDAw3CG5QHj6pDSoF+IUCqmnAixrwr4guRr99rjyqjNWbTzCP82/DbbQfVgb3aYPnNVCQh5TBXzTgXlVvr1l2wUe98/dpoI8U0J95Be8jQ39ogx+4tZl7l0X4Sr35kgZq9wuDc8rQxxpos/L8tazktongZiYXZleNmdZjqk4va8BPFGCz/0WoVQF/05IJ7p4IbuJb7zsY6ISq+xtfDIIb8+xV9ZrPasDxBNM6yN9LFf6tmZnbFNCXCwXHhvbo6UH3VuBv0IBnYooc5zNLEZ5vI0H4Q2//0LyjlAMcx3FrNKIMHo4rUcpLxM1GAY6VInXiWbg75lcHynDYXMJHt6k14GkNdIVJAU5wjuBveZWoGnphkFDZlmaTxVOtzz2qgaZTYz/QzxVoPZKphKEjIsz6o5OX7xnIdNhhs2zebbTvUobOWcT9n94xrTstXvFsYVMKM6xIUsrQM5kKG1TiwF+1oVcqk/ggE/8d/javyKhddKJesnNNa7W1AmF5IOK8Jc93IpZvS/j+qnjRCcs9vxJyvGclPCckWdtwkrI6DOj3Lk+lMXd//Lt7tvmAeIErNntWw2TX45m2KgDDqlKUB7axeCkUcDvZH+cvs7neyWPLXNvYHBQ3IW1wexkmxNCAnwoz2uVkget5cVObMxm6fB5VpBMrQ1s52jDFndhKkAjaoy1C8aNOFjqNR8Tg+WsdS3AY5RBZRhiVUKa1Tig+6WRBAV3oMnAyc3KAk5QGmkpNZIbO2SQyCfYnWXI7WZDx363VVjo5wQmvY074rQL8jYn/5thfpADc0WjcIvPBkitQNnYUUKCwCS0FKgVMqOfE3AamLgyCFRroNQUIyuD1TOft77yuM28YcoNgRdoxYzD3eE4nng+j3MOmrWPh8wqdHplwe6o8hrbmCqO2iUwD1ktUwCxyoYfE2nczFeChk9C4mVZKSLMp0vrxtEILc0ptZw3R/LrWOrspWzh0WryY04audtcUacDdidnbRXS5mrRGmeZzuYu5UDjAvaIsGE9WAL/vrqka3JlXAQX4pjjjdLICeFIosMd+83p7TTgx65mSv6F/c/8NYWp/c6KyyRu8htdGPEGnZKHX+2XwNwpfvJaroWHwuE/c0Jl4Q84JRgF+E3PIaX69iodPKc9/yJ2aujUk01od/mZwnzI4E3Pgr3mvhUrSyMK6Cvc7ecFJjBOHcLTDSUlGdk35Ccd57Nh3eUCfidunQk19KCD4m2IH7k4cExrcKaOFBSHzuAnRSwG6cm3Vo+cLCd/b0ODBLCVCRWq1lRw1lMEPNdApDsFsuyF1hrmn2Cy5TUzzFRUTXgG9P5Dwoq07vtBu6YjNkMr6jBqNSLOJzjiWZ2C8KDjOx5XguU1SdMoLxdEm3ggZOlbacHfhS+CBuD2zE4dmkSMbdzJsaG4nExx7f2k3nwSeVaY4LIYNuEdbOOVzdGFbDwlmV/FvXJhxbZPGXx3UYW3BYS18DZHsipIydI1v3Z26dLez3OAExROzvuRkRzwE3sMJb9kFTywA6831UYlwlBsP7uy4PY3ogjb0Y/RtFzcp/4l/sw4xhPP/xz/0x9PjW7+hjQAAAABJRU5ErkJggg==" alt="Profile Icon">
+          </li>     
+        </ul>
+    </nav>
+    <main class="job-details-container">
+        <!-- Job Header -->
+        <div class="job-header">
+            <img id="job-image" src="" alt="Job Image" class="job-image">
+            <div>
+                <h1 id="job-title"></h1>
+                <p id="open-positions" class="open-positions"></p>
+            </div>
+        </div>
+        
+        <!-- Main Content Area with Sidebar -->
+        <div class="job-content">
+            <!-- Left Column - Main Job Details -->
+            <div class="job-main">
+                <div class="job-section">
+                    <h2>Job Description</h2>
+                    <p id="job-description"></p>
+                </div>
+                
+                <div class="job-section">
+                    <h2>Requirements</h2>
+                    <ul id="job-requirements">
+                        <!-- Will be filled by JavaScript -->
+                    </ul>
+                </div>
+                
+                <div class="job-actions">
+                    <a href="#" id="apply-btn" class="apply-btn">Apply Now</a>
+                    <a href="jsjobs.html" class="back-btn">Back to Jobs</a>
+                </div>
+            </div>
+            
+            <!-- Right Column - Sidebar -->
+            <div class="job-sidebar">
+                <!-- Job Overview Card -->
+                <div class="job-info-card">
+                    <h3>Job Overview</h3>
+                    <div class="job-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span class="job-info-label">Location:</span>
+                        <span id="job-location" class="job-info-value">Cairo, Egypt</span>
+                    </div>
+                    <div class="job-info-item">
+                        <i class="fas fa-laptop-house"></i>
+                        <span class="job-info-label">Work Place:</span>
+                        <span id="job-work-place" class="job-info-value">Hybrid</span>
+                    </div>
+                    <div class="job-info-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span class="job-info-label">Salary:</span>
+                        <span id="job-salary" class="job-info-value">EGP 15,000 - 25,000</span>
+                    </div>
+                    <div class="job-info-item">
+                        <i class="fas fa-briefcase"></i>
+                        <span class="job-info-label">Job Type:</span>
+                        <span id="job-type" class="job-info-value">Full-time</span>
+                    </div>
+                    <div class="job-info-item">
+                        <i class="fas fa-user-tie"></i>
+                        <span class="job-info-label">Career Level:</span>
+                        <span id="job-careerlevel" class="job-info-value">Mid-level (3-5 years)</span>
+                    </div>
+                    <div class="job-info-item">
+                        <i class="fas fa-calendar-day"></i>
+                        <span class="job-info-label">Posted:</span>
+                        <span id="job-posted" class="job-info-value">May 15, 2023</span>
+                    </div>
+                </div>
+                
+                <!-- Share This Job Card -->
+                <div class="job-info-card">
+                    <h3>Share This Job</h3>
+                    <div class="share-buttons">
+                        <button class="share-btn facebook" title="Share on Facebook"><i class="fab fa-facebook-f"></i></button>
+                        <button class="share-btn twitter" title="Share on Twitter"><i class="fab fa-twitter"></i></button>
+                        <button class="share-btn linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></button>
+                        <button class="share-btn link" id="copy-link" title="Copy link"><i class="fas fa-link"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Quick Apply Card -->
+                <div class="job-info-card">
+                    <h3>Upload Your CV</h3>
+                    <form id="cvUploadForm">
+                        <!-- Upload Box - Shows file info after upload -->
+                        <div class="cv-upload-box" id="cvUploadBox">
+                            <div id="uploadInitialState">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p class="cv-upload-text">Drag & drop your CV here<br><br> or</p>
+                                <button type="button" class="browse-btn">Browse Files</button>
+                            </div>
+                            <div id="uploadFileInfo" style="display: none;">
+                                <i class="fas fa-file-alt"></i>
+                                <span id="fileName"></span>
+                                <button type="button" id="changeFile" class="change-btn">Change</button>
+                            </div>
+                            <input type="file" id="cvFileInput" class="cv-upload-input" accept=".pdf,.doc,.docx">
+                        </div>
+                        
+                        <button type="submit" class="submit-btn" disabled>Submit CV</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+      <div class="footer-content">
+          <!-- Headquarters Section -->
+            <div class="footer-section">
+              <h3>Headquarter</h3>
+             <div style="color: #ffffff;">
+                <p>📞 +20 109 9999-978</p>
+                <p>📧 info@shoghlana.com</p>
+            
+             </div>  
+            </div>
+          <!-- Quick Links Section -->
+          <div class="footer-section">
+              <h3>Quick links</h3>
+              <ul>
+                  <li><a href="AboutUs.html">About Us</a></li>
+                 <li><a id="Contact">Contact Us</a></li>
+                  <li><a href="#blog">Blog</a></li>
+                  <li><a href="HelpCenter.html">Help center</a></li>
+              </ul>
+          </div>
+          <!-- Policies Section -->
+          <div class="footer-section">
+              <h3>Policies</h3>
+              <ul>
+                  <li><a href="Terms&Privacy.html">Terms of Service</a></li>
+                  <li><a href="Terms&Privacy.html">Privacy Policy</a></li>
+              </ul>
+          </div>
+      </div>
+    </footer>
+    <script>
+        // Complete job data sample
+        const jobs = [
+            {
+                id: 2,
+                title: "Frontend Developer",
+                image: "front-end (3).png",
+                description: "We are seeking a Senior Front-End Developer to join our team and play a key role in building intuitive, high-performance, and visually appealing web applications. The ideal candidate will have strong expertise in front-end technologies and a deep understanding of modern web development principles, without relying on specific frameworks.",
+                requirements: [
+                    "5+ years of experience in front-end web development.",
+                    "Strong proficiency in HTML, CSS, and JavaScript (ES6+).",
+                    "Deep understanding of web performance optimization techniques.",
+                    "Experience with CSS preprocessors (SASS or LESS) and responsive design principles.",
+                    "Knowledge of vanilla JavaScript techniques without relying on frameworks.",
+                    "Experience with browser developer tools for debugging and testing.",
+                    "Strong problem-solving skills and attention to detail.",
+                    "Familiarity with version control systems (such as Git).",
+                    "Understanding of accessibility standards (WCAG) and SEO best practices.",
+                    "Ability to work independently and collaborate with cross-functional teams.",
+                ],
+                location: "Maadi, Cairo, Egypt",
+                workPlace:"On-Site",
+                salary: "(45,000 - 55,000 EGP) / Month",
+                careerlevel: "Experienced",
+                type: "Full-Time",
+                posted: "5/6/2025",
+                openPositions: 4
+            }
+        ];
+    
+         // DOM elements
+         const jobTitle = document.getElementById('job-title');
+        const jobImage = document.getElementById('job-image');
+        const jobDescription = document.getElementById('job-description');
+        const jobRequirements = document.getElementById('job-requirements');
+        const jobLocation = document.getElementById('job-location');
+        const jobSalary = document.getElementById('job-salary');
+        const jobType = document.getElementById('job-type');
+        const jobWorkPlace = document.getElementById('job-work-place');
+        const jobCareerlevel = document.getElementById('job-careerlevel');
+        const jobPosted = document.getElementById('job-posted');
+        const openPositions = document.getElementById('open-positions');
+        const applyBtn = document.getElementById('apply-btn');
+        const cvUploadForm = document.getElementById('cvUploadForm');
+        const cvUploadBox = document.getElementById('cvUploadBox');
+        const cvFileInput = document.getElementById('cvFileInput');
+        const uploadInitialState = document.getElementById('uploadInitialState');
+        const uploadFileInfo = document.getElementById('uploadFileInfo');
+        const fileName = document.getElementById('fileName');
+        const changeFile = document.getElementById('changeFile');
+        const shareButtons = document.querySelectorAll('.share-btn');
+        const copyLinkBtn = document.getElementById('copy-link');
+
+        // Load job details when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadJobDetails();
+            setupCVUpload();
+            setupShareButtons();
+            setupPreloader();
+        });
+
+        // Load job data into the page
+        function loadJobDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const jobId = parseInt(urlParams.get('id')) || 1;
+            const job = jobs.find(j => j.id === jobId) || jobs[0];
+
+            // Populate job details
+            jobTitle.textContent = job.title;
+            jobImage.src = job.image;
+            jobImage.alt = job.title;
+            jobDescription.textContent = job.description;
+            jobLocation.textContent = job.location;
+            jobSalary.textContent = job.salary;
+            jobType.textContent = job.type;
+            jobWorkPlace.textContent = job.workPlace;
+            jobCareerlevel.textContent = job.careerlevel;
+            jobPosted.textContent = job.posted;
+            openPositions.textContent = `${job.openPositions} open position${job.openPositions !== 1 ? 's' : ''}`;
+
+            // Populate requirements
+            jobRequirements.innerHTML = '';
+            job.requirements.forEach(req => {
+                const li = document.createElement('li');
+                li.textContent = req;
+                jobRequirements.appendChild(li);
+            });
+
+            // Set page title
+            document.title = `${job.title} | Shoghlana`;
+        }
+
+        // Setup CV upload functionality
+        function setupCVUpload() {
+            // File selection handler
+            cvFileInput.addEventListener('change', function(e) {
+                if (this.files && this.files[0]) {
+                    const file = this.files[0];
+                    
+                    // Validate file type
+                    const validTypes = ['application/pdf', 'application/msword', 
+                                    'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                    if (!validTypes.includes(file.type)) {
+                        alert('Please upload a PDF or Word document (DOC/DOCX)');
+                        return;
+                    }
+                    
+                    // Validate file size (5MB max)
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert('File size should not exceed 5MB');
+                        return;
+                    }
+                    
+                    // Show file info
+                    fileName.textContent = file.name;
+                    uploadInitialState.style.display = 'none';
+                    uploadFileInfo.style.display = 'flex';
+                    
+                    // Enable submit button
+                    document.querySelector('.submit-btn').disabled = false;
+                }
+            });
+
+            // Change file button
+            changeFile.addEventListener('click', function() {
+                cvFileInput.value = '';
+                uploadFileInfo.style.display = 'none';
+                uploadInitialState.style.display = 'block';
+                document.querySelector('.submit-btn').disabled = true;
+            });
+
+            // Form submission
+            cvUploadForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (!cvFileInput.files || !cvFileInput.files[0]) {
+                    alert('Please upload your CV first');
+                    return;
+                }
+                
+                // Show loading state
+                const submitBtn = this.querySelector('.submit-btn');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
+                
+                // Simulate upload
+                setTimeout(() => {
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Uploaded';
+                    applyBtn.classList.remove('disabled');
+                    alert('CV uploaded successfully! You can now apply for the job.');
+                }, 2000);
+            });
+        }
+
+        // Setup share buttons functionality
+        function setupShareButtons() {
+            // Social media sharing
+            shareButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const jobUrl = window.location.href;
+                    if (this.classList.contains('facebook')) {
+                        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(jobUrl)}`, '_blank');
+                    } else if (this.classList.contains('twitter')) {
+                        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(jobUrl)}&text=${encodeURIComponent(`Check out this ${jobTitle.textContent} position at Shoghlana`)}`, '_blank');
+                    } else if (this.classList.contains('linkedin')) {
+                        window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(jobUrl)}&title=${encodeURIComponent(jobTitle.textContent)}`, '_blank');
+                    }
+                });
+                
+            });
+
+            // Copy link button
+            copyLinkBtn.addEventListener('click', function() {
+                navigator.clipboard.writeText(window.location.href);
+                const originalIcon = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check"></i>';
+                this.title = 'Link copied!';
+                setTimeout(() => {
+                    this.innerHTML = originalIcon;
+                    this.title = 'Copy link';
+                }, 2000);
+            });
+        }
+
+        // Setup preloader
+        function setupPreloader() {
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    const preloader = document.getElementById('preloader');
+                    preloader.style.opacity = '0';
+                    setTimeout(function() {
+                        preloader.style.display = 'none';
+                    }, 500);
+                }, 1500);
+            });
+        }
+
+        // Apply button functionality
+       // Apply button functionality
+applyBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    // Check if CV was uploaded
+    if (uploadFileInfo.style.display !== 'flex') {
+        alert('Please upload your CV first before applying');
+        cvUploadBox.scrollIntoView({ behavior: 'smooth' });
+        return;
+    }
+    
+    // Show loading state
+    this.classList.add('loading');
+    this.innerHTML = 'Applying...';
+    this.disabled = true;
+    
+    // Simulate application submission (replace with actual API call in production)
+    setTimeout(() => {
+        // Remove loading state
+        this.classList.remove('loading');
+        this.innerHTML = '<i class="fas fa-check"></i> Applied';
+        this.disabled = false;
+        
+          
+        // Show modal confirmation
+        const modal = document.getElementById('confirmationModal');
+        modal.classList.add('active');
+        
+        // Disable scrolling when modal is open
+        document.body.style.overflow = 'hidden';
+    }, 2000);
+    document.getElementById('modalOkButton').addEventListener('click', function() {
+    // Hide modal
+    document.getElementById('confirmationModal').classList.remove('active');
+    // Re-enable scrolling
+    document.body.style.overflow = 'auto';
+    // Redirect to jobs page
+    window.location.href = '../jsjobs.html';
+});
+//         // Show confirmation message
+//         const confirmation = document.createElement('div');
+//         confirmation.className = 'application-confirmation';
+//         confirmation.innerHTML = `
+//             <i class="fas fa-check-circle"></i>
+//             <h4>Application Complete!</h4>
+//             <p>Your application has been successfully submitted.</p>
+//         `;
+//         document.querySelector('.job-sidebar').appendChild(confirmation);
+        
+//         // Scroll to confirmation
+//         setTimeout(() => {
+//             confirmation.scrollIntoView({ behavior: 'smooth' });
+//         }, 100);
+//     }, 2000); // Simulate 2 second API call
+// });
+
+});
+        // Profile icon redirect
+        function redirectToProfile() {
+            window.location.href = '../jsprofile.html';
+        }
+    </script>
+    <div class="modal-overlay" id="confirmationModal">
+        <div class="modal-content">
+            <i class="fas fa-check-circle modal-icon"></i>
+            <h3 class="modal-title">Application Complete!</h3>
+            <p class="modal-message">Your application has been successfully submitted. Thank you for applying!</p>
+            <button class="modal-button" id="modalOkButton">OK</button>
+        </div>
+    </div>
+</body>
+</html>

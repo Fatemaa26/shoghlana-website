@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Applications | Shoghlana</title>
+    <!-- coded by me - April 2025 -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(90deg, #77a4f7, #af5ee9);
+            background-size: 120% 200%;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        nav .logo .o {
+            width: 1em;
+            height: 1em;
+        }
+
+        nav .logo .o img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-right: 4rem;
+            margin-top: 1rem
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            font-family: 'Roboto', sans-serif;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            right: 0;
+            background: #ffffff;
+            transition: width 0.4s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        nav ul li a:hover {
+            color: #d5a1ff;
+            transform: scale(1.05);
+        }
+
+        nav ul li.profile-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            cursor: pointer;
+            border-radius: 50%;
+            overflow: hidden;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        nav ul li.profile-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        nav ul li.profile-icon:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .dashboard {
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex: 1;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .header-section h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-section p {
+            font-size: 1.125rem;
+            max-width: 800px;
+            margin: 0 auto 1.875rem;
+        }
+
+        .filter-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 2.5rem;
+        }
+
+        .filter-section label {
+            font-size: 1rem;
+            margin-right: 0.5rem;
+            color: #e1bee7;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .filter-section select {
+            padding: 0.5rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .filter-section select:focus {
+            border-color: #b0e0e6;
+            outline: none;
+        }
+
+        .applications-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 2.5rem;
+        }
+
+        .applications-section h2 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.75rem;
+            margin-bottom: 1.25rem;
+            color: #e1bee7;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .application-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .application-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .application-item:last-child {
+            border-bottom: none;
+        }
+
+        .application-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(45deg, #77a4f7, #af5ee9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.9375rem;
+            flex-shrink: 0;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .application-content {
+            flex-grow: 1;
+        }
+
+        .application-content p {
+            font-size: 1rem;
+        }
+
+        .application-content .status {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .application-content .status.pending {
+            color: #ffca28;
+        }
+
+        .application-content .status.under-review {
+            color: #42a5f5;
+        }
+
+        .application-content .status.interview-scheduled {
+            color: #ab47bc;
+        }
+
+        .application-content .status.shortlisted {
+            color: #66cc99;
+        }
+
+        .application-content .status.offer-extended {
+            color: #ff9800;
+        }
+
+        .application-content .status.hired {
+            color: #4caf50;
+        }
+
+        .application-content .status.rejected {
+            color: #ff6b6b;
+        }
+
+        .application-content .status.withdrawn {
+            color: #b0bec5;
+        }
+
+        .application-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .action-button.review {
+            background: linear-gradient(90deg, #77a4f7, #af5ee9);
+            color: #ffffff;
+        }
+
+        .action-button.review:hover {
+            background: #42a5f5;
+        }
+
+        .action-button.schedule-interview {
+            background: linear-gradient(90deg, #77a4f7, #af5ee9);
+            color: #ffffff;
+        }
+
+        .action-button.schedule-interview:hover {
+            background: #ab47bc;
+        }
+
+        .action-button.shortlist {
+            background: linear-gradient(90deg, #77a4f7, #af5ee9);
+            color: #ffffff;
+        }
+
+        .action-button.shortlist:hover {
+            background: #66cc99;
+        }
+
+        .action-button.extend-offer {
+            background: linear-gradient(90deg, #77a4f7, #af5ee9);
+            color: #ffffff;
+        }
+
+        .action-button.extend-offer:hover {
+            background: #ff9800;
+        }
+
+        .action-button.hire {
+            background: linear-gradient(90deg, #77a4f7, #af5ee9);
+            color: #ffffff;
+        }
+
+        .action-button.hire:hover {
+            background: #4caf50;
+        }
+
+        .action-button.reject {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        .action-button.reject:hover {
+            background: #ff6b6b;
+        }
+
+        .action-button.withdraw {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        .action-button.withdraw:hover {
+            background: #b0bec5;
+        }
+
+        .action-button:disabled {
+            background: rgba(255, 255, 255, 0.3);
+            cursor: not-allowed;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem 1rem;
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-section h3 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.125rem;
+            color: #b0e0e6;
+            margin-bottom: 1rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-section p,
+        .footer-section ul li a {
+            font-size: 0.875rem;
+            color: #ffffff;
+            line-height: 1.5;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            text-decoration: none;
+            transition: color 0.3s ease
+        }
+
+        .footer-section ul li a:hover {
+            color: #d5a1ff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            font-size: 0.875rem;
+            color: #b0e0e6;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        #preloader {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, #77a4f7, #af5ee9);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          z-index: 9999;
+          transition: opacity 0.5s ease;
+      }
+      
+      .preloader-content {
+          text-align: center;
+      }
+      
+      .loader-icon {
+          width: 80px;
+          height: 80px;
+          margin-bottom: 20px;
+          animation: bounce 1.5s infinite ease-in-out;
+      }
+      
+      .loading-text {
+          color: white;
+          font-family: 'Roboto', sans-serif;
+          font-size: 1.2rem;
+          margin-top: 15px;
+          position: relative;
+      }
+      
+      .loading-text::after {
+          content: '...';
+          position: absolute;
+          animation: dots 1.5s infinite steps(4);
+          width: 20px;
+      }
+      
+      @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-20px); }
+      }
+      
+      @keyframes dots {
+          0% { content: '.'; }
+          25% { content: '..'; }
+          50% { content: '...'; }
+          75% { content: ''; }
+      }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(90deg, #77a4f7, #af5ee9);
+    background-size: 120% 200%;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav .logo {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+nav .logo .o {
+    width: 1em;
+    height: 1em;
+}
+
+nav .logo .o img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-right: 4rem;
+    margin-top: 1rem
+}
+
+nav ul li {
+    margin-left: 2rem;
+}
+
+nav ul li a {
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    right: 0;
+    background: #ffffff;
+    transition: width 0.4s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+nav ul li a:hover {
+    color: #d5a1ff;
+    transform: scale(1.05);
+}
+
+nav ul li.profile-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+nav ul li.profile-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+nav ul li.profile-icon:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.dashboard {
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex: 1;
+}
+
+.header-section {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 1s ease-out;
+}
+
+.header-section h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.header-section p {
+    font-size: 1.125rem;
+    max-width: 800px;
+    margin: 0 auto 1.875rem;
+}
+
+.filter-section {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 2.5rem;
+}
+
+.filter-section label {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    color: #e1bee7;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.filter-section select {
+    padding: 0.5rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.filter-section select:focus {
+    border-color: #b0e0e6;
+    outline: none;
+}
+
+.applications-section {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 2.5rem;
+}
+
+.applications-section h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.75rem;
+    margin-bottom: 1.25rem;
+    color: #e1bee7;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.application-list {
+    list-style: none;
+    padding: 0;
+}
+
+.application-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.application-item:last-child {
+    border-bottom: none;
+}
+
+.application-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: linear-gradient(45deg, #77a4f7, #af5ee9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.9375rem;
+    flex-shrink: 0;
+    font-size: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.application-content {
+    flex-grow: 1;
+}
+
+.application-content p {
+    font-size: 1rem;
+}
+
+.application-content .status {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.application-content .status.pending {
+    color: #ffca28;
+}
+
+.application-content .status.under-review {
+    color: #42a5f5;
+}
+
+.application-content .status.interview-scheduled {
+    color: #ab47bc;
+}
+
+.application-content .status.shortlisted {
+    color: #66cc99;
+}
+
+.application-content .status.offer-extended {
+    color: #ff9800;
+}
+
+.application-content .status.hired {
+    color: #4caf50;
+}
+
+.application-content .status.rejected {
+    color: #ff6b6b;
+}
+
+.application-content .status.withdrawn {
+    color: #b0bec5;
+}
+
+.application-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.action-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.action-button.review {
+    background: linear-gradient(90deg, #77a4f7, #af5ee9);
+    color: #ffffff;
+}
+
+.action-button.review:hover {
+    background: #42a5f5;
+}
+
+.action-button.schedule-interview {
+    background: linear-gradient(90deg, #77a4f7, #af5ee9);
+    color: #ffffff;
+}
+
+.action-button.schedule-interview:hover {
+    background: #ab47bc;
+}
+
+.action-button.shortlist {
+    background: linear-gradient(90deg, #77a4f7, #af5ee9);
+    color: #ffffff;
+}
+
+.action-button.shortlist:hover {
+    background: #66cc99;
+}
+
+.action-button.extend-offer {
+    background: linear-gradient(90deg, #77a4f7, #af5ee9);
+    color: #ffffff;
+}
+
+.action-button.extend-offer:hover {
+    background: #ff9800;
+}
+
+.action-button.hire {
+    background: linear-gradient(90deg, #77a4f7, #af5ee9);
+    color: #ffffff;
+}
+
+.action-button.hire:hover {
+    background: #4caf50;
+}
+
+.action-button.reject {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+.action-button.reject:hover {
+    background: #ff6b6b;
+}
+
+.action-button.withdraw {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+.action-button.withdraw:hover {
+    background: #b0bec5;
+}
+
+.action-button:disabled {
+    background: rgba(255, 255, 255, 0.3);
+    cursor: not-allowed;
+}
+
+footer {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem 1rem;
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-section h3 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.125rem;
+    color: #b0e0e6;
+    margin-bottom: 1rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.footer-section p,
+.footer-section ul li a {
+    font-size: 0.875rem;
+    color: #ffffff;
+    line-height: 1.5;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    transition: color 0.3s ease
+}
+
+.footer-section ul li a:hover {
+    color: #d5a1ff;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 1.5rem;
+    font-size: 0.875rem;
+    color: #b0e0e6;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #77a4f7, #af5ee9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.preloader-content {
+    text-align: center;
+}
+
+.loader-icon {
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 1.5rem;
+    animation: bounce 1.5s infinite ease-in-out;
+}
+
+.loading-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.25rem;
+    color: #ffffff;
+    position: relative;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.loading-text::after {
+    content: '...';
+    position: absolute;
+    animation: dots 1.5s infinite steps(4);
+    width: 1.5rem;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes dots {
+    0% { content: '.'; }
+    25% { content: '..'; }
+    50% { content: '...'; }
+    75% { content: ''; }
+}
+
+@media (max-width: 768px) {
+    .application-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .application-actions {
+        margin-top: 0.5rem;
+    }
+}
+</style>
+</head>
+<body>
+    <div id="preloader">
+        <div class="preloader-content">
+            <img src="job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg" 
+                 class="loader-icon" 
+                 alt="Loading icon">
+            <div class="loading-text">Preparing your career journey</div>
+        </div>
+    </div>
+    
+    <nav>
+        <div class="logo">
+            SH
+            <span class="o">
+              <img src="job-employment-find-recuitment-seeker-applicant-work-svgrepo-com (5).svg" alt="O">
+            </span>
+            GHLANA
+        </div>
+        <ul>
+            <li><a href="employerhome.html">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="EMPpostjob.html">Post Job</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li class="profile-icon" onclick="redirectToProfile()">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFCElEQVR4nO1ZW48UVRBuvOBtNV5QI/gD9BUR/QNqCPpilPiC4AtoIqIxys45s/QLwqsE1BeNBOITmhD8AaxBw4OLl82kT82ArLuyO1U9wyWK4CWkTfX0zNb2dG+f7uldNZkvqWQzfeqcqnPqvo4zxBBDDAw3CG5QHj6pDSoF+IUCqmnAixrwr4guRr99rjyqjNWbTzCP82/DbbQfVgb3aYPnNVCQh5TBXzTgXlVvr1l2wUe98/dpoI8U0J95Be8jQ39ogx+4tZl7l0X4Sr35kgZq9wuDc8rQxxpos/L8tazktongZiYXZleNmdZjqk4va8BPFGCz/0WoVQF/05IJ7p4IbuJb7zsY6ISq+xtfDIIb8+xV9ZrPasDxBNM6yN9LFf6tmZnbFNCXCwXHhvbo6UH3VuBv0IBnYooc5zNLEZ5vI0H4Q2//0LyjlAMcx3FrNKIMHo4rUcpLxM1GAY6VInXiWbg75lcHynDYXMJHt6k14GkNdIVJAU5wjuBveZWoGnphkFDZlmaTxVOtzz2qgaZTYz/QzxVoPZKphKEjIsz6o5OX7xnIdNhhs2zebbTvUobOWcT9n94xrTstXvFsYVMKM6xIUsrQM5kKG1TiwF+1oVcqk/ggE/8d/javyKhddKJesnNNa7W1AmF5IOK8Jc93IpZvS/j+qnjRCcs9vxJyvGclPCckWdtwkrI6DOj3Lk+lMXd//Lt7tvmAeIErNntWw2TX45m2KgDDqlKUB7axeCkUcDvZH+cvs7neyWPLXNvYHBQ3IW1wexkmxNCAnwoz2uVkget5cVObMxm6fB5VpBMrQ1s52jDFndhKkAjaoy1C8aNOFjqNR8Tg+WsdS3AY5RBZRhiVUKa1Tig+6WRBAV3oMnAyc3KAk5QGmkpNZIbO2SQyCfYnWXI7WZDx363VVjo5wQmvY074rQL8jYn/5thfpADc0WjcIvPBkitQNnYUUKCwCS0FKgVMqOfE3AamLgyCFRroNQUIyuD1TOft77yuM28YcoNgRdoxYzD3eE4nng+j3OMmrWPh8wqdHplwe6o8hrbmCqO2iUwD1ktUwCxyoYfE2nczFeChk9C4mVZKSLMp0vrxtEILc0ptZw3R/LrWOrspWzh0WryY04audtcUacDdidnbRXS5mrRGmeZzuYu5UDjAvaIsGE9WAL/vrqka3JlXAQX4pjjjdLICeFIosMd+83p7TTgx65mSv6F/c/8NYWp/c6KyyRu8htdGPEGnZKHX+2XwNwpfvJaroWHwuE/c0Jl4Q84JRgF+E3PIaX69iodPKc9/yJ2aujUk01od/mZwnzI4E3Pgr3mvhUrSyMK6Cvc7ecFJjBOHcLTDSUlGdk35Ccd57Nh3eUCfidunQk19KCD4m2IH7k4cExrcKaOFBSHzuAnRSwG6cm3Vo+cLCd/b0ODBLCVCRWq1lRw1lMEPNdApDsFsuyF1hrmn2Cy5TUzzFRUTXgG9P5Dwoq07vtBu6YjNkMr6jBqNSLOJzjiWZ2C8KDjOx5XguU1SdMoLxdEm3ggZOlbacHfhS+CBuD2zE4dmkSMbdzJsaG4nExx7f2k3nwSeVaY4LIYNuEdbOOVzdGFbDwlmV/FvXJhxbZPGXx3UYW3BYS18DZHsipI6dI1v3Z26dLez3OAExROzvuRkRzwE3sMJb9kFTywA6831UYlwlBsP7uy4PY3ogjb0Y/RtFzcp/4l/sw4xhPP/xz/0x9PjW7+hjQAAAABJRU5ErkJggg==" alt="Profile Icon">
+            </li>     
+        </ul>
+    </nav>
+
+    <div class="dashboard">
+        <section class="header-section">
+            <h1>Manage Applications</h1>
+            <p>Review and manage applications submitted to your job postings.</p>
+        </section>
+
+        <section class="filter-section">
+            <label for="job-filter">Filter by Job Title:</label>
+            <select id="job-filter" onchange="filterApplications()">
+                <option value="">All Jobs</option>
+            </select>
+        </section>
+
+        <section class="applications-section">
+            <h2>Applications</h2>
+            <ul class="application-list" id="application-list"></ul>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Headquarter</h3>
+                <p>📞 +20 109 9999-978</p>
+                <p>📧 info@shoghlana.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="AboutUs3.html">About Us</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="HelpCenter3.html">Help Center</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Policies</h3>
+                <ul>
+                    <li><a href="Terms&Privacy3.html">Terms of Service</a></li>
+                    <li><a href="Terms&Privacy3.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Shoghlana. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // preloader stuff
+        window.addEventListener('load', function() {
+            var p = document.getElementById('preloader');
+            setTimeout(function() {
+                p.style.opacity = '0';
+                setTimeout(function() {
+                    p.style.display = 'none';
+                }, 500);
+            }, 2000);
+        });
+
+        // go to profile
+        function redirectToProfile() {
+            window.location.href = 'EMPProfile.html';
+        }
+
+        // log activity to localStorage (same as employer-home.html)
+        function logActivity(message) {
+            var activities = JSON.parse(localStorage.getItem('recentActivities')) || [];
+            var now = new Date().getTime();
+            activities.unshift({ message: message, time: now });
+            if (activities.length > 4) {
+                activities = activities.slice(0, 4);
+            }
+            localStorage.setItem('recentActivities', JSON.stringify(activities));
+            console.log('Logged activity:', message, 'at', now); // debug
+        }
+
+        // initialize applications
+        function initializeApplications() {
+            var applications = JSON.parse(localStorage.getItem('applications')) || [];
+            console.log('Initial applications from localStorage:', applications); // debug
+            if (applications.length === 0) {
+                // default applications with all job titles and varied statuses
+                applications = [
+                    { id: 1, candidateName: 'Ahmed Mohamed', jobTitle: 'Software Engineer', appliedDate: new Date('2025-04-23').getTime(), status: 'Pending' },
+                    { id: 2, candidateName: 'Sara Ali', jobTitle: 'Data Scientist', appliedDate: new Date('2025-04-22').getTime(), status: 'Pending' },
+                    { id: 3, candidateName: 'Omar Khaled', jobTitle: 'Project Manager', appliedDate: new Date('2025-04-21').getTime(), status: 'Pending' },
+                    { id: 4, candidateName: 'Laila Hassan', jobTitle: 'Product Manager', appliedDate: new Date('2025-04-20').getTime(), status: 'Under Review' },
+                    { id: 5, candidateName: 'Youssef Amr', jobTitle: 'Sales Representative', appliedDate: new Date('2025-04-19').getTime(), status: 'Under Review' },
+                    { id: 6, candidateName: 'Nour Ehab', jobTitle: 'Marketing Manager', appliedDate: new Date('2025-04-18').getTime(), status: 'Under Review' },
+                    { id: 7, candidateName: 'Mona Zaki', jobTitle: 'Frontend Developer', appliedDate: new Date('2025-04-17').getTime(), status: 'Interview Scheduled' },
+                    { id: 8, candidateName: 'Khaled Samir', jobTitle: 'Backend Developer', appliedDate: new Date('2025-04-16').getTime(), status: 'Interview Scheduled' },
+                    { id: 9, candidateName: 'Fatima Nour', jobTitle: 'UX Designer', appliedDate: new Date('2025-04-15').getTime(), status: 'Interview Scheduled' },
+                    { id: 10, candidateName: 'Hassan Ali', jobTitle: 'DevOps Engineer', appliedDate: new Date('2025-04-14').getTime(), status: 'Shortlisted' },
+                    { id: 11, candidateName: 'Aya Mostafa', jobTitle: 'Data Analyst', appliedDate: new Date('2025-04-13').getTime(), status: 'Shortlisted' },
+                    { id: 12, candidateName: 'Tarek Hamed', jobTitle: 'HR Manager', appliedDate: new Date('2025-04-12').getTime(), status: 'Shortlisted' },
+                    { id: 13, candidateName: 'Rania Salem', jobTitle: 'Content Writer', appliedDate: new Date('2025-04-11').getTime(), status: 'Offer Extended' },
+                    { id: 14, candidateName: 'Amr Nabil', jobTitle: 'Customer Support Specialist', appliedDate: new Date('2025-04-10').getTime(), status: 'Offer Extended' },
+                    { id: 15, candidateName: 'Hala Youssef', jobTitle: 'Financial Analyst', appliedDate: new Date('2025-04-09').getTime(), status: 'Hired' },
+                    { id: 16, candidateName: 'Sami Omar', jobTitle: 'Graphic Designer', appliedDate: new Date('2025-04-08').getTime(), status: 'Hired' },
+                    { id: 17, candidateName: 'Nada Kareem', jobTitle: 'Mobile App Developer', appliedDate: new Date('2025-04-07').getTime(), status: 'Rejected' },
+                    { id: 18, candidateName: 'Ali Maher', jobTitle: 'Cybersecurity Specialist', appliedDate: new Date('2025-04-06').getTime(), status: 'Rejected' },
+                    { id: 19, candidateName: 'Dina Essam', jobTitle: 'Business Analyst', appliedDate: new Date('2025-04-05').getTime(), status: 'Withdrawn' },
+                    { id: 20, candidateName: 'Kareem Adel', jobTitle: 'Technical Writer', appliedDate: new Date('2025-04-04').getTime(), status: 'Withdrawn' },
+                    { id: 21, candidateName: 'Mahmoud Tarek', jobTitle: 'Senior Developer', appliedDate: new Date('2025-04-03').getTime(), status: 'Pending' },
+                    { id: 22, candidateName: 'Layla Fathy', jobTitle: 'Marketing Specialist', appliedDate: new Date('2025-04-02').getTime(), status: 'Under Review' }
+                ];
+                localStorage.setItem('applications', JSON.stringify(applications));
+                console.log('Initialized default applications:', applications); // debug
+            }
+            return applications;
+        }
+
+        // populate job filter dropdown
+        function populateJobFilter() {
+            var applications = JSON.parse(localStorage.getItem('applications')) || [];
+            if (applications.length === 0) {
+                console.error('No applications found in localStorage for filter'); // debug
+                return;
+            }
+            var jobTitles = [...new Set(applications.map(app => app.jobTitle))]; // unique job titles
+            var select = document.getElementById('job-filter');
+            if (!select) {
+                console.error('Job filter select element not found'); // debug
+                return;
+            }
+            // Clear existing options except the default "All Jobs"
+            select.innerHTML = '<option value="">All Jobs</option>';
+            jobTitles.forEach(function(title) {
+                var option = document.createElement('option');
+                option.value = title;
+                option.textContent = title;
+                select.appendChild(option);
+            });
+            console.log('Populated job titles for filter:', jobTitles); // debug
+        }
+
+        // calculate relative time
+        function getRelativeTime(timestamp) {
+            var now = new Date().getTime();
+            var diff = now - timestamp;
+            var seconds = Math.floor(diff / 1000);
+            var minutes = Math.floor(seconds / 60);
+            var hours = Math.floor(minutes / 60);
+            var days = Math.floor(hours / 24);
+
+            if (days > 0) return days + ' day' + (days > 1 ? 's' : '') + ' ago';
+            if (hours > 0) return hours + ' hour' + (hours > 1 ? 's' : '') + ' ago';
+            if (minutes > 0) return minutes + ' minute' + (minutes > 1 ? 's' : '') + ' ago';
+            return 'just now';
+        }
+
+        // render applications
+        function renderApplications(filterJobTitle = '') {
+            var list = document.getElementById('application-list');
+            if (!list) {
+                console.error('Application list element not found'); // debug
+                return;
+            }
+            list.innerHTML = '';
+            var applications = JSON.parse(localStorage.getItem('applications')) || [];
+            if (applications.length === 0) {
+                list.innerHTML = '<p>No applications found.</p>';
+                console.warn('No applications to render'); // debug
+                return;
+            }
+
+            // filter stuff
+            var filteredApplications = filterJobTitle
+                ? applications.filter(app => app.jobTitle === filterJobTitle)
+                : applications;
+
+            if (filteredApplications.length === 0) {
+                list.innerHTML = '<p>No applications found for this job title.</p>';
+                console.log('No applications after filtering:', filterJobTitle); // debug
+                return;
+            }
+
+            filteredApplications.forEach(function(app) {
+                var li = document.createElement('li');
+                li.className = 'application-item';
+                
+                // determine which buttons to show based on status
+                var buttons = '';
+                if (app.status === 'Pending') {
+                    buttons = `
+                        <button class="action-button review" onclick="updateStatus(${app.id}, 'Under Review')">Review</button>
+                        <button class="action-button withdraw" onclick="updateStatus(${app.id}, 'Withdrawn')">Withdraw</button>
+                        <button class="action-button reject" onclick="updateStatus(${app.id}, 'Rejected')">Reject</button>
+                    `;
+                } else if (app.status === 'Under Review') {
+                    buttons = `
+                        <button class="action-button schedule-interview" onclick="updateStatus(${app.id}, 'Interview Scheduled')">Schedule Interview</button>
+                        <button class="action-button withdraw" onclick="updateStatus(${app.id}, 'Withdrawn')">Withdraw</button>
+                        <button class="action-button reject" onclick="updateStatus(${app.id}, 'Rejected')">Reject</button>
+                    `;
+                } else if (app.status === 'Interview Scheduled') {
+                    buttons = `
+                        <button class="action-button shortlist" onclick="updateStatus(${app.id}, 'Shortlisted')">Shortlist</button>
+                        <button class="action-button withdraw" onclick="updateStatus(${app.id}, 'Withdrawn')">Withdraw</button>
+                        <button class="action-button reject" onclick="updateStatus(${app.id}, 'Rejected')">Reject</button>
+                    `;
+                } else if (app.status === 'Shortlisted') {
+                    buttons = `
+                        <button class="action-button extend-offer" onclick="updateStatus(${app.id}, 'Offer Extended')">Extend Offer</button>
+                        <button class="action-button reject" onclick="updateStatus(${app.id}, 'Rejected')">Reject</button>
+                    `;
+                } else if (app.status === 'Offer Extended') {
+                    buttons = `
+                        <button class="action-button hire" onclick="updateStatus(${app.id}, 'Hired')">Accept</button>
+                        <button class="action-button reject" onclick="updateStatus(${app.id}, 'Rejected')">Reject</button>
+                    `;
+                } else {
+                    buttons = ''; // No buttons for Hired, Rejected, Withdrawn
+                }
+
+                li.innerHTML = `
+                    <div class="application-icon">👤</div>
+                    <div class="application-content">
+                        <p>${app.candidateName} applied for ${app.jobTitle}</p>
+                        <span class="status ${app.status.toLowerCase().replace(' ', '-')}" data-status="${app.status}">Status: ${app.status}</span><br>
+                        <span class="applied-date">Applied: ${getRelativeTime(app.appliedDate)}</span>
+                    </div>
+                    <div class="application-actions">
+                        ${buttons}
+                    </div>
+                `;
+                list.appendChild(li);
+            });
+            console.log('Rendered applications:', filteredApplications); // debug
+        }
+
+        // update application status
+        function updateStatus(id, status) {
+            console.log('Updating status for ID:', id, 'to:', status); // debug
+            var applications = JSON.parse(localStorage.getItem('applications')) || [];
+            var app = applications.find(a => a.id === id);
+            if (app) {
+                app.status = status;
+                localStorage.setItem('applications', JSON.stringify(applications));
+                console.log('Updated applications in localStorage:', applications); // debug
+                // log to recent activities
+                var message = '';
+                switch (status) {
+                    case 'Under Review':
+                        message = `You started reviewing ${app.candidateName}'s application for ${app.jobTitle}`;
+                        break;
+                    case 'Interview Scheduled':
+                        message = `You scheduled an interview with ${app.candidateName} for ${app.jobTitle}`;
+                        break;
+                    case 'Shortlisted':
+                        message = `You shortlisted ${app.candidateName} for ${app.jobTitle}`;
+                        break;
+                    case 'Offer Extended':
+                        message = `You extended an offer to ${app.candidateName} for ${app.jobTitle}`;
+                        break;
+                    case 'Hired':
+                        message = `You accepted ${app.candidateName} for ${app.jobTitle}`;
+                        break;
+                    case 'Rejected':
+                        message = `You rejected ${app.candidateName}'s application for ${app.jobTitle}`;
+                        break;
+                    case 'Withdrawn':
+                        message = `${app.candidateName} withdrew their application for ${app.jobTitle}`;
+                        break;
+                }
+                logActivity(message);
+                // Re-render with the current filter
+                var currentFilter = document.getElementById('job-filter') ? document.getElementById('job-filter').value : '';
+                renderApplications(currentFilter);
+            } else {
+                console.error('Application not found for ID:', id); // debug
+            }
+        }
+
+        // filter applications
+        function filterApplications() {
+            var jobTitle = document.getElementById('job-filter') ? document.getElementById('job-filter').value : '';
+            console.log('Filtering applications by job title:', jobTitle); // debug
+            renderApplications(jobTitle);
+        }
+
+        // init page
+        window.onload = function() {
+            var apps = initializeApplications();
+            if (apps.length === 0) {
+                console.error('Failed to initialize applications'); // debug
+            }
+            populateJobFilter();
+            renderApplications();
+        };
+
+        // todo - maybe add pagination?
+        var unused = 'test'; // lol not using this
+    </script>
+</body>
+</html>
